@@ -12,18 +12,10 @@ module.exports = async (req, res) => {
         //? GUARDO LA RESPUESTA Y RECORRO EL ARRAY DE OBJETOS PARA TRAER LA INFO NECESARIA
         const diets = response.data.results.map(recipe => {
             return {
-            title: recipe.title,
-            image: recipe.image,
-            summary: recipe.summary,
-            healthScore: recipe.healthScore,
             vegetarian: recipe.vegetarian,
             vegan: recipe.vegan,
             glutenFree: recipe.glutenFree,
-            diet: recipe.diets,
-            stepByStep: recipe.analyzedInstructions[0]?.steps.map(step => {
-            return `Step ${step.number} : ${step.step} `     
-            })
-
+            diet: recipe.diet.map(diet => diet.diet),
            }
         });   
 
