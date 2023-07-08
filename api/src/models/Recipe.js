@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
     },
 
     image:{
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
 
@@ -46,7 +46,8 @@ module.exports = (sequelize) => {
 
     stepByStep:{
       /* type: DataTypes.ARRAY(DataTypes.JSON) */
-      type: DataTypes.JSON,
+      /* type: DataTypes.JSON */
+      type: DataTypes.TEXT,
       allowNull:false,
     },
 
