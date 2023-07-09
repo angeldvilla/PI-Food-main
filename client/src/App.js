@@ -13,9 +13,8 @@ import Error from './Pages/Error/Error';
 import {Routes, Route } from 'react-router-dom';
 /* ---------- */
 
-
 const App = () =>  {
- 
+
   return (
     <div className="App">
 

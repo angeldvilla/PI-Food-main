@@ -11,8 +11,9 @@ import axios from 'axios';
 
 
 const Home = () => {
- const [recipes, setRecipes] = useState(null);
- /* const [loader, setLoader] = useState(true); */
+
+/*  const [loader, setLoader] = useState(true);  */
+const [recipes, setRecipes] = useState([]);
 
 useEffect(() =>  {
     axios('http://localhost:3001/recipes/')
@@ -23,36 +24,31 @@ useEffect(() =>  {
  return( 
     <div>
         <h1>RECIPES</h1>
-        { /* loader ? ( 
-            <div className="preloader">
-            <div className="loader"></div>
-            </div>
-        ) : ( */
-
+        {
         recipes ? (
             
         <div className={styles.container}>
             {
 
-            recipes.map(({idRecipe, title, image, diet}) => {
+            recipes.map(({id, title, image, diet}) => {
             return (
-                <Cards
-                key={idRecipe}
-                idRecipe ={idRecipe}
+                <Cards key={id}
+                id ={id}
                 title={title}
                 image={image}
                 diet={diet}
                 />  
                 )   
             })
-            
+    
             }
-            
             </div>
-           ) : (
+           ) 
+           : (
           <p>Loading recipes...</p>
-       /*  ) */
-    )}
+       
+          )
+    }
     </div>
  )
 

@@ -33,6 +33,7 @@ module.exports = async (title) => {
         //? SE EXTRAE LA INFO NECESARIA
         let responseQuery = apiRecipes.data.results.map(recipe => {
         return {
+          id: recipe.id,
           title: recipe.title,
           image: recipe.image,
           summary: recipe.summary,

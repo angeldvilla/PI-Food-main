@@ -31,6 +31,7 @@ module.exports = async (idRecipe) => {
          
         if(apiRecipe.title){
           const response = {
+              id: apiRecipe.id,
               title: apiRecipe.title,
               image: apiRecipe.image,
               summary: apiRecipe.summary,

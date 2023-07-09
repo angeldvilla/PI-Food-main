@@ -24,6 +24,7 @@ module.exports = async () => {
          //* INFO API RECORRO LA RESPUESTA Y TRAIGO LOS DATOS IMPORTANTES 
          const apiRecipes = apiResponse.data.results.map(recipe => {
             return {
+            id: recipe.id,
             title: recipe.title,
             image: recipe.image,
             summary: recipe.summary,

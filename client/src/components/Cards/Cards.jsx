@@ -3,10 +3,10 @@ import styles from './cardstyle.module.css'
 import { Link } from 'react-router-dom';
 /* ------------------------------------------ */
 
-const Cards = ({idRecipe, title, image, diet}) => 
+const Cards = ({id, title, image, diet}) => 
 {
    return (
-      <Link to={`/detail/${idRecipe}`} className={styles.link} >
+      <Link to={`/detail/${id}`} className={styles.link} >
       
       <div className={styles.card}>
 
