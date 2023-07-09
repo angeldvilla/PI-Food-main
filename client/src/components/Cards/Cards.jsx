@@ -13,7 +13,7 @@ const Cards = ({id, title, image, diet}) =>
          <img src={image} alt={title} />
          <br/>
          <h3 className={styles.name}>{title}</h3>
-         <h5 className={styles.details}>{diet}</h5>
+         <h5 className={styles.diets}>{diet}</h5>
 
       </div> 
 

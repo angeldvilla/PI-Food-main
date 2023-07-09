@@ -35,6 +35,7 @@
     position: relative;
     z-index: 3;
   }
+
  .card:hover {
     margin-top: 1px;
     scale: 1.03 1.03;
@@ -50,7 +51,6 @@
     height: 200px;
     width: 100%;
     /* opacity: 0.6; */
-    
   }
 
   .card img:hover{
@@ -58,11 +58,6 @@
     transform: scale(1.03);
     /* filter: brightness(1.1); */
   }
-  
-  .link{
-    color: aliceblue;
-    text-decoration: none;
-}
 
   .card .name {
     top: 0.1rem;
@@ -83,7 +78,7 @@
     text-shadow: 0 0 .2rem rgba(0, 0, 0, 0.461), 0 0 .1rem rgba(81, 255, 110, 0.461), 0 0 .8rem rgba(0, 0, 0, 0.461);
 }
 
-.card .details {
+.card .diets {
   display: flex;
   flex-direction: column;
   /* font-family: 'MyFont'; */
@@ -97,12 +92,19 @@
   text-shadow: 0 0 .2rem rgba(0, 0, 0, 0.461), 0 0 .1rem rgba(0, 0, 0, 0.461), 0 0 .8rem rgba(0, 0, 0, 0.461);
 }
 
-.card .details:hover{
+.card .diets:hover{
   cursor: pointer;
   transform: scale(1.1);
   color: #00ff2fea;
   text-shadow: 0 0 .2rem rgba(0, 0, 0, 0.461), 0 0 .1rem rgba(81, 255, 110, 0.461), 0 0 .8rem rgba(0, 0, 0, 0.461);
 }
+/* ----------------------------------------------------------- */
+
+  .link{
+    color: aliceblue;
+    text-decoration: none;
+}
+/* ----------------------------------------------------------- */
 
   .boton {
     background-color: transparent;
@@ -121,6 +123,7 @@
     border-radius: 50%;
     display: flex;
   }
+/* ----------------------------------------------------------- */
 
   .fav {
     background-color: transparent;
@@ -143,3 +146,4 @@
   span .material-symbols-outlined{
     color: red;
   }
+/* ----------------------------------------------------------- */

@@ -11,23 +11,22 @@ import style from './detail.module.css'
 /* -------------------- */
 
 const Detail = () => {
- const { idRecipe } = useParams;
+ const { id } = useParams();
 
  const [recipe, setRecipe] = useState({});
 
  useEffect(()=>{
-    axios(`http://localhost:3001/recipe/${idRecipe}`)
+    axios(`http://localhost:3001/recipes/${id}`)
     .then(response => response.data)
     .then(data => {
-        if(data.name){
-            setRecipe(data);
+        if(data.title){
+          setRecipe(data);
         } else{
             alert('recipe fail detail')
         }
     })
-    .catch(error => error.message)
     return setRecipe({})
- },[idRecipe]);
+ },[id]);
 
 
     return( 
@@ -35,38 +34,37 @@ const Detail = () => {
         <div className={style.card}>
 
             <div>
-            <h1>DETALLE DE UNA RECETA </h1>
+
               <button>
-                  <Link to='/home' className={style.link} >BACK</Link>
+                  <Link to='/home' className={style.back} >BACK</Link>
               </button>
 
-              <h1>{recipe?.title}</h1>
+              <h1>{recipe.title}</h1>
 
             </div>
 
             <div className={style.detail} >
 
               <div className={style.containerImg} >
-                <img src={recipe?.image} alt={recipe?.title} />
-
+                <img src={recipe?.image} alt={recipe.title} />
               </div>
 
-              <div className={style.titulos}>
+              <div className={style.propiedades}>
 
-              <label htmlFor="status" >ID: </label>
-                <p className={style.id}>{recipe?.id}</p>
+              <label htmlFor="summary" >ID: </label>
+                <p className={style.id}>{recipe.id}</p>
 
-                <label htmlFor="status" >Summary: </label>
-                <p className={style.estado}>{recipe?.summary}</p>
+                <label htmlFor="summary" >Summary: </label>
+                <p className={style.summary}>{recipe.summary}</p>
 
-                <label htmlFor="specie">Health Score: </label>
-                <p className={style.especie}>{recipe?.healthScore}</p>
+                <label htmlFor="healthScore">Health Score: </label>
+                <p className={style.healthScore}>{recipe.healthScore}</p>
 
-                <label htmlFor="gender">Step By Step: </label>
-                <p className={style.genero}>{recipe?.stepByStep}</p>
+                <label htmlFor="stepByStep">Step By Step: </label>
+                <p className={style.stepByStep}>{recipe.stepByStep}</p>
 
-                <label htmlFor="origin">Diets: </label>
-                <p className={style.origen}>{recipe?.diet?.name}</p>
+                <label htmlFor="diet">Diets: </label>
+                <p className={style.diet}>{recipe.diet}</p>
 
               </div>
             </div>

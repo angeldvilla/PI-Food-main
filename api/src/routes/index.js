@@ -3,14 +3,14 @@ const router = Router();
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
-const recipesHandler = require('../handlers/recipesHandler');
-const dietsHandler = require('../handlers/dietsHandler');
+const recipesRoutes = require('./recipesRoutes');
+const dietsRoutes = require('./dietsRoutes');
 
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-router.use('/recipes', recipesHandler);
-router.use('/diets', dietsHandler);
+router.use('/recipes', recipesRoutes);
+router.use('/diets', dietsRoutes);
 
 module.exports = router;

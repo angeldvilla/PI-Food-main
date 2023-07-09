@@ -1,41 +1,72 @@
-//*IMPORTS ARCHIVOS, MODELOS Y SERVER
-//-------------------------------------------------------------
-const { Router } = require('express');
-const recipesRoutes = Router();
-//-------------------------------------------------------------
-
 //*CONTROLLERS
 //-------------------------------------------------------------
-const getRecipeById = require('../controllers/getRecipeByIdController');
-const allRecipes = require('../controllers/allRecipesController');
-const createRecipe = require('../controllers/createRecipeController');
-/* const updateRecipe = require('../controllers/updateRecipeController'); 
-const deleteRecipe = require('../controllers/deleteRecipeController'); */
+const getAllRecipes = require('../controllers/getAllRecipes');
+const getRecipeByName = require('../controllers/getRecipeByName');
+const recipeById = require('../controllers/recipeById');
+const recipeCreate = require('../controllers/recipeCreate');
 //-------------------------------------------------------------
 
+const allRecipes = async (req, res) => {
+    try {
+        const { title } = req.query;
 
-//-------------------------------------------------------------
-//!RUTA PARA TRAER TODAS LAS RECETAS Y POR TITLE
+        if(title){
+            const name = await getRecipeByName(title);
+            /* console.log(name); */
+            if(name.length) return res.status(200).json(name);
 
-recipesRoutes.get('/', allRecipes);
-//-------------------------------------------------------------
+            return res.status(404).send('Recipe not found');
+         }
 
+        const allRecipes = await getAllRecipes();
 
-//!RUTA PARA MOSTRAR EL DETALLE DE UNA RECETA ESPECIFICA
+        //?RETORNO LA RESPUESTA COMPLETA TANTO LOS DATOS DE LA API COMO LA DB
+        return res.status(200).json(allRecipes); 
 
-recipesRoutes.get('/:idRecipe', getRecipeById);
-//-------------------------------------------------------------
-
-//!RUTA PARA TRAER CREAR UNA RECETA Y GUARDARLA EN LA BASE DE DATOS
-
-recipesRoutes.post('/create', createRecipe);
-//-------------------------------------------------------------
-
-//!RUTA PARA MODIFICAR UNA RECETA
-/* recipesRoutes.put('/edit', updateRecipe); */
-
-//!RUTA PARA HACER UN BORRADO LÓGICO
-/* recipesRoutes.put('/delete', deleteRecipe); */
+  } catch (error) {
+      return res.status(500).json({error: error.message})
+  };
+}
 
 
-module.exports = recipesRoutes
+const getRecipeById = async (req, res) => {
+    const { idRecipe } = req.params;
+    try {
+        const recipeFound = await recipeById(idRecipe);
+        return res.status(200).json(recipeFound);
+    }
+     catch (error) {
+        return res.status(500).json({
+            error: error.message
+        });
+    };
+}
+
+const createRecipe = async (req, res) => {
+    try{
+        const { title, image, summary, healthScore, stepByStep, diet } = req.body; 
+          if(!title || !image || !summary || !healthScore || !stepByStep ) {
+            return res.status(400).send('Missing data');
+          }
+          const newRecipe = await recipeCreate({
+            title,
+            image,
+            summary,
+            healthScore,
+            stepByStep,
+            diet,
+          });
+  
+          return res.status(200).json(newRecipe);
+  
+      } catch(error){
+        return res.status(500).json({ error: error.message });
+      };
+}
+
+
+module.exports = {
+    allRecipes,
+    getRecipeById,
+    createRecipe
+}

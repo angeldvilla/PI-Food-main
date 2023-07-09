@@ -16,7 +16,7 @@ const Home = () => {
 const [recipes, setRecipes] = useState([]);
 
 useEffect(() =>  {
-    axios('http://localhost:3001/recipes/')
+    axios('http://localhost:3001/recipes')
     .then(response => setRecipes(response.data))
     .catch(error => error.message)
 }, [])
