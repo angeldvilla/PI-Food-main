@@ -51,6 +51,11 @@ module.exports = (sequelize) => {
       allowNull:false,
     },
 
+    activo: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+
   },
 
   {timestamps: false},

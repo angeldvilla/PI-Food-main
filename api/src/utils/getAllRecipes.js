@@ -47,7 +47,7 @@ module.exports = async () => {
     
         return allRecipes;
     } catch(error){
-        return {error: 'No name matches found'};
+        return {error: 'No recipes matches found'};
     }
     
 }

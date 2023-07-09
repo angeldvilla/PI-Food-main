@@ -15,13 +15,14 @@ import {Routes, Route } from 'react-router-dom';
 
 
 const App = () =>  {
+ 
   return (
     <div className="App">
-    
+
         <Routes>
             <Route path='/' element={ <LandingPage/> } />
             <Route path='/home' element={ <Home/> } /> 
-            <Route path='/detail/:id' element={ <Details/> } />
+            <Route path='/detail/:idRecipe' element={ <Details/> } />
             <Route path='/createRecipe' element={ <Create/> } />
             <Route path='/error404' element={ <Error/> } /> 
         </Routes> 

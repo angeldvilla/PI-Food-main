@@ -9,6 +9,8 @@ const recipesRoutes = Router();
 const getRecipeById = require('../controllers/getRecipeByIdController');
 const allRecipes = require('../controllers/allRecipesController');
 const createRecipe = require('../controllers/createRecipeController');
+/* const updateRecipe = require('../controllers/updateRecipeController'); 
+const deleteRecipe = require('../controllers/deleteRecipeController'); */
 //-------------------------------------------------------------
 
 
@@ -30,14 +32,10 @@ recipesRoutes.post('/create', createRecipe);
 //-------------------------------------------------------------
 
 //!RUTA PARA MODIFICAR UNA RECETA
-/* recipesRoutes.put('/edit', async (req,res) => {
-
-}); */
+/* recipesRoutes.put('/edit', updateRecipe); */
 
 //!RUTA PARA HACER UN BORRADO LÓGICO
-/* recipesRoutes.put('/delete', async (req,res) => {
-
-}); */
+/* recipesRoutes.put('/delete', deleteRecipe); */
 
 
 module.exports = recipesRoutes
