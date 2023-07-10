@@ -24,11 +24,11 @@
     margin-top: 2.3em;
     margin-bottom: 0.3em;
     margin-right: 1.9em;
-    padding: 0.8em;
-    width: 100%;
+    padding: 0.5em;
+    width: 14em;
     align-items: center;
     text-align: center;
-    font-size: 1.3em;
+    font-size: 1.2em;
     border: 2px solid #909090;
     border-bottom: 2px solid #909090;
     border-radius: 15px;
@@ -38,19 +38,18 @@
 /* --------------------------------- */
 
 .search{
-    width: -10em;
-    top: -3.1em;
     position: relative;
-    margin-top: -19.3em;
-    border-radius: 5em;
-    margin-bottom: 1.5em;
-    margin-left: 15.9em;
-    margin-right: 0.2em;
-    border: none;
     background-color: transparent;
+    top: -2.5em;
+    margin-top: -1.3em;
+    margin-bottom: 1.5em;
+    margin-left: -19em;
+    margin-right: 0.2em;
     color: rgb(255, 83, 21);
+    border: none;
+    border-radius: 5em;
   }
   
   .search:hover {
     color: rgba(246, 62, 6, 0.583);
-  } 
+  }
