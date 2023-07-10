@@ -1,94 +1,95 @@
 @import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
-
+/* ----------------------------------------------------------- */
 
 .container div h1{
-    font-family: 'Shrikhand', cursive;
-    font-size: 1.9em;
-    margin-left: -50%;
-    margin-right: -50%;
     top: .1em;
+    margin-left: -45%;
+    margin-right: -50%;
     color: rgba(190, 190, 190, 0.992);
     text-shadow: 0 0 0.2rem #06f1b64a, 0 0 0.1rem #06f1b667 , 0 0 1rem #06f1b65b;
+    font-family: 'Shrikhand', cursive;
+    font-size: 1.9em;
+    cursor: pointer;
     z-index: 3;
 }
 
 .container div h1:hover{
-    transform: scale(1.015);
     color: #e7e3e3;
     text-shadow: 0 0 0.2rem rgba(91, 237, 13, 0.186), 0 0 0.1rem rgba(89, 255, 0, 0.43), 0 0 1rem rgba(89, 255, 0, 0.43);
+    transform: scale(1.015);
 }
 
 .container div label{
     width: fit-content;
     margin-left: 1.9rem;
-    font-family: 'Shrikhand', cursive;
-    font-size: 1.5em;
+    border-radius: 0.3rem;
     color: rgba(190, 190, 190, 0.992);
     text-shadow: 0 0 0.2rem #06f1b64a, 0 0 0.1rem #06f1b667 , 0 0 1rem #06f1b65b;
-    border-radius: 0.3rem;
+    font-family: 'Shrikhand', cursive;
+    font-size: 1.5em;
 }
 
 .container div label:hover{
-    transform: scale(1.10);
     color: #ffffff;
     text-shadow: 0 0 0.2rem #8000ff44, 0 0 0.1rem #8000ff44 , 0 0 1rem #8000ff44;
+    transform: scale(1.015);
 }
 
 .container div img{
+    overflow: hidden;
     width: 20rem;
     height: 20rem;
     border-radius: 9999rem;
-    overflow: hidden;
     transition: .8s;
     z-index: 2;
 }
 
 .container div img:hover{
-    transform: scale(1.03);
-    filter: brightness(1.2);
-    color: white;
     background-color: #8000ff44;
+    color: white;
     box-shadow: 0 0 1rem #06f1b6a8, 0 0 2rem #06f1b6a8;
+    filter: brightness(1.2);
+    transform: scale(1.03);
 }
 
 .container div button{
+    overflow: hidden;
+    top: -1.1em;
     margin-left: -1rem;
-    border-radius: 5rem;
-    top: -1.2em;
-    margin-bottom: 0;
-    width: 6rem;
+    width: 5rem;
     height: 2.8rem;
     background: linear-gradient(rgba(81, 150, 110, 0.461), rgba(0, 0, 0, 0));
     border: transparent;
-    overflow: hidden;
+    border-radius: 5rem;
+    margin-bottom: 0;
     /*font-family:  'MyFont' ;*/
-    font-size: 1.7em;
+    font-size: 1.2em;
     transition: 300ms;
 }
 
 .container div button:hover{
-    cursor: pointer;
-    transform: scale(1.1);
-    color: white;
     background-color: #8000ff44;
+    color: white;
     box-shadow: 0 0 1rem #06f1b6a8, 0 0 4rem #06f1b6a8;
+    cursor: pointer;
+    transform: scale(1.015);
 }
 
 /* ----------------------------------------------------------- */
 
  .card {
-    border-radius: 5em;
-    box-shadow: 0 2px 10px #06f1b6a8;
-    background-image: url('https://e0.pxfuel.com/wallpapers/52/830/desktop-wallpaper-food-background-food-food-recipes-food-menu-greek-food.jpg');
+    background-image: url('../../images/Fondodetail.jpg');
     background-size: cover;
+    position: absolute;
     margin: 0;
-    padding: 5em;
+    top: 22.5em;
+    left: 50%;
     width: 80em;
     height: 38em;
-    top: 25em;
-    left: 50%;
-    position: absolute;
+    padding: 2.5em;
+    border-radius: 5em;
+    box-shadow: 0 2px 10px #06f1b6a8;
     transform: translate(-50%, -50%);
     transition: 0.5s;
     z-index: 2;
@@ -99,10 +100,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    border-radius: 5em;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(6px) brightness(0.3);
+    border-radius: 5em;
+    backdrop-filter: blur(7px) brightness(0.3);
     -webkit-backdrop-filter: blur(7px) brightness(0.3);
   }
 
@@ -141,11 +142,11 @@
 /* ----------------------------------------------------------- */
 
 .containerImg{
+    display: flex;
+    justify-content: center;
     top: -1.7em;
     margin-left: 1.2em;
     opacity: 0.8;
-    display: flex;
-    justify-content: center;
 }
 /* ----------------------------------------------------------- */
 
