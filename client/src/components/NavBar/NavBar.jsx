@@ -41,7 +41,8 @@ const NavBar = ({ searchRecipe }) => {
 
               HOME
             </NavLink>
-          
+            
+            <SearchBar searchRecipe={searchRecipe}/>
 
           <NavLink to='/createRecipe' className={({isActive}) => isActive ? navStyle.activeRecipe : navStyle.Createrecipes}>
 
@@ -54,7 +55,7 @@ const NavBar = ({ searchRecipe }) => {
             CREATE RECIPE
           </NavLink>
           
-           <SearchBar searchRecipe={searchRecipe}/> 
+           {/* <SearchBar searchRecipe={searchRecipe}/> */} 
 
           </div>
 

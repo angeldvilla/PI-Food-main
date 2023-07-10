@@ -8,7 +8,7 @@ import { useState } from "react";
 
 const SearchBar = ({ searchRecipe }) => {
 
-    const [recipe, setRecipe] = useState('');
+    const [recipe, setRecipe] = useState([]);
 
     const handleChange = (event) => {
        setRecipe(event.target.value);
