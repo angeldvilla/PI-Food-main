@@ -45,16 +45,14 @@ module.exports = (sequelize) => {
     },
 
     stepByStep:{
-      /* type: DataTypes.ARRAY(DataTypes.JSON) */
-      /* type: DataTypes.JSON */
       type: DataTypes.TEXT,
       allowNull:false,
     },
 
-    activo: {
+   /*  activo: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-    },
+    }, */
 
   },
 

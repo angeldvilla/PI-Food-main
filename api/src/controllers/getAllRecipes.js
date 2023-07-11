@@ -7,7 +7,7 @@ module.exports = async () => {
     try{
         const [apiResponse, dbResponse] = await Promise.all([
             //* INFO API 
-            axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`),
+            axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=2&addRecipeInformation=true`),
         
             //* INFO DB
             Recipe.findAll({ 
@@ -29,22 +29,30 @@ module.exports = async () => {
             image: recipe.image,
             summary: recipe.summary,
             healthScore: recipe.healthScore,
-            vegetarian: recipe.vegetarian,
-            vegan: recipe.vegan,
-            glutenFree: recipe.glutenFree,
-            diet: recipe.diets,
             stepByStep: recipe.analyzedInstructions[0]?.steps.map(step => {
-            let steps = `Step ${step.number} : ${step.step}`
+                let steps = `Step ${step.number} : ${step.step}`
                 
-            let ingredients = step.ingredients.map(ingredient => `Ingredient : ${ingredient.name}`
-            )
-            return [steps, ...ingredients]
-            })
+                let ingredients = step.ingredients.map(ingredient => `Ingredient : ${ingredient.name}`
+                )
+                return [steps, ...ingredients]
+            }),
+            diet: recipe.diets,
          }})
         
+          const dbRecipes = dbResponse.map(recipe=>{
+            return {
+                id:recipe.dataValues.id,
+                title:recipe.dataValues.title,
+                image:recipe.dataValues.image ,
+                healthScore:recipe.dataValues.healthScore,
+                summary:recipe.dataValues.summary,
+                stepByStep:recipe.dataValues.stepByStep,
+                diets:recipe.dataValues.diets.map(diet=>diet.name)
+            }
+        })
         
         //* TRAIGO LA COPIA DE LA RESPUESTA DE LA API Y LA CONCATENO CON LA RESPUESTA DE LA BASE DE DATOS
-        const allRecipes = [...apiRecipes, ...dbResponse];
+        const allRecipes = [...apiRecipes, ...dbRecipes];
     
         return allRecipes;
     } catch(error){
