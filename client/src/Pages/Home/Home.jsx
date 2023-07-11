@@ -1,35 +1,54 @@
 /* COMPONENTS */
-import Cards from "../../components/Cards/Cards";
 import styles from './home.module.css'
+import Cards from "../../components/Cards/Cards";
+/* import Paginated from "../../components/Paginated/Paginated"; */
 /* ---------- */
 
 
 /* HOOKS */
-/*import { useState, useEffect } from "react";
-  import axios from 'axios'; */
+  import React from "react";
+  /* import { useState } from "react"; */
 /* ---------- */
 
 
 const Home = ({ recipes, results }) => {
 
-/*  const [loader, setLoader] = useState(true);  */
-/* const [recipes, setRecipes] = useState([]);
+/* PAGINADO */
+/* const [page, setPage] = useState(1);
+const [allPages, setAllPages] = useState(10);
 
-useEffect(() =>  {
-    axios('http://localhost:3001/recipes')
-    .then(response => setRecipes(response.data))
-    .catch(error => error.message)
-}, []) */
+const maxPage = recipes / allPages; */
+
+/* console.log(maxPage); */
+
+/* PAGINADO */
 
  return( 
     <div>
        <h1>RECIPES</h1>
-
-        { results.length > 0 
+  {/*      <div className={styles.container}>
+       <Cards key={recipes.id}/>
+       <Cards key={recipes.id}/>
+       <Cards key={recipes.id}/>
+       <Cards key={recipes.id}/>
+       <Cards key={recipes.id}/>
+       <Cards key={recipes.id}/>
+       <Cards key={recipes.id}/> 
+       <Cards key={recipes.id}/>
+       <Cards key={recipes.id}/>
+       <Cards key={recipes.id}/>
+       <Cards key={recipes.id}/>
+       <Cards key={recipes.id}/>
+       <Cards key={recipes.id}/>
+       <Cards key={recipes.id}/>
+       <Cards key={recipes.id}/>
+</div> */}
+         { results.length > 0 
 
         ? (
             <div className={styles.container}>
-            {
+            { /* slice( (page - 1) * allPages, (page - 1 ) * allPages + allPages
+                ). */
                 results.map(({id, title, image, diet}) => {
                     return(
                         <Cards key={id}
@@ -63,6 +82,7 @@ useEffect(() =>  {
         </div>
         )
     }
+    {/* <Paginated page={page} setPage={setPage} maxPage={maxPage}/> */}
     </div>
  )
 }

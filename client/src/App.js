@@ -1,3 +1,4 @@
+import React from "react";
 import './App.css';
 
 /* PAGES */
@@ -23,6 +24,7 @@ const App = () =>  {
   const location = useLocation();
 
   const [recipes, setRecipes] = useState([]);
+
   const [results, setResults] = useState([]);
 
   useEffect(() =>  {
@@ -31,20 +33,19 @@ const App = () =>  {
     .catch(error => error.message)
 }, [])
 
-  const searchRecipe = (title) => {
+  const searchRecipe = async (title) => {
    
-      axios(`${URL}?title=${title}`)
-      .then((response) => response.data)
-      .then((data) => {
+     const { data } = await axios(`${URL}?title=${title}`)
+      console.log(data);
+
          if (data.title) {
             setResults([data]);
           } 
         else {
           alert('This recipe dont exist');
           }
-
-      });
 }
+
 
 /* const newRecipe = async (recipeCreate) => {
 
@@ -52,6 +53,10 @@ const App = () =>  {
   
    const {data} = await axios(${URL}/create`);
 
+     if(data.title) {
+      setRecipes(recipeCreate);
+     }
+     alert('Dont create the recipe');
 
  } */
 
@@ -69,6 +74,7 @@ const App = () =>  {
    
     </div>
   );
+
 }
 
 export default App;

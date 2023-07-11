@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Cards = ({id, title, image, diet}) => 
 {
+   console.log(diet);
    return (
       <Link to={`/detail/${id}`} className={styles.link} >
       
