@@ -1,7 +1,8 @@
 /* ----------------- */
-import {ALL_RECIPES,  CREATE_RECIPE,  GET_DIETS,  RECIPE_DETAIL} from './action-types';
+import {ALL_RECIPES,  CREATE_RECIPE,  GET_DIETS,  RECIPE_DETAIL, SEARCH_RECIPE} from './action-types';
 import axios from 'axios';
 /* ----------------- */
+
 const URL_API = `http://localhost:3001/recipes`;
 
 export const getAllRecipes = (recipes) => {
@@ -56,6 +57,22 @@ export const getDetailRecipe = (id) => {
         }
 
     };
+};
+
+export const searchRecipesByName = (title) => {
+
+    return async (dispatch) => {
+        try {
+            await axios.get(`${URL_API}?title=${title}`);
+            dispatch({
+                type: SEARCH_RECIPE,
+                payload: title,
+            })
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
 };
 
 export const newRecipe = (recipeCreate) => {

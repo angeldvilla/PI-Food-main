@@ -10,23 +10,34 @@ import Cards from "../../components/Cards/Cards";
 /* ---------- */
 
 /* ACTIONS */
-import { getAllRecipes } from '../../redux/actions/actions';
+import { getAllRecipes} from '../../redux/actions/actions';
 /* ---------- */
 
 const Home = () => {
    
  const dispatch = useDispatch();
  
- const { allRecipes } = useSelector(state => state.recipes);
+ const { allRecipes, recipesByName } = useSelector(state => state.recipes);
 
     useEffect(() => {
      dispatch(getAllRecipes())
     }, [dispatch])
-      
+
+
  return( 
     <div>
         <h1 className={styles.title}>RECIPES</h1>
-         <Cards allRecipes={allRecipes}/>      
+       { /* Verifica si existen resultados de búsqueda */}
+         { recipesByName.length > 0 
+         ?  ( 
+            <Cards allRecipes={recipesByName}/>      
+            )
+         : (
+            <Cards allRecipes={allRecipes}/> 
+         )
+
+         }
+
         {/* <Paginated /> */}
     
     </div>

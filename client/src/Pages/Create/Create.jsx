@@ -176,7 +176,12 @@
                     </input>
                 {/* {errors.image && <p style={{color: 'red'}}>{errors.image}</p>} */}
                 
-                <button type='submit' className={style.createRecipe}>CREATE RECIPE</button>
+                <button 
+                type='submit' 
+                /* disabled={Object.keys(errors).length > 0 } */
+                className={style.createRecipe}
+                >CREATE RECIPE
+                </button>
 
             </form>
 
