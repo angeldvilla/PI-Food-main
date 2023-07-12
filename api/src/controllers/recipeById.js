@@ -10,14 +10,25 @@ module.exports = async (idRecipe) => {
       const recipeDb = await Recipe.findByPk(idRecipe, {
         include: {
           model: Diet,
+          as: "diets",
           attributes: ["name"],
           through: { attributes: [] },
         },
       });
+
+      /* const recipeDb = await Recipe.findOne({ where: {idRecipe} }) */
     
       if (!recipeDb) throw Error("Recipe dont exist");
     
-      return recipeDb;
+      return {
+        id: recipeDb.id,
+        title: recipeDb.title,
+        image: recipeDb.image,
+        summary: recipeDb.summary,
+        healthScore: recipeDb.healthScore,
+        stepByStep: recipeDb.stepByStep,
+        diets: recipeDb.diets.map(diet => diet.name),
+      };
     } 
     
     else {
@@ -44,7 +55,7 @@ module.exports = async (idRecipe) => {
                   );
                   return [steps, ...ingredients];
                 }),
-              diet: apiRecipe.diets,
+              diets: apiRecipe.diets,
           }
           
         }

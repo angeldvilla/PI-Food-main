@@ -1,4 +1,4 @@
- .container{
+/*  .container{
     justify-content: space-around;
     padding: 1rem;
     border-radius: 1rem;
@@ -10,10 +10,11 @@
     grid-column-gap: .5rem;
     grid-row-gap: 2rem;
     justify-items: center;
-  }
-/* ----------------------------------------------------------- */
+  } */
 
-h1{
+
+.title{
  margin-top: 2.8em;
  margin-bottom: -1.5em;
 }
+/* ----------------------------------------------------------- */

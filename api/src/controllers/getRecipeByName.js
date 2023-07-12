@@ -49,10 +49,10 @@ module.exports = async (title) => {
             )
             return [steps, ...ingredients]
           }),
-          diet: recipe.diets,
+          diets: recipe.diets,
         }});
 
-        const dbRecipes = dbResponse.map(recipe=>{
+        const dbRecipes = dbResponse.map(recipe => {
           return {
               id:recipe.dataValues.id,
               title:recipe.dataValues.title,
@@ -62,15 +62,14 @@ module.exports = async (title) => {
               stepByStep:recipe.dataValues.stepByStep,
               diets:recipe.dataValues.diets.map(diet=>diet.name)
           }
-      })
+      });
 
         //? SE RETORNA LA RESPUESTA CON LA INFO YA EXTRAIDA! 
          const Namesrecipes = [...apiRecipes, ...dbRecipes];
 
         return Namesrecipes;
-    }
+}
     catch(error){
      return { error: `Recipe with title ${title} doesnt exist `}
-    }
-        
+    }   
 }

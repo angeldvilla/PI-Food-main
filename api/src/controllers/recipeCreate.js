@@ -1,7 +1,7 @@
 const { Recipe } = require('../db');
 
 
-module.exports = async ({ title, image, summary, healthScore, stepByStep, diet }) => {
+module.exports = async ({ title, image, summary, healthScore, stepByStep, diets }) => {
  
 const recipeNew = await Recipe.create({
     title, 
@@ -11,7 +11,7 @@ const recipeNew = await Recipe.create({
     stepByStep,
  });
   
-  recipeNew.addDiets(diet);
+  recipeNew.addDiets(diets);
 
  return recipeNew;
 }

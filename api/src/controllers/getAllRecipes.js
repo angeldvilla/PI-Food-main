@@ -36,10 +36,10 @@ module.exports = async () => {
                 )
                 return [steps, ...ingredients]
             }),
-            diet: recipe.diets,
+            diets: recipe.diets,
          }})
         
-          const dbRecipes = dbResponse.map(recipe=>{
+          const dbRecipes = dbResponse.map(recipe => { 
             return {
                 id:recipe.dataValues.id,
                 title:recipe.dataValues.title,
@@ -49,13 +49,15 @@ module.exports = async () => {
                 stepByStep:recipe.dataValues.stepByStep,
                 diets:recipe.dataValues.diets.map(diet=>diet.name)
             }
-        })
+        });
         
         //* TRAIGO LA COPIA DE LA RESPUESTA DE LA API Y LA CONCATENO CON LA RESPUESTA DE LA BASE DE DATOS
         const allRecipes = [...apiRecipes, ...dbRecipes];
     
         return allRecipes;
-    } catch(error){
+} 
+
+    catch(error){
         return {error: 'No recipes matches found'};
     }
     

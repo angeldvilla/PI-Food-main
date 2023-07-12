@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
     /* console.log(data); */
 
     //? GUARDO LA RESPUESTA Y RECORRO EL ARRAY DE OBJETOS PARA TRAER LA INFO NECESARIA
-    let diets = [];
+    let typeDiets = [];
 
     /*  data.results[0].diets.map(diet => {
                 if(!diets.includes(diet)) diets.push(diet); 
@@ -22,10 +22,10 @@ module.exports = async (req, res) => {
 
     data.results.forEach((recipe) => {
 
-      recipe.diets.forEach((diet) => {
+      recipe.typeDiets.forEach((diet) => {
 
-        if (!diets.includes(diet)) {
-          diets.push(diet);
+        if (!typeDiets.includes(diet)) {
+          typeDiets.push(diet);
         }
         
       });
@@ -34,11 +34,11 @@ module.exports = async (req, res) => {
   
        //? GUARDAR TODAS LAS DIETAS EN LA BASE DE DATOS
     /* await Diet.create({where: {diets}}); */
-    diets.forEach(async (diet) => {
+    typeDiets.forEach(async (diet) => {
         await Diet.create({ name: diet });
       });
       
-      return diets;
+      return typeDiets;
     
   } catch (error) {
     return res.status(500).json({ error: error.message });

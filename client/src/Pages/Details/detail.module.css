@@ -210,13 +210,13 @@
     text-shadow: 0 0 0.2rem #06f1b64a, 0 0 0.1rem #06f1b667 , 0 0 1rem #06f1b65b;
 }
 
-.propiedades .diet{
+.propiedades .diets{
     /*font-family:  'MyFont' ;*/
     top: -0.01em;
     color: #d2d0d0;
 }
 
-.propiedades .diet:hover{
+.propiedades .diets:hover{
     transform: scale(1.04);
     color: rgb(136, 244, 141);
     text-shadow: 0 0 0.2rem #06f1b64a, 0 0 0.1rem #06f1b667 , 0 0 1rem #06f1b65b;

@@ -44,7 +44,7 @@ const getRecipeById = async (req, res) => {
 
 const createRecipe = async (req, res) => {
     try{
-        const { title, image, summary, healthScore, stepByStep, diet } = req.body; 
+        const { title, image, summary, healthScore, stepByStep, diets } = req.body; 
           if(!title || !image || !summary || !healthScore || !stepByStep ) {
             return res.status(400).send('Missing data');
           }
@@ -54,7 +54,7 @@ const createRecipe = async (req, res) => {
             summary,
             healthScore,
             stepByStep,
-            diet,
+            diets,
           });
   
           return res.status(200).json(newRecipe);

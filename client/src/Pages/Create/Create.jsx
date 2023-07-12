@@ -4,24 +4,13 @@ import style from './create.module.css'
 /* ------------ */
 
 /* HOOKS */
-import { useState/* useEffect */ } from 'react';
-/* import axios from 'axios'; */
+
 /* ------------ */
 
-const CreateRecipe = (/* { newRecipe } */) => {
+const CreateRecipe = () => {
 
-  /*   const URL = 'http://localhost:3001';
-
-    const[diets, setDiets] = useState([]);
-
-    useEffect(() => {
-      axios(`${URL}/diets`)
-      .then(response => setDiets(response.data))
-      .catch(error => error.message)
-    }, []) */
-
-    
-    const [recipeCreate, setRecipeCreate] = useState({
+  
+    /* const [recipeCreate, setRecipeCreate] = useState({
         title: '',
         summary: '',
         healthScore: '',
@@ -37,31 +26,33 @@ const CreateRecipe = (/* { newRecipe } */) => {
         stepByStep: '',
         diet: [],
         image: ''
-    })
+    }) */
     
-    const handleInputChange = (event) => {
+   /*  const handleInputChange = (event) => {
+
+        const { name, value } = event.target
 
         setRecipeCreate({
             ...recipeCreate,
-            [event.target.name] : event.target.value
+            [name] : value
         });
 
-        /* setErrors(validations({
+        setErrors(validations({
            ...recipeCreate,
            [name] : value
-        })); */
-    }
+        }));
+    } */
     
-     const handleSubmit = (event) => {
+     /* const handleSubmit = (event) => {
         event.preventDefault();
-        /* newRecipe(recipeCreate); */
-     }
+        recipeCreate(newRecipe);
+     } */
 
     return( 
        <div className={style.topContainer}>
-           <h1>FORM PARA CREAR UNA RECETA</h1>
+           <h1 className={style.title}>FORM PARA CREAR UNA RECETA</h1>
 
-           <form onSubmit={handleSubmit} autoComplete='off' className={style.container}>
+           <form /* onSubmit={handleSubmit} */ autoComplete='off' className={style.container}>
             
            
             <label htmlFor='title'>TITLE</label>
@@ -69,10 +60,10 @@ const CreateRecipe = (/* { newRecipe } */) => {
                 placeholder='write a title'
                 type='text'
                 name='title'
-                value={recipeCreate.title}
-                onChange={handleInputChange}
+                /* value={recipeCreate.title}
+                onChange={handleInputChange} */
                 ></input>
-                {errors.title && <p style={{color: 'red'}}>{errors.title}</p>}
+              {/*   {errors.title && <p style={{color: 'red'}}>{errors.title}</p>} */}
         
            
             <label htmlFor='summary'>SUMMARY</label>
@@ -80,10 +71,10 @@ const CreateRecipe = (/* { newRecipe } */) => {
                 placeholder='write a summary'
                 type='text'
                 name='summary'
-                value={recipeCreate.summary}
-                onChange={handleInputChange}
+                /* value={recipeCreate.summary}
+                onChange={handleInputChange} */
                 ></input>
-                {errors.summary && <p style={{color: 'red'}}>{errors.summary}</p>}
+              {/*   {errors.summary && <p style={{color: 'red'}}>{errors.summary}</p>} */}
             
             
             <label htmlFor='healthScore'>HEALTH SCORE</label>
@@ -91,10 +82,10 @@ const CreateRecipe = (/* { newRecipe } */) => {
                 placeholder='insert health score range'
                 type='number'
                 name='healthScore'
-                value={recipeCreate.healthScore}
-                onChange={handleInputChange}
+                /* value={recipeCreate.healthScore}
+                onChange={handleInputChange} */
                 ></input>
-                {errors.healthScore && <p style={{color: 'red'}}>{errors.healthScore}</p>}
+               {/*  {errors.healthScore && <p style={{color: 'red'}}>{errors.healthScore}</p>} */}
            
 
             <label htmlFor='stepByStep'>STEP BY STEP</label>
@@ -102,20 +93,16 @@ const CreateRecipe = (/* { newRecipe } */) => {
                 placeholder='write your Step By Step'
                 type='text'
                 name='stepByStep'
-                value={recipeCreate.stepByStep}
-                onChange={handleInputChange}
+                /* value={recipeCreate.stepByStep}
+                onChange={handleInputChange} */
                 ></textarea>
-                {errors.stepByStep && <p style={{color: 'red'}}>{errors.stepByStep}</p>}
+               {/*  {errors.stepByStep && <p style={{color: 'red'}}>{errors.stepByStep}</p>} */}
         
         
             <label htmlFor='diet'>DIETS</label>
-                <select
-                name='diet'
-                value={recipeCreate.diet}
-                onChange={handleInputChange}
-                style={{color:'grey'}}
-                > 
-                <option value=''>Select diets for recipe</option>
+                <select /* onChange={handleInputChange} */> 
+
+                <option value='diets' style={{color:'grey'}} >Select diets for recipe</option>
                 <option value='1' style={{color:'black'}}>VEGAN</option>
                 <option value='2' style={{color:'black'}}>VEGETARIAN</option>
                 <option value='3' style={{color:'black'}}>GLUTEN FREE</option>
@@ -134,10 +121,10 @@ const CreateRecipe = (/* { newRecipe } */) => {
                 placeholder='insert image link'
                 type='text'
                 name='image'
-                value={recipeCreate.image}
-                onChange={handleInputChange}
+               /*  value={recipeCreate.image}
+                onChange={handleInputChange} */
                 ></input>
-                {errors.image && <p style={{color: 'red'}}>{errors.image}</p>}
+               {/*  {errors.image && <p style={{color: 'red'}}>{errors.image}</p>} */}
             
             <button className={style.createRecipe}>CREATE RECIPE</button>
 
