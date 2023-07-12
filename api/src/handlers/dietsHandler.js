@@ -21,10 +21,10 @@ const getDiets = async (req, res) => {
           typesDiets = await typeDiets();
     
          }
-         return res.status(200).json(typesDiets);
+         return res.status(201).json(typesDiets);
         
       } catch (error) {
-          return res.status(200).json({error: error.message})
+          return res.status(500).json({error: error.message})
       };
 }
 

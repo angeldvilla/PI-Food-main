@@ -10,24 +10,13 @@ export const getAllRecipes = (recipes) => {
 
         const { data } = await axios.get(`${URL_API}`, recipes);
 
-     /*    const recipes = data.results.map(recipe => {
-            return {
-                id: recipe.id,
-                title : recipe.name,
-                summary: recipe.summary.replace(/<[^>]+>/g, ''),
-                healthScore: recipe.healthScore,
-                stepByStep: recipe.stepByStep,
-                diets: recipe.diets.map(diet => diet.name),
-            }
-        }) */
-
         dispatch({
             type: ALL_RECIPES,
             payload: data,
         })
             
         } catch (error) {
-            return { error: 'Not found recipes'}
+            console.log(error);
         }
     };
 };
@@ -36,15 +25,14 @@ export const getAllRecipes = (recipes) => {
 export const getDiets = () => {
     return async (dispatch) => {
         try {   
-           const { data } = await axios.get(`${URL_API}/diets`);
-
-            dispatch({
-                type:GET_DIETS,
-                payload : data,
-            });
+           const { data } = await axios.get('http://localhost:3001/diets');
+                dispatch({
+                    type:GET_DIETS,
+                    payload : data,
+                });
 
         } catch (error) {
-          return { error: 'Not found diets'}
+          console.log(error);
         }
 
     };
@@ -64,7 +52,7 @@ export const getDetailRecipe = (id) => {
         }
             
         } catch (error) {
-        return { error: 'recipe fail detail'}
+            console.log(error);
         }
 
     };
@@ -73,8 +61,6 @@ export const getDetailRecipe = (id) => {
 export const newRecipe = (recipeCreate) => {
     return async (dispatch) => {
         try {
-            /* const { title, image, summary, healthScore, stepByStep, diets } = recipeCreate; */
-
             const { data } = await axios.post(`${URL_API}/create`, recipeCreate)
             
             dispatch({
@@ -83,7 +69,7 @@ export const newRecipe = (recipeCreate) => {
             });
 
         } catch (error) {
-          return { error: 'recipe fail create'}
+            console.log(error);
         }
     }
 };

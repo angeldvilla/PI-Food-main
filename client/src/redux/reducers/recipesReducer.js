@@ -7,7 +7,6 @@ const initialState = {
     recipeDetail: {},
     recipesByName: [],
     diets:[],
-
 }
 
 const recipesReducer = (state = initialState, action) => {
@@ -35,7 +34,7 @@ const recipesReducer = (state = initialState, action) => {
         case CREATE_RECIPE: 
         return{
             ...state,
-            allRecipes: action.payload,
+            allRecipes: [...state.allRecipes, action.payload],
         }
 
         default: 
