@@ -52,7 +52,7 @@ const Detail = () => {
                 <p className={style.id}>{recipeDetail.id}</p>
 
                 <label htmlFor="summary" >Summary: </label>
-                <p className={style.summary}>{recipeDetail.summary.replace(/<[^>]+>/g, '')}</p>
+                <p className={style.summary}>{recipeDetail.summary/* .replace(/<[^>]+>/g, '') */}</p>
 
                 <label htmlFor="healthScore">Health Score: </label>
                 <p className={style.healthScore}>{recipeDetail.healthScore}</p>
@@ -64,12 +64,13 @@ const Detail = () => {
                 <p className={style.diets}>{recipeDetail.diets}</p>  */}
                 <label htmlFor="diets">Diets: </label>
                 {
-                recipeDetail.diets?.map((diet, index) => (
-                  <p key={index} className={style.diets}>
-                    {diet}
-                  </p>
+                  recipeDetail.diets?.map((diet, index) => (
+            
+                    <span key={index} className={style.diets}>
+                    <p> {diet}</p>
+                    </span>
 
-                ))
+                  ))
                 }
                 
                 {/*    {

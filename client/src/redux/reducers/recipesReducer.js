@@ -1,12 +1,12 @@
 /* ----------------- */
-import {ALL_RECIPES, RECIPE_DETAIL, CREATE_RECIPE, GET_DIETS, SEARCH_RECIPE} from '../actions/action-types';
+import {ALL_RECIPES, RECIPE_DETAIL, CREATE_RECIPE, GET_DIETS, /* SEARCH_RECIPE */} from '../actions/action-types';
 /* ----------------- */
 
 const initialState = {
     allRecipes: [],
     recipeDetail: {},
-    recipesByName: [],
     diets:[],
+    /* recipesByName: [], */
 }
 
 const recipesReducer = (state = initialState, action) => {
@@ -36,7 +36,7 @@ const recipesReducer = (state = initialState, action) => {
             allRecipes: [...state.allRecipes, action.payload],
         };
 
-        case SEARCH_RECIPE:
+        /* case SEARCH_RECIPE:
        
         const filteredRecipes = state.allRecipes.filter(ele =>
             ele.title.toLowerCase().includes(action.payload)
@@ -45,7 +45,7 @@ const recipesReducer = (state = initialState, action) => {
         return{
             ...state,
             recipesByName: filteredRecipes,
-        };
+        }; */
 
         default: 
         return {...state};

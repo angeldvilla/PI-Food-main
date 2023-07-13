@@ -17,7 +17,7 @@ const Home = () => {
    
  const dispatch = useDispatch();
  
- const { allRecipes, recipesByName } = useSelector(state => state.recipes);
+ const { allRecipes } = useSelector(state => state.recipes);
 
     useEffect(() => {
      dispatch(getAllRecipes())
@@ -27,17 +27,7 @@ const Home = () => {
  return( 
     <div>
         <h1 className={styles.title}>RECIPES</h1>
-       { /* Verifica si existen resultados de búsqueda */}
-         { recipesByName.length > 0 
-         ?  ( 
-            <Cards allRecipes={recipesByName}/>      
-            )
-         : (
-            <Cards allRecipes={allRecipes}/> 
-         )
-
-         }
-
+        <Cards allRecipes={allRecipes}/>
         {/* <Paginated /> */}
     
     </div>

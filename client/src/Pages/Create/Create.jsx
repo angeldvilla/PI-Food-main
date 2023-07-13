@@ -1,6 +1,6 @@
     /* COMPONENTS */
     import style from './create.module.css'
-    /* import validations from './validations'; */
+    import validations from './validations';
     /* ------------ */
 
     /* HOOKS */
@@ -32,14 +32,14 @@
             image: ''
         });
         
-    /*  const [errors, setErrors] = useState({
+     const [errors, setErrors] = useState({
             title: '',
             summary: '',
             healthScore: '',
             stepByStep: '',
             diets: [],
             image: ''
-        }) */
+        });
 
         const handleInputChange = (event) => {
 
@@ -50,11 +50,11 @@
                 [name] : value
             });
 
-        /*  setErrors(validations({
+         setErrors(validations({
             ...recipeCreate,
             [name] : value
-            })); */
-        }
+            }));
+        };
 
         const handleDiets = (event) => {
             const { value, checked } = event.target;
@@ -70,13 +70,21 @@
                     diets: prevState.diets.filter((dietId) => dietId !== value),
                 }))
             )
-        }
+        };
         
         const handleSubmit = (event) => {
             event.preventDefault();
             dispatch(newRecipe(recipeCreate));
             alert('Successfull recipe created!');
-        }
+            setRecipeCreate({
+                title: '',
+                summary: '',
+                healthScore: '',
+                stepByStep: '',
+                diets: [],
+                image: '',
+              });
+        };
 
 
         return( 
@@ -93,8 +101,8 @@
                     name='title'
                     value={recipeCreate.title}
                     onChange={handleInputChange}
-                    ></input>
-                    {/* {errors.title && <p style={{color: 'red'}}>{errors.title}</p>} */}
+                    />
+                 {errors.title && <p style={{color: 'red'}}>{errors.title}</p>}
             
             
                 <label htmlFor='summary'>SUMMARY</label>
@@ -104,8 +112,8 @@
                     name='summary'
                     value={recipeCreate.summary}
                     onChange={handleInputChange}
-                    ></textarea>
-                {/*  {errors.summary && <p style={{color: 'red'}}>{errors.summary}</p>}  */}
+                    />
+                {errors.summary && <p style={{color: 'red'}}>{errors.summary}</p>}  
                 
                 
                 <label htmlFor='healthScore'>HEALTH SCORE</label>
@@ -115,8 +123,8 @@
                     name='healthScore'
                     value={recipeCreate.healthScore}
                     onChange={handleInputChange}
-                    ></input>
-                {/* {errors.healthScore && <p style={{color: 'red'}}>{errors.healthScore}</p>} */}
+                    />
+                {errors.healthScore && <p style={{color: 'red'}}>{errors.healthScore}</p>} 
             
 
                 <label htmlFor='stepByStep'>STEP BY STEP</label>
@@ -126,27 +134,10 @@
                     name='stepByStep'
                     value={recipeCreate.stepByStep}
                     onChange={handleInputChange}
-                    ></textarea>
-                {/*  {errors.stepByStep && <p style={{color: 'red'}}>{errors.stepByStep}</p>}  */}
+                    />
+                {errors.stepByStep && <p style={{color: 'red'}}>{errors.stepByStep}</p>}
             
             
-                {/* <label htmlFor='diet'>DIETS</label>
-                    <select value={recipeCreate.diets} onChange={handleInputChange}> 
-
-                    <option value='diets' style={{color:'grey'}} >Select diets for recipe</option>
-                    <option value='1' style={{color:'black'}}>VEGAN</option>
-                    <option value='2' style={{color:'black'}}>VEGETARIAN</option>
-                    <option value='3' style={{color:'black'}}>GLUTEN FREE</option>
-                    <option value='4' style={{color:'black'}}>DAIRY FREE</option> 
-
-                    {
-                        diets.map(diet => (
-                            <option key={diet.id} value={diet.name}>{diet.name}</option>
-                        ))
-                    }
-                    </select> */}
-
-                
                 <label htmlFor="diets">DIETS</label>
                 <div className={style.checkboxContainer}>
                 {diets?.map((diet, index) => (
@@ -162,6 +153,7 @@
                     </div>
                 ))}
                 </div>
+                {/* {errors.diets && <p style={{color: 'red'}}>{errors.diets}</p>} */}
 
                 <label htmlFor='image'>IMAGE</label>
                     <input 
@@ -171,14 +163,12 @@
                     value={recipeCreate.image}
                     onChange={handleInputChange}
                     style={{display: 'flex', flexDirection: 'row'}}
-                    >
-
-                    </input>
-                {/* {errors.image && <p style={{color: 'red'}}>{errors.image}</p>} */}
+                    />
+                {errors.image && <p style={{color: 'red'}}>{errors.image}</p>}
                 
                 <button 
                 type='submit' 
-                /* disabled={Object.keys(errors).length > 0 } */
+                disabled={Object.keys(errors).length > 0 }
                 className={style.createRecipe}
                 >CREATE RECIPE
                 </button>

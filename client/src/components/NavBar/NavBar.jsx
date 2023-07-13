@@ -6,20 +6,9 @@ import navStyle from './navStyle.module.css';
 /* HOOKS */
 import React from 'react';
 import { NavLink } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-/* --------- */
-
-/* ACTIONS */
-import { searchRecipesByName } from '../../redux/actions/actions';
 /* --------- */
 
 const NavBar = () => {
-
-  const dispatch = useDispatch();
-  
-  const onSearchRecipe = (title) => {
-      dispatch(searchRecipesByName(title));
-  };
 
    return ( 
     <nav className={navStyle.nav}>
@@ -54,7 +43,7 @@ const NavBar = () => {
               HOME
             </NavLink>
             
-            <SearchBar onSearchRecipe={onSearchRecipe}/>
+          <SearchBar />
 
           <NavLink to='/createRecipe' className={({isActive}) => isActive ? navStyle.activeRecipe : navStyle.Createrecipes}>
 

@@ -16,15 +16,19 @@ const Cards = ({ allRecipes }) => {
                <br/>
                <h3 className={styles.name}>{title}</h3>
                {/* <h3 className={styles.diets}>{diets}</h3> */}
-               <h3>
+               <h3>Dietas:
                {
-                diets?.map((diet, index) => (
-                  <p key={index} className={styles.diets}>
-                    {diet}
-                  </p>
-
-                ))
-                }
+                diets.length > 0 
+                ? (
+                   diets?.map((diet, index) => (
+                     <p key={index} className={styles.diets}> {diet} </p>
+                   ))
+                  
+                  ) 
+                : ( 
+                  <p className={styles.diets}>Diets not found</p>
+                )
+               }
                </h3>
             </Link>
             </div>

@@ -1,21 +1,29 @@
 /* ----------------- */
-import {ALL_RECIPES,  CREATE_RECIPE,  GET_DIETS,  RECIPE_DETAIL, SEARCH_RECIPE} from './action-types';
+import {ALL_RECIPES,  CREATE_RECIPE,  GET_DIETS,  RECIPE_DETAIL, /* SEARCH_RECIPE */} from './action-types';
 import axios from 'axios';
 /* ----------------- */
 
 const URL_API = `http://localhost:3001/recipes`;
 
-export const getAllRecipes = (recipes) => {
+export const getAllRecipes = (title) => {
     return async (dispatch) => {
         try {
+        
+        let data; 
+        
+        if(title){
+            data = await axios.get(`${URL_API}?title=${title}`);
+        } 
+        else {
+            data = await axios.get(`${URL_API}`);
+        }
+        return (
+            dispatch({
+                type: ALL_RECIPES,
+                payload: data.data,
+            })
+            )
 
-        const { data } = await axios.get(`${URL_API}`, recipes);
-
-        dispatch({
-            type: ALL_RECIPES,
-            payload: data,
-        })
-            
         } catch (error) {
             console.log(error);
         }
@@ -59,7 +67,7 @@ export const getDetailRecipe = (id) => {
     };
 };
 
-export const searchRecipesByName = (title) => {
+/* export const searchRecipesByName = (title) => {
 
     return async (dispatch) => {
         try {
@@ -73,7 +81,7 @@ export const searchRecipesByName = (title) => {
             console.log(error);
         }
     }
-};
+}; */
 
 export const newRecipe = (recipeCreate) => {
     return async (dispatch) => {

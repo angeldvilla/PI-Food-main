@@ -150,6 +150,10 @@ textarea:focus{
     transition: 0.6s;
   }
 
+  .createRecipe:disabled{
+    cursor: no-drop;
+  }
+
 /* -------------------------------------------------------------------------------- */
 
 .checkboxContainer {
