@@ -1,7 +1,8 @@
 /* COMPONENTS */
 import styles from './home.module.css';
 import Cards from "../../components/Cards/Cards";
-/* import Paginated from "../../components/Paginated/Paginated"; */
+import Paginated from "../../components/Paginated/Paginated";
+import Filters from '../../components/Filters/Filters';
 /* ---------- */
 
 /* HOOKS */
@@ -10,7 +11,7 @@ import Cards from "../../components/Cards/Cards";
 /* ---------- */
 
 /* ACTIONS */
-import { getAllRecipes} from '../../redux/actions/actions';
+import { getAllRecipes} from '../../redux/actions/actionsRecipes';
 /* ---------- */
 
 const Home = () => {
@@ -23,12 +24,15 @@ const Home = () => {
      dispatch(getAllRecipes())
     }, [dispatch])
 
-
- return( 
+ return ( 
     <div>
         <h1 className={styles.title}>RECIPES</h1>
-        <Cards allRecipes={allRecipes}/>
-        {/* <Paginated /> */}
+
+        <Filters />
+
+        <Cards allRecipes={allRecipes} />
+        
+       <Paginated />
     
     </div>
  )

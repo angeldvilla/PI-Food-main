@@ -26,8 +26,8 @@ const allRecipes = async (req, res) => {
   } catch (error) {
       return res.status(500).json({error: error.message})
   };
-}
-
+};
+/* ------------------------------- */
 
 const getRecipeById = async (req, res) => {
     const { idRecipe } = req.params;
@@ -40,7 +40,8 @@ const getRecipeById = async (req, res) => {
             error: error.message
         });
     };
-}
+};
+/* ------------------------------- */
 
 const createRecipe = async (req, res) => {
     try{
@@ -64,8 +65,8 @@ const createRecipe = async (req, res) => {
       } catch(error){
         return res.status(500).json({ error: error.message });
       };
-}
-
+};
+/* ------------------------------- */
 
 module.exports = {
     allRecipes,

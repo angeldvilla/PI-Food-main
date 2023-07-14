@@ -1,10 +1,37 @@
-import React, { useState } from "react";
-import style from 'paginaStyle.module.css';
-/* --------------------------------------- */
+/* COMPONENTS */
+import style from './paginaStyle.module.css';
+/* ----------------- */
 
-const Paginated = ({page, setPage, maxPage}) => {
+/* HOOKS */
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+/* ACTIONS */
+import { pagination } from "../../redux/actions/actionsPagination";
+/* ----------------- */
+
+const Paginated = () => {
+/* {page, setPage, maxPage} */
+
+    const dispatch = useDispatch(); 
    
-   const[valuePage, setValuePage] = useState(1);
+   const { pageActual } = useSelector(state => state.pagination);
+   const { maxPage } = useSelector(state => 
+    Math.ceil(state.recipes.filterRecipes.length / state.pagination.maxPage));
+
+    const handleChangePage = (pageNumber) => {
+        dispatch(pagination(pageNumber))
+    }
+
+    const prevPage = () => {
+        return pageActual - 1;
+    }
+
+    const nextPage = () => {
+        return pageActual + 1;
+    }
+   
+  /*  const[valuePage, setValuePage] = useState(1);
 
     const prevPage = () => {
         setValuePage(valuePage - 1)
@@ -13,18 +40,31 @@ const Paginated = ({page, setPage, maxPage}) => {
     const nextPage = () => {
         setValuePage(valuePage + 1)
         setPage(page + 1)
-    }
+    } */
 
-    const handleChange = (event) => {
+    /* const handleChange = (event) => {
         setValuePage(event.target.value)
-    }
+    } */
 
     return(
+
     <div className={style.container}>
-        <button onClick={prevPage} disabled={page === 1 || page < 1}>PREV</button>
-        <p onChange={(event) => handleChange(event)}>{valuePage}</p>
+        <button 
+        onClick={() => handleChangePage(prevPage)} 
+        disabled={pageActual === 1 || pageActual < 1}> 
+            PREV 
+        </button>
+       
+        <p onChange={(pageNumber) => handleChangePage(pageNumber)}>{pageActual}</p>
+        
         <p>de {maxPage}</p>
-        <button onClick={nextPage} disabled={page === maxPage || page > maxPage}>NEXT</button>
+        
+        <button 
+        onClick={() => handleChangePage(nextPage)} 
+        disabled={pageActual === maxPage || pageActual > maxPage}> 
+            NEXT 
+        </button>
+
     </div>
    );
     

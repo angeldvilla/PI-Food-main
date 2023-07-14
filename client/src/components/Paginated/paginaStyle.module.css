@@ -12,3 +12,7 @@
     justify-items: center;
   }
 /* ----------------------------------------------------------- */
+
+button:disabled{
+ cursor: no-drop;
+}

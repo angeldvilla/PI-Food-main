@@ -9,7 +9,7 @@
     /* ------------ */
 
     /* ACTIONS */
-    import { newRecipe, getDiets } from '../../redux/actions/actions';
+    import { newRecipe, getDiets } from '../../redux/actions/actionsRecipes';
     /* ---------- */
 
     const CreateRecipe = () => {

@@ -5,7 +5,7 @@ import style from './searchStyle.module.css';
 /* HOOKS */
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { getAllRecipes } from '../../redux/actions/actions';
+import { getAllRecipes } from '../../redux/actions/actionsRecipes';
 /* -------- */
 
 const SearchBar = () => {

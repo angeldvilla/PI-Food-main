@@ -10,7 +10,7 @@ import { Link, useParams } from "react-router-dom";
 /* -------------------- */
 
 /* ACTIONS */
-import { getDetailRecipe } from '../../redux/actions/actions';
+import { getDetailRecipe } from '../../redux/actions/actionsRecipes';
 /* ---------- */
 
 const Detail = () => {
