@@ -2,7 +2,7 @@ import { PAGINATION } from "../actions/action-types";
 
 const initialState = {
     pageActual: 1,
-    maxPage: 2,
+    recipesPerPage: 3,
 }
 
 const paginationReducer = (state = initialState, action) => {
@@ -10,7 +10,7 @@ const paginationReducer = (state = initialState, action) => {
         case PAGINATION: 
         return{
           ...state,
-          pageActual: action.payload,
+          pageActual: action.payload
         }
         default: 
         return {

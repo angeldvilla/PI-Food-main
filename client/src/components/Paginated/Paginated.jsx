@@ -15,9 +15,11 @@ const Paginated = () => {
 
     const dispatch = useDispatch(); 
    
-   const { pageActual } = useSelector(state => state.pagination);
-   const { maxPage } = useSelector(state => 
-    Math.ceil(state.recipes.filterRecipes.length / state.pagination.maxPage));
+   const { pageActual, recipesPerPage } = useSelector(state => state.pagination);
+   
+   const { filterRecipes } = useSelector(state => state.recipes);
+
+   const totalPages  = Math.ceil(filterRecipes.length / recipesPerPage);
 
     const handleChangePage = (pageNumber) => {
         dispatch(pagination(pageNumber))
@@ -50,18 +52,18 @@ const Paginated = () => {
 
     <div className={style.container}>
         <button 
-        onClick={() => handleChangePage(prevPage)} 
+        onClick={() => handleChangePage(prevPage())} 
         disabled={pageActual === 1 || pageActual < 1}> 
             PREV 
         </button>
        
-        <p onChange={(pageNumber) => handleChangePage(pageNumber)}>{pageActual}</p>
+        <p>{pageActual}</p>
         
-        <p>de {maxPage}</p>
+        <p>de {totalPages}</p>
         
         <button 
-        onClick={() => handleChangePage(nextPage)} 
-        disabled={pageActual === maxPage || pageActual > maxPage}> 
+        onClick={() => handleChangePage(nextPage())} 
+        disabled={pageActual === totalPages || pageActual > totalPages}> 
             NEXT 
         </button>
 

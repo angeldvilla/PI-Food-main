@@ -3,8 +3,8 @@ import {ALL_RECIPES,
         RECIPE_DETAIL, 
         CREATE_RECIPE, 
         GET_DIETS, 
-        /* SEARCH_RECIPE */
         FILTER_RECIPES,
+        FILTER_DIETS,
         ORDER_RECIPES,
         RESET_FILTERS} from '../actions/action-types';
 /* ----------------- */
@@ -12,12 +12,10 @@ import {ALL_RECIPES,
 const initialState = {
     allRecipes: [],
     filterRecipes: [],
-    filterStorage: [],
+    filterOrder: [],
     recipeDetail: {},
     diets:[],
     reset:[],
-    /* orderRecipes: [], */
-    /* recipesByName: [], */
 }
 
 const recipesReducer = (state = initialState, action) => {
@@ -28,7 +26,7 @@ const recipesReducer = (state = initialState, action) => {
             ...state,
             allRecipes: action.payload,
             filterRecipes: action.payload,
-            filterName: action.payload,
+            filterOrder: action.payload,
             reset: action.payload,
         };
 
@@ -52,9 +50,8 @@ const recipesReducer = (state = initialState, action) => {
 
         case FILTER_RECIPES:
             
-            let api = state.filterName.filter(id => typeof(id.id) !== 'string')
-            let db = state.filterName.filter(id => typeof(id.id) === 'string')
-            
+            let api = state.filterOrder.filter(id => typeof(id.id) !== 'string')
+            let db = state.filterOrder.filter(id => typeof(id.id) === 'string')
 
             if(action.payload === 'Api'){
                 return {
@@ -70,7 +67,7 @@ const recipesReducer = (state = initialState, action) => {
                     filterRecipes: [...db]
                 }; 
             }
-        break;
+        
 
         case ORDER_RECIPES:
             if(action.payload === 'A-Z'){
@@ -92,7 +89,35 @@ const recipesReducer = (state = initialState, action) => {
                     filterRecipes: [...descending]
                 }  
             }
+           
+             else if(action.payload === 'Asc'){
+                let asc =  state.filterRecipes.sort((a,b) => a.healthScore - b.healthScore )
+                 return {
+                    ...state,
+                    allRecipes: [...asc],
+                    filterRecipes: [...asc]
+                 }
+             }
+
+             else if(action.payload === 'Desc'){
+                let desc =  state.filterRecipes.sort((a,b) => b.healthScore - a.healthScore )
+                return {
+                   ...state,
+                   allRecipes: [...desc],
+                   filterRecipes: [...desc]
+                }
+             }
+
         break;
+
+        case FILTER_DIETS: {
+            const filteredDiets = state.filterOrder.filter((recipe) =>  recipe.diets.includes(action.payload) );
+                  return {
+                    ...state,
+                    allRecipes: [...filteredDiets],
+                    filterRecipes: [...filteredDiets]
+                  };
+        };
 
         case RESET_FILTERS: 
         return {
@@ -100,7 +125,17 @@ const recipesReducer = (state = initialState, action) => {
             allRecipes: [...state.reset]
         };
 
-        /* case SEARCH_RECIPE:
+        default: 
+        return {...state};
+    };
+
+};   
+
+export default recipesReducer;
+
+
+
+/*  case SEARCH_RECIPE:
        
         const filteredRecipes = state.allRecipes.filter(ele =>
             ele.title.toLowerCase().includes(action.payload)
@@ -109,12 +144,6 @@ const recipesReducer = (state = initialState, action) => {
         return{
             ...state,
             recipesByName: filteredRecipes,
-        }; */
-
-        default: 
-        return {...state};
-    }
-
-}   
-
-export default recipesReducer;
+        }; 
+        
+*/

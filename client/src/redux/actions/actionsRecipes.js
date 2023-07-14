@@ -2,9 +2,9 @@
 import {ALL_RECIPES,  
         CREATE_RECIPE,  
         GET_DIETS,  
-        RECIPE_DETAIL,
-        /* SEARCH_RECIPE */        
-        FILTER_RECIPES,  
+        RECIPE_DETAIL,       
+        FILTER_RECIPES,
+        FILTER_DIETS,  
         ORDER_RECIPES, 
         RESET_FILTERS} from './action-types';
 
@@ -20,10 +20,15 @@ export const getAllRecipes = (title) => {
         
         let response; 
         
-        if(title) response = await axios.get(`${URL_API}?title=${title}`);
+        if(title) {
+            response = await axios.get(`${URL_API}?title=${title}`);
+        }
+
+        else 
+        {
+            response = await axios.get(`${URL_API}`);
+        }
     
-        response = await axios.get(`${URL_API}`);
-        
         const { data } = response;
 
         return (
@@ -110,6 +115,13 @@ export const orderRecipes = (orderType) => {
     }
         
 };
+
+export const filterDiets = (dietType) => {
+    return{
+        type: FILTER_DIETS,
+        payload: dietType,
+    }
+}
 /* --------------------------------------------- */
 
 export const resetFilters = () => {

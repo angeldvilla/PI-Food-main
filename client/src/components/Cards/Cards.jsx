@@ -4,11 +4,11 @@ import styles from './cardstyle.module.css'
 import { Link } from 'react-router-dom';
 /* ------------------------------------------ */
 
-const Cards = ({ allRecipes }) => {
+const Cards = ({ recipesToShow }) => {
    return (
       <div className={styles.container}>
       {
-         allRecipes.map(({id, image, title, diets}) => {
+         recipesToShow.map(({id, image, title, diets}) => {
             return (
                <div className={styles.card} key={id}>
                <Link to={`/detail/${id}`} className={styles.link}>
