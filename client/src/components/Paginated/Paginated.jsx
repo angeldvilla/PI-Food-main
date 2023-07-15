@@ -11,9 +11,8 @@ import { pagination } from "../../redux/actions/actionsPagination";
 /* ----------------- */
 
 const Paginated = () => {
-/* {page, setPage, maxPage} */
-
-    const dispatch = useDispatch(); 
+    
+   const dispatch = useDispatch(); 
    
    const { pageActual, recipesPerPage } = useSelector(state => state.pagination);
    
@@ -23,7 +22,7 @@ const Paginated = () => {
 
    const handleChangePage = (pageNumber) => {
        dispatch(pagination(pageNumber))
-   }
+   };
 
    const numbersPage = () => {
     let arrNumbers = [];
@@ -36,40 +35,18 @@ const Paginated = () => {
          )
       }
       return arrNumbers;
-   }
+   };
 
+/* ------------------------------------------------------------- */  
 
-    const prevPage = () => {
-        return pageActual - 1;
-    }
-
-    const nextPage = () => {
-        return pageActual + 1;
-    }
-   
-  /*  const[valuePage, setValuePage] = useState(1);
-
-    const prevPage = () => {
-        setValuePage(valuePage - 1)
-    }
-
-    const nextPage = () => {
-        setValuePage(valuePage + 1)
-        setPage(page + 1)
-    } */
-
-    /* const handleChange = (event) => {
-        setValuePage(event.target.value)
-    } */
-
-    return(
+return(
 
     <div className={style.container}>
 
         <button 
-        onClick={() => handleChangePage(prevPage())} 
-        disabled={pageActual === 1 || pageActual < 1}> 
-            <p>PREV</p>
+        onClick={() => handleChangePage(pageActual - 1)} 
+        disabled={ pageActual <= 1 }> 
+        <p>PREV</p>
         </button>
 
         {/* <p>{pageActual}</p> */}
@@ -78,16 +55,17 @@ const Paginated = () => {
         
         {/* <p>de {totalPages}</p> */}
        
-        
         <button 
-        onClick={() => handleChangePage(nextPage())} 
-        disabled={pageActual === totalPages || pageActual > totalPages}> 
+        onClick={() => handleChangePage(pageActual + 1)} 
+        disabled={pageActual >= totalPages}> 
             NEXT 
         </button>
 
     </div>
    );
     
-}
+};
+/* ------------------------------------------------------------- */ 
 
 export default Paginated;
+/* ------------------------------------------------------------- */ 

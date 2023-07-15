@@ -1,4 +1,6 @@
+/* ACTIONS */
 import { PAGINATION } from "./action-types";
+/* ------------------------------------------------------------- */ 
 
 export const pagination = (pageNumber) => {
     return async (dispatch) => {
@@ -8,3 +10,4 @@ export const pagination = (pageNumber) => {
         });
     };
 }
+/* ------------------------------------------------------------- */ 

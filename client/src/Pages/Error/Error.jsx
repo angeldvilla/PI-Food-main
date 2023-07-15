@@ -1,11 +1,17 @@
-const Home = () => {
- 
-    return( 
+/* COMPONENTS */
+import React from "react";
+import style from './error.module.css';
+/* ------------------ */
+
+const errorPage = () => {
+
+return( 
        <div>
-           <h1>PAGINA DE ERROR</h1>
+           <h1 className={style.title}>PAGINA DE ERROR</h1>
        </div>
-    )
-   }
-   
-   
-   export default Home;
+    );
+}  
+/* ------------------------------------------------------------- */ 
+
+export default errorPage;
+/* ------------------------------------------------------------- */ 

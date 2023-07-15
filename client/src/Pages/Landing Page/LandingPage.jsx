@@ -8,8 +8,9 @@ import { NavLink } from 'react-router-dom';
 /* ---------- */
 
 const landingPage = () => {
-    return (
-     <div className={styles.landingpage} >
+return (
+    <div className={styles.landingpage} >
+         
          <video className={styles.videobackground} autoPlay loop muted>
              <source src={FoodBackground} type="video/mp4" />
          </video>
@@ -19,9 +20,11 @@ const landingPage = () => {
            <NavLink to='/home' className={styles.button}>Home</NavLink>
         </div>
  
-     </div>
-    );
- };
-
+    </div>
+  );
+  
+};
+/* ------------------------------------------------------------- */ 
 
 export default landingPage;
+/* ------------------------------------------------------------- */ 

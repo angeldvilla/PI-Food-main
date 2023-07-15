@@ -3,7 +3,7 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
-
+/* ------------------------------------------------------------- */ 
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`, {
   logging: false, // set to console.log to see the raw SQL queries
@@ -30,14 +30,16 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const {Recipe,Diet} = sequelize.models;
+const { Recipe, Diet } = sequelize.models;
 
-Recipe.belongsToMany(Diet, { through: 'RecipesXDiets'});
-Diet.belongsToMany(Recipe, { through: 'RecipesXDiets'});
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
+Recipe.belongsToMany(Diet, { through: 'RecipesXDiets'});
+Diet.belongsToMany(Recipe, { through: 'RecipesXDiets'});
+/* ------------------------------------------------------------- */ 
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
 };
+/* ------------------------------------------------------------- */ 

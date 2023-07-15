@@ -2,14 +2,17 @@
 import style from './filterStyle.module.css';
 /* ------------------------- */
 
-
 /* HOOKS */
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 /* ------------------------- */
 
 /* ACTIONS */
-import { getDiets, filterRecipes, filterDiets, orderRecipes, resetFilters  } from '../../redux/actions/actionsRecipes';
+import { getDiets, 
+        filterRecipes, 
+        filterDiets, 
+        orderRecipes, 
+        resetFilters  } from '../../redux/actions/actionsRecipes';
 /* ------------------------- */
 
 const Filters = () => {
@@ -42,12 +45,13 @@ const Filters = () => {
     const handleReset = () => {
         dispatch(resetFilters());
     };
+/* ------------------------------------------------------------- */ 
 
 return(
     <div className={style.filters}>
              
             <select onChange={handleFilterRecipes}>
-               {/*  <option value='' style={{color:'black'}}>Filter By Storage</option> */}
+               <option value='' style={{color:'black'}}>Filter By Storage</option>
                 <option value="Api" style={{color:'black'}} >Api</option>
                 <option value="Database" style={{color:'black'}} >Database</option>
             </select> 
@@ -78,9 +82,11 @@ return(
                 Reset Filters
             </button> 
             
-     </div>
+    </div>
 );
 
-}
+};
+/* ------------------------------------------------------------- */ 
 
 export default Filters;
+/* ------------------------------------------------------------- */ 

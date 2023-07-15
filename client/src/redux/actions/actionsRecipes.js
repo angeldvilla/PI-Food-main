@@ -1,14 +1,16 @@
 /* ----------------- */
+import axios from 'axios';
+
 import {ALL_RECIPES,  
         CREATE_RECIPE,  
-        GET_DIETS,  
+        GET_DIETS,
+        UPDATE_RECIPE,
+        DELETE_RECIPE,  
         RECIPE_DETAIL,       
         FILTER_RECIPES,
         FILTER_DIETS,  
         ORDER_RECIPES, 
         RESET_FILTERS} from './action-types';
-
-import axios from 'axios';
 /* ----------------- */
 
 const URL_API = `http://localhost:3001/recipes`;
@@ -100,6 +102,40 @@ export const newRecipe = (recipeCreate) => {
 };
 /* --------------------------------------------- */
 
+export const editRecipe = (recipeUpdate) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.post(`${URL_API}/edit`, recipeUpdate)
+            
+            dispatch({
+                type: UPDATE_RECIPE,
+                payload: data,
+            });
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+};
+/* --------------------------------------------- */
+
+export const deleteRecipe = (recipeDelete) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.post(`${URL_API}/delete`, recipeDelete)
+            
+            dispatch({
+                type: DELETE_RECIPE,
+                payload: data,
+            });
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+};
+/* --------------------------------------------- */
+
 export const filterRecipes = (filterType) => {
     return{
         type: FILTER_RECIPES,
@@ -130,8 +166,6 @@ export const resetFilters = () => {
     }
 };
 /* --------------------------------------------- */
-
-
 
 /* --------------------------------------------- */
 /* export const searchRecipesByName = (title) => {

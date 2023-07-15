@@ -5,7 +5,7 @@ import style from './detail.module.css';
 /* HOOKS */
 import React, { useEffect} from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 /* -------------------- */
 
@@ -21,19 +21,21 @@ const Detail = () => {
 
   const { recipeDetail } = useSelector(state => state.recipes);
  
- useEffect(()=>{
-    dispatch(getDetailRecipe(id))
- }, [dispatch, id]);
+  useEffect(()=>{
+      dispatch(getDetailRecipe(id))
+  }, [dispatch, id]);
+ 
+/* ------------------------------------------------------------- */ 
 
-    return( 
-        <div className={style.container}>
+return( 
+    <div className={style.container}>
 
         <div className={style.card}>
 
             <div>
 
               <button>
-                  <Link to='/home' className={style.back} >BACK</Link>
+                <NavLink to='/home' className={style.back} >BACK</NavLink>
               </button>
 
               <h1>{recipeDetail.title}</h1>
@@ -42,9 +44,9 @@ const Detail = () => {
 
             <div className={style.detail} >
 
-              <div className={style.containerImg} >
-                <img src={recipeDetail?.image} alt={recipeDetail.title} />
-              </div>
+            <div className={style.containerImg} >
+              <img src={recipeDetail?.image} alt={recipeDetail.title} />
+            </div>
 
               <div className={style.propiedades}>
 
@@ -52,7 +54,8 @@ const Detail = () => {
                 <p className={style.id}>{recipeDetail.id}</p>
 
                 <label htmlFor="summary" >Summary: </label>
-                <p className={style.summary}>{recipeDetail.summary/* .replace(/<[^>]+>/g, '') */}</p>
+                <p className={style.summary}>{recipeDetail.summary}</p> 
+                {/* .replace(/<[^>]+>/g, '') */}
 
                 <label htmlFor="healthScore">Health Score: </label>
                 <p className={style.healthScore}>{recipeDetail.healthScore}</p>
@@ -60,8 +63,6 @@ const Detail = () => {
                 <label htmlFor="stepByStep">Step By Step: </label>
                 <p className={style.stepByStep}>{recipeDetail.stepByStep}</p>
 
-                {/* <label htmlFor="diets">Diets: </label>
-                <p className={style.diets}>{recipeDetail.diets}</p>  */}
                 <label htmlFor="diets">Diets: </label>
                 {
                   recipeDetail.diets?.map((diet, index) => (
@@ -72,25 +73,28 @@ const Detail = () => {
 
                   ))
                 }
-                
-                {/*    {
-                  Array.isArray(recipeDetail.diets)
-                  ? recipeDetail.diets.map((diet, index) => <span key={index}>{diet}</span>)
-                  : recipeDetail.diets?.map((diet, index) => (
-                  <p key={index} className={style.diets}>
-                    {diet.name}
-                  </p>
-                ))
-                } */
-                }
-          
+              
               </div>
 
             </div>
         </div>
 
     </div>
-    );
-}
+  );
+};
+/* ------------------------------------------------------------- */ 
 
 export default Detail;
+/* ------------------------------------------------------------- */ 
+
+
+/*    {
+       Array.isArray(recipeDetail.diets)
+        ? recipeDetail.diets.map((diet, index) => <span key={index}>{diet}</span>)
+        : recipeDetail.diets?.map((diet, index) => (
+        <p key={index} className={style.diets}>
+        {diet.name}
+        </p>
+        ))
+      } 
+*/

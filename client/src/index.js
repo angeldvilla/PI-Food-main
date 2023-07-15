@@ -1,12 +1,17 @@
-/* import ReactDOM from 'react-dom';*/
+/* ------------------------------------------------------------- */ 
+import reportWebVitals from './reportWebVitals';
 import React from 'react'; 
 import App from './App';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import store from './redux/store/store';
+import './index.css';
+/* ------------------------------------------------------------- */ 
+
+/* FORMA DE ENVOLVER LA APP PARA VERSION DE REACT < 18 */
+
+/* import ReactDOM from 'react-dom';*/
 
 /* ReactDOM.render(
   <React.StrictMode>
@@ -15,6 +20,7 @@ import store from './redux/store/store';
   document.getElementById('root')
 ); */
 
+/* FORMA DE ENVOLVER LA APP PARA VERSION DE REACT > 18 */
 createRoot(document.getElementById('root'))
 .render(
   <Provider store={store}>
@@ -23,6 +29,8 @@ createRoot(document.getElementById('root'))
     </BrowserRouter>
   </Provider>
 );
+
+
 
 
 //--------------------------------------------------------------------------//

@@ -28,8 +28,8 @@ const SearchBar = () => {
         dispatch(getAllRecipes(title));
       }
     };
-
-    return( 
+/* ------------------------------------------------------------- */ 
+return( 
     <div>
         <div className={style.container}>
              <input className={style.bar} 
@@ -41,14 +41,16 @@ const SearchBar = () => {
              />
         </div>
 
-        <button className={style.search} onClick={searchRecipes}>
+        <button className={style.search} onClick={searchRecipes} disabled={!title}>
             <span className="material-symbols-outlined">
             search
             </span> 
         </button> 
 
     </div>
-    )
-}
+    );
+};
+/* ------------------------------------------------------------- */ 
 
 export default SearchBar;
+/* ------------------------------------------------------------- */ 

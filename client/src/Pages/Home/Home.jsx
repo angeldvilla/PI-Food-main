@@ -11,7 +11,8 @@
    /* ---------- */
 
    /* ACTIONS */
-   import { getAllRecipes, filterRecipes } from '../../redux/actions/actionsRecipes';
+   import { getAllRecipes, 
+            filterRecipes } from '../../redux/actions/actionsRecipes';
    /* ---------- */
 
    const Home = () => {
@@ -34,10 +35,9 @@
 
       filterRecipesStorage.length !== allRecipes.length && dispatch(filterRecipes())
 
-      /* console.log(filterRecipesStorage); */
       }, [dispatch])
-
-   return ( 
+/* ------------------------------------------------------------- */ 
+return ( 
       <div>
          <h1 className={styles.title}>RECIPES</h1>
 
@@ -50,5 +50,7 @@
       </div>
    )
 };
+/* ------------------------------------------------------------- */ 
 
-   export default Home;
+export default Home;
+/* ------------------------------------------------------------- */ 

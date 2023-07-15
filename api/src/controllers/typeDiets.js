@@ -1,26 +1,31 @@
+//*IMPORTS ARCHIVOS AND MODELS
+/* ------------------------------------------------------------- */ 
 require("dotenv").config();
 const axios = require("axios");
 const { API_KEY } = process.env;
 const { Diet } = require("../db");
+/* ------------------------------------------------------------- */ 
 
+//! EXPORTO DIRECTAMENTE LA FUNCION 
+/* ------------------------------------------------------------- */ 
 module.exports = async (req, res) => {
   try {
-    let typeDiets = [];
     
+    //*DECLARO EL ARRAY DONDE SE ALMACENARAN LAS DIETAS 
+    let typeDiets = [];
     
     //? HAGO LA PETICION PARA TRAER LA INFO DE LA API
     const { data } = await axios.get(
       `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`
     );
 
+    // AGREGARE LA PROPIEDAD VEGETARIAN MANUALMENTE
+    /* typeDiets.push("vegetarian"); */
+
     //? GUARDO LA RESPUESTA Y RECORRO EL ARRAY DE OBJETOS PARA TRAER LA INFO NECESARIA
 
-    /*  data.results[0].diets.map(diet => {
-                if(!diets.includes(diet)) diets.push(diet); 
-          })  */
-
     data.results.forEach((recipe) => {
-
+ 
       recipe.typeDiets.forEach((diet) => {
 
         if (!typeDiets.includes(diet)) {
@@ -29,17 +34,37 @@ module.exports = async (req, res) => {
         
       });
 
+      if(recipe.vegetarian && !typeDiets.includes("vegetarian")){
+         typeDiets.push("vegetarian");
+      }
+
     });
   
-      //? GUARDAR TODAS LAS DIETAS EN LA BASE DE DATOS
-    /* await Diet.bulkCreate({where: {diets}}); */
-    typeDiets.forEach(async (diet) => {
+    //? GUARDAR TODAS LAS DIETAS EN LA BASE DE DATOS
+      await Diet.bulkCreate( typeDiets.map(diet => ( {name : diet} ) ) );
+      /* typeDiets.forEach(async (diet) => {
         await Diet.create({ name: diet });
-      });
+      }); */
       
+      //* RETORNO EL ARRAY CARGADO CON LAS DIETAS
       return typeDiets;
     
-  } catch (error) {
-    return { error: 'Get diets fail' };
-  }
+} 
+  catch (error) {
+    throw new Error('Get diets fail');
+  };
 };
+/* ------------------------------------------------------------- */ 
+
+
+
+
+
+
+
+
+/*  
+    data.results[0].diets.map(diet => {
+      if(!diets.includes(diet)) diets.push(diet); 
+      })  
+*/

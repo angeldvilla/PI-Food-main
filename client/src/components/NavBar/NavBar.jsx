@@ -1,6 +1,7 @@
-/* COMPONENT */
+/* COMPONENTS */
 import SearchBar from '../SearchBar/SearchBar';
 import navStyle from './navStyle.module.css';
+import logoFoods from '../../images/logoFoods.png';
 /* --------- */
 
 /* HOOKS */
@@ -14,11 +15,9 @@ const NavBar = () => {
     <nav className={navStyle.nav}>
         
         <div className={navStyle.landingImage}>
-            
-      <NavLink to='/' > 
-        <img src='https://img.freepik.com/vector-gratis/fondo-comida-saludable_23-2148168636.jpg' alt="Foods" />
-      </NavLink>
-
+          <NavLink to='/' > 
+            <img src={logoFoods} alt="Foods" /> 
+          </NavLink>
         </div>
 
         <div className={navStyle.links}>
@@ -58,10 +57,12 @@ const NavBar = () => {
           
            {/* <SearchBar searchRecipe={searchRecipe}/> */} 
 
-          </div>
+        </div>
 
     </nav>
    );
 }
+/* ------------------------------------------------------------- */ 
 
 export default NavBar;
+/* ------------------------------------------------------------- */ 

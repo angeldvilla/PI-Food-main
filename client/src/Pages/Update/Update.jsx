@@ -1,5 +1,5 @@
 /* COMPONENTS */
-import style from './create.module.css'
+import style from './edit.module.css'
 import validations from '../../validations/validations';
 /* ------------ */
 
@@ -9,21 +9,23 @@ import { useDispatch, useSelector } from 'react-redux';
 /* ------------ */
 
 /* ACTIONS */
-import { newRecipe, 
-        getDiets } from '../../redux/actions/actionsRecipes';
+import { editRecipe, 
+        getDiets,
+        getDetailRecipe } from '../../redux/actions/actionsRecipes';
 /* ---------- */
 
-const CreateRecipe = () => {
+const EditRecipe = ({ idRecipe }) => {
 
     const dispatch = useDispatch();
 
-    const { diets } = useSelector(state => state.recipes);
+    const { diets, allRecipes } = useSelector(state => state.recipes);
     
     useEffect(() => {
     dispatch(getDiets());
-    }, [dispatch])
+    dispatch(getDetailRecipe(idRecipe));
+    }, [dispatch, idRecipe])
         
-    const [recipeCreate, setRecipeCreate] = useState(
+    const [recipeEdit, setRecipeEdit] = useState(
         {
             title: '',
             summary: '',
@@ -45,17 +47,21 @@ const CreateRecipe = () => {
         }
     );
 
+    useEffect(() => {
+        setRecipeEdit(allRecipes);
+    }, [allRecipes]);
+
     const handleInputChange = (event) => {
 
         const { name, value } = event.target
 
-        setRecipeCreate({
-        ...recipeCreate,
+        setRecipeEdit({
+        ...recipeEdit,
         [name] : value
         });
 
         setErrors(validations({
-        ...recipeCreate,
+        ...recipeEdit,
         [name] : value
         }));
     };
@@ -66,13 +72,13 @@ const CreateRecipe = () => {
 
             
             checked ?
-            (   setRecipeCreate(prevState => ({
+            (   setRecipeEdit(prevState => ({
                     ...prevState,
                     diets: [...prevState.diets, value],
                 }))
             ) 
             : (
-                setRecipeCreate(prevState => ({
+                setRecipeEdit(prevState => ({
                     ...prevState,
                     diets: prevState.diets.filter((dietId) => dietId !== value),
                 }))
@@ -82,11 +88,11 @@ const CreateRecipe = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         
-        dispatch(newRecipe(recipeCreate));
+        dispatch(editRecipe(recipeEdit));
         
-        alert('Recipe created successfully!');
+        alert('Recipe updated successfully!');
         
-        setRecipeCreate(
+        setRecipeEdit(
             {
                 title: '',
                 summary: '',
@@ -101,7 +107,7 @@ const CreateRecipe = () => {
 
     return( 
         <div className={style.topContainer}>
-            <h1 className={style.title}>FORM PARA CREAR UNA RECETA</h1>
+            <h1 className={style.title}>FORM PARA EDITAR UNA RECETA</h1>
 
             <form onSubmit={handleSubmit} autoComplete='off' className={style.container}>
                 
@@ -110,7 +116,7 @@ const CreateRecipe = () => {
                     placeholder='write a title'
                     type='text'
                     name='title'
-                    value={recipeCreate.title}
+                    value={recipeEdit.title}
                     onChange={handleInputChange}
                     />
                  {errors.title && <p style={{color: 'red'}}>{errors.title}</p>}
@@ -121,7 +127,7 @@ const CreateRecipe = () => {
                     placeholder='write a summary'
                     type='text'
                     name='summary'
-                    value={recipeCreate.summary}
+                    value={recipeEdit.summary}
                     onChange={handleInputChange}
                     />
                 {errors.summary && <p style={{color: 'red'}}>{errors.summary}</p>}  
@@ -132,7 +138,7 @@ const CreateRecipe = () => {
                     placeholder='insert health score range'
                     type='number'
                     name='healthScore'
-                    value={recipeCreate.healthScore}
+                    value={recipeEdit.healthScore}
                     onChange={handleInputChange}
                     />
                 {errors.healthScore && <p style={{color: 'red'}}>{errors.healthScore}</p>} 
@@ -143,7 +149,7 @@ const CreateRecipe = () => {
                     placeholder='write your Step By Step'
                     type='text'
                     name='stepByStep'
-                    value={recipeCreate.stepByStep}
+                    value={recipeEdit.stepByStep}
                     onChange={handleInputChange}
                     />
                 {errors.stepByStep && <p style={{color: 'red'}}>{errors.stepByStep}</p>}
@@ -157,7 +163,7 @@ const CreateRecipe = () => {
                         type="checkbox"
                         name="diets"
                         value={String(diet.id)}
-                        checked={recipeCreate.diets.includes(String(diet.id))}
+                        checked={recipeEdit.diets.includes(String(diet.id))}
                         onChange={handleDiets}
                     />
                     <label htmlFor="dietNames">{diet.name}</label>
@@ -171,7 +177,7 @@ const CreateRecipe = () => {
                     placeholder='insert image link'
                     type='text'
                     name='image'
-                    value={recipeCreate.image}
+                    value={recipeEdit.image}
                     onChange={handleInputChange}
                     style={{display: 'flex', flexDirection: 'row'}}
                     />
@@ -180,7 +186,7 @@ const CreateRecipe = () => {
                 <button 
                 type='submit' 
                 disabled={Object.keys(errors).length > 0 }
-                className={style.createRecipe}
+                className={style.updateRecipe}
                 >CREATE RECIPE
                 </button>
 
@@ -191,5 +197,5 @@ const CreateRecipe = () => {
 };
 /* ------------------------------------------------------------- */     
     
-export default CreateRecipe;
+export default EditRecipe;
 /* ------------------------------------------------------------- */ 
