@@ -11,8 +11,9 @@ import {ALL_RECIPES,
 
 const initialState = {
     allRecipes: [],
-    filterRecipes: [],
+    filterRecipesStorage: [],
     filterOrder: [],
+    filterDiets: [],
     recipeDetail: {},
     diets:[],
     reset:[],
@@ -25,8 +26,9 @@ const recipesReducer = (state = initialState, action) => {
         return {
             ...state,
             allRecipes: action.payload,
-            filterRecipes: action.payload,
+            filterRecipesStorage: action.payload,
             filterOrder: action.payload,
+            filterDiets: action.payload,
             reset: action.payload,
         };
 
@@ -50,21 +52,25 @@ const recipesReducer = (state = initialState, action) => {
 
         case FILTER_RECIPES:
             
-            let api = state.filterOrder.filter(id => typeof(id.id) !== 'string')
-            let db = state.filterOrder.filter(id => typeof(id.id) === 'string')
+            let api = state.filterOrder.filter(id => typeof(id.id) !== 'string');
+
+            let db = state.filterOrder.filter(id => typeof(id.id) === 'string');
+    
 
             if(action.payload === 'Api'){
                 return {
                     ...state,
                     allRecipes: [...api],
-                    filterRecipes: [...api]
+                    filterRecipesStorage: [...api],
+                    filterDiets: [...api],
                 }; 
             }
             else {
                 return {
                     ...state,
                     allRecipes: [...db],
-                    filterRecipes: [...db]
+                    filterRecipesStorage: [...db],
+                    filterDiets: [...db],
                 }; 
             }
         
@@ -72,64 +78,127 @@ const recipesReducer = (state = initialState, action) => {
         case ORDER_RECIPES:
             if(action.payload === 'A-Z'){
                 
-                let ascending =  state.filterRecipes.sort((a,b) => a.title.localeCompare(b.title) ) 
+                let ascending =  state.filterRecipesStorage.sort((a,b) => a.title.localeCompare(b.title) ) 
                 
                 return {
                     ...state,
                     allRecipes: [...ascending],
-                    filterRecipes: [...ascending]
+                    filterRecipesStorage: [...ascending]
                 }
             }
             
             else if(action.payload === 'Z-A'){
-                let descending =  state.filterRecipes.sort((a,b) => b.title.localeCompare(a.title) ) 
+                let descending =  state.filterRecipesStorage.sort((a,b) => b.title.localeCompare(a.title) ) 
                 return {
                     ...state,
                     allRecipes: [...descending],
-                    filterRecipes: [...descending]
+                    filterRecipesStorage: [...descending]
                 }  
             }
            
              else if(action.payload === 'Asc'){
-                let asc =  state.filterRecipes.sort((a,b) => a.healthScore - b.healthScore )
+                let asc =  state.filterRecipesStorage.sort((a,b) => a.healthScore - b.healthScore )
                  return {
                     ...state,
                     allRecipes: [...asc],
-                    filterRecipes: [...asc]
+                    filterRecipesStorage: [...asc]
                  }
              }
 
              else if(action.payload === 'Desc'){
-                let desc =  state.filterRecipes.sort((a,b) => b.healthScore - a.healthScore )
+                let desc =  state.filterRecipesStorage.sort((a,b) => b.healthScore - a.healthScore )
                 return {
                    ...state,
                    allRecipes: [...desc],
-                   filterRecipes: [...desc]
+                   filterRecipesStorage: [...desc]
                 }
              }
 
-        break;
+        return;
+
+        // case FILTER_DIETS: {
+        //     /*  console.log(state.filterDiets);
+                
+        //         console.log(state.filterRecipesStorage); */
+        //     // let dietsFilter = [];
+
+        //     // state.filterRecipesStorage.length  !== state.filterDiets.length 
+        //     // ? (
+
+        //     //     dietsFilter = state.filterRecipesStorage 
+                
+        //     // ) 
+        //     // : (
+        //     // /* const filteredDiets = state.filterOrder.filter((recipe) =>  recipe.diets.includes(action.payload) ); */
+    
+        //     //     dietsFilter = state.filterDiets
+        //     // )
+
+        //     // const filteredDiets = dietsFilter.map((recipe) =>  recipe.diets.includes(action.payload) );
+
+        //     return {
+                
+        //     };
+
+        // };
 
         case FILTER_DIETS: {
-            const filteredDiets = state.filterOrder.filter((recipe) =>  recipe.diets.includes(action.payload) );
+            console.log(state.filterRecipesStorage.length);
+            console.log(state.filterDiets.length);
+
+
+            let dietsFilter = [];
+
+
+            state.filterDiets.map(recipe => {
+                    
+                if(recipe.diets.includes(action.payload))
+                    {
+                        dietsFilter.push(recipe);
+                    } 
+                })
+                return {
+                ...state,
+                allRecipes: [...dietsFilter],
+                filterRecipesStorage: [...dietsFilter]
+                }
+            }
+        
+
+            // state.filterRecipesStorage.length  !== state.filterDiets.length 
+            // ? (
+
+            //     dietsFilter = state.filterRecipesStorage 
+                
+            // ) 
+            // : (
+            
+    
+            //     dietsFilter = state.filterDiets
+            // )
+
+           /*  const filteredDiets = state.filterOrder.filter((recipe) =>  recipe.diets.includes(action.payload) );
                   return {
                     ...state,
                     allRecipes: [...filteredDiets],
-                    filterRecipes: [...filteredDiets]
-                  };
-        };
+                    filterRecipesStorage: [...filteredDiets]
+                  }; */
+        
 
         case RESET_FILTERS: 
         return {
             ...state,
-            allRecipes: [...state.reset]
+            allRecipes: [...state.reset],
+            filterRecipesStorage: [...state.reset],
+            filterOrder: [...state.reset],
+            filterDiets: [...state.reset]
         };
 
         default: 
         return {...state};
-    };
+};
 
-};   
+}   
 
 export default recipesReducer;
 

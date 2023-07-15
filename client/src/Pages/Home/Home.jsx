@@ -11,24 +11,30 @@
    /* ---------- */
 
    /* ACTIONS */
-   import { getAllRecipes} from '../../redux/actions/actionsRecipes';
+   import { getAllRecipes, filterRecipes } from '../../redux/actions/actionsRecipes';
    /* ---------- */
 
    const Home = () => {
       
       const dispatch = useDispatch();
       
-      const { allRecipes } = useSelector(state => state.recipes);
+      const { allRecipes, filterRecipesStorage } = useSelector(state => state.recipes);
 
       const { pageActual, recipesPerPage } = useSelector(state => state.pagination);
 
-      const startIndex = (pageActual - 1) * recipesPerPage;
-      const endIndex = startIndex + recipesPerPage;
-      const recipesToShow = allRecipes.slice(startIndex, endIndex);
+      const initialIndex = (pageActual - 1) * recipesPerPage;
+
+      const finishIndex = initialIndex + recipesPerPage;
+
+      const recipesToShow = allRecipes.slice(initialIndex, finishIndex);
       
 
       useEffect(() => {
-      dispatch(getAllRecipes())
+      !filterRecipesStorage.length && dispatch(getAllRecipes())
+
+      filterRecipesStorage.length !== allRecipes.length && dispatch(filterRecipes())
+
+      /* console.log(filterRecipesStorage); */
       }, [dispatch])
 
    return ( 
@@ -43,6 +49,6 @@
       
       </div>
    )
-   }
+};
 
    export default Home;

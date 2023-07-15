@@ -12,6 +12,7 @@ const paginationReducer = (state = initialState, action) => {
           ...state,
           pageActual: action.payload
         }
+        
         default: 
         return {
             ...state

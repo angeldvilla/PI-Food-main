@@ -17,13 +17,27 @@ const Paginated = () => {
    
    const { pageActual, recipesPerPage } = useSelector(state => state.pagination);
    
-   const { filterRecipes } = useSelector(state => state.recipes);
+   const { filterRecipesStorage } = useSelector(state => state.recipes);
 
-   const totalPages  = Math.ceil(filterRecipes.length / recipesPerPage);
+   const totalPages  = Math.ceil(filterRecipesStorage.length / recipesPerPage);
 
-    const handleChangePage = (pageNumber) => {
-        dispatch(pagination(pageNumber))
-    }
+   const handleChangePage = (pageNumber) => {
+       dispatch(pagination(pageNumber))
+   }
+
+   const numbersPage = () => {
+    let arrNumbers = [];
+
+      for(let page = 1; page <= totalPages; page++){
+         arrNumbers.push(
+         <button key={page} onClick={() => handleChangePage(page)}> 
+            {page}
+         </button>
+         )
+      }
+      return arrNumbers;
+   }
+
 
     const prevPage = () => {
         return pageActual - 1;
@@ -51,15 +65,19 @@ const Paginated = () => {
     return(
 
     <div className={style.container}>
+
         <button 
         onClick={() => handleChangePage(prevPage())} 
         disabled={pageActual === 1 || pageActual < 1}> 
-            PREV 
+            <p>PREV</p>
         </button>
-       
-        <p>{pageActual}</p>
+
+        {/* <p>{pageActual}</p> */}
+
+       <p>{numbersPage()}</p>
         
-        <p>de {totalPages}</p>
+        {/* <p>de {totalPages}</p> */}
+       
         
         <button 
         onClick={() => handleChangePage(nextPage())} 

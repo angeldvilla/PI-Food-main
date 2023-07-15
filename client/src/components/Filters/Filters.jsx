@@ -47,13 +47,13 @@ return(
     <div className={style.filters}>
              
             <select onChange={handleFilterRecipes}>
-                <option style={{color:'black'}}>Filter By Storage</option>
+               {/*  <option value='' style={{color:'black'}}>Filter By Storage</option> */}
                 <option value="Api" style={{color:'black'}} >Api</option>
                 <option value="Database" style={{color:'black'}} >Database</option>
             </select> 
              
             <select onChange={handleFilterDiets}>
-                <option style={{color:'black'}}>Filter By Diets</option>
+                <option value='' style={{color:'black'}}>Filter By Diets</option>
                     {
                     diets?.map((diet, index) => (
                      <option key={index} value={diet.name}> {diet.name} </option>
@@ -63,13 +63,13 @@ return(
             </select> 
 
             <select onChange={handleFilterHealthScore}>
-                 <option style={{color:'black'}}>Filter By HealthScore</option>
+                 <option value='' style={{color:'black'}}>Filter By HealthScore</option>
                 <option value="Asc" style={{color:'black'}} >Asc</option>
                 <option value="Desc" style={{color:'black'}} >Desc</option>
             </select> 
              
             <select onChange={handleOrder}>
-                 <option style={{color:'black'}}>Order By</option>
+                 <option value='' style={{color:'black'}}>Order By</option>
                 <option value="A-Z" style={{color:'black'}} >A-Z</option>
                 <option value="Z-A" style={{color:'black'}} >Z-A</option>
             </select>
