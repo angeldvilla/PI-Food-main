@@ -1,3 +1,7 @@
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800;900&display=swap');
+/* ----------------------------------------------------------- */
+
 .container{
     display: flex;
     justify-content: space-between;
@@ -23,11 +27,12 @@
     position: relative;
     margin-top: 2.3em;
     margin-bottom: 0.3em;
-    margin-right: 1.9em;
+    margin-right: 1em;
     padding: 0.5em;
-    width: 14em;
+    width: 13em;
     align-items: center;
     text-align: center;
+    font-family: 'Poppins', sans-serif;
     font-size: 1.2em;
     border: 2px solid #909090;
     border-bottom: 2px solid #909090;
@@ -43,7 +48,7 @@
     top: -2.5em;
     margin-top: -1.3em;
     margin-bottom: 1.5em;
-    margin-left: -19em;
+    margin-left: -16.5em;
     margin-right: 0.2em;
     color: rgb(255, 83, 21);
     border: none;

@@ -10,7 +10,7 @@ module.exports = async ({ idRecipe, title, summary, healthScore, stepByStep, die
         
         const dbResponse = await Recipe.findOne({ where: { idRecipe } })
 
-        if(!dbResponse) throw Error("Recipe not found");
+        if(!dbResponse) throw new Error("Recipe not found");
 
         dbResponse.title = title;
         dbResponse.summary = summary;
@@ -34,7 +34,7 @@ module.exports = async ({ idRecipe, title, summary, healthScore, stepByStep, die
         return { message: `${dbResponse} update successfully` };
 } 
     catch (error) {
-    return { error: 'It went wrong, could not update the recipe'}    
+    throw new Error('It went wrong, could not update the recipe');    
     }
 };
 /* ------------------------------------------------------------- */ 

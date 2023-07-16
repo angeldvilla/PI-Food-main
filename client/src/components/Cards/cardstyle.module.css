@@ -1,162 +1,81 @@
-.container{
-  justify-content: space-around;
-  padding: 1rem;
-  border-radius: 1rem;
-  gap: 1rem;
-  margin: 1rem;
-  display:grid;
-  grid-template-columns: repeat(5, 1fr);
-  
-  grid-column-gap: .5rem;
-  grid-row-gap: 2rem;
-  justify-items: center;
-}
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800;900&display=swap');
 /* ----------------------------------------------------------- */
 
+.container {
+  justify-content: space-around;
+    padding: 1rem;
+    border-radius: 1rem;
+    gap: 1rem;
+    margin: 1rem;
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    grid-column-gap: .5rem;
+    grid-row-gap: 2rem;
+    justify-items: center;
+}
+
 .card {
-    position: relative;
-    background-image: url('../../images/Fondocards.jpg');
-    background-repeat: no repeat;
-    background-size: cover;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-width: 15em;
-    max-width: 15em;
-    top: 60%;
-    left: 50%;
-    padding: 20px;
-    border-radius: 30px;
-    box-shadow: 0 2px 10px #f1d906a8;
-    /* font-family: 'MyFont'; */
-    transform: translate(-50%, -50%);
-    transition: 0.5s;
-    z-index: 2;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+/*   background-image: url('../../images/Fondocards.jpg');
+  background-repeat: no-repeat;
+  background-size: cover; */
+  min-width: 10em;
+  max-width: 0.7em;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(241, 217, 6, 0.659);
+  animation: cardAnimation 0.5s ease-in-out;
+  transition: 0.3s;
+  overflow: hidden;
+}
 
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 30px;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(12px) brightness(0.5);
-    -webkit-backdrop-filter: blur(10px) brightness(0.2);
-  }
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 1em #c88209;
+  transition: 0.3s;
+}
 
-  .card * {
-    position: relative;
-    z-index: 3;
-  }
+.card:hover img {
+  opacity: 0.9;
+}
 
- .card:hover {
-    margin-top: 1px;
-    box-shadow: 0 0 1rem rgba(216, 89, 11, 0.638), 0 0 2rem rgba(255, 147, 80, 0.461), 0 0 4rem rgba(255, 147, 80, 0.461);
-    scale: 1.03 1.03;
-    cursor: pointer;
-   } 
+.card .name {
+  margin-top: 0.5em;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: rgba(218, 243, 31, 0.905);
+  text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.461);
+  transition: 0.3s;
+}
 
- .card img {
-    top: 1.2em;
-    /* font-family: 'MyFont'; */
-    width: 100%;
-    height: 200px;
-    border-radius: 2em;
-    box-shadow: 0 2px 1em #c88209 ;
-    /* opacity: 0.6; */
-  }
-
-  .card img:hover{
-    opacity: 1;
-    transform: scale(1.03);
-    /* filter: brightness(1.1); */
-  }
-
-  .card .name {
-    overflow: hidden;
-    top: 0.1rem;
-    /* font-family: 'MyFont'; */
-    display: flex;
-    justify-content: center;
-    font-size: 1.5em;
-    color: #daf31fe7;
-    text-shadow: 0 0 .2rem rgba(0, 0, 0, 0.461), 0 0 .1rem rgba(0, 0, 0, 0.461), 0 0 .8rem rgba(0, 0, 0, 0.461);
-    transition: .8s;
-  }
-
-  .card .name:hover{
-    text-shadow: 0 0 .2rem rgba(0, 0, 0, 0.461), 0 0 .1rem rgba(81, 255, 110, 0.461), 0 0 .8rem rgba(0, 0, 0, 0.461);
-    transform: scale(1.09);
-    cursor: pointer;
+.card:hover .name {
+  color: rgba(81, 255, 110, 0.905);
+  text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.461), 0 0 0.2rem rgba(0, 0, 0, 0.461);
 }
 
 .card .diets {
-  display: flex;
-  flex-direction: column;
-  /* font-family: 'MyFont'; */
-  top: 0.2rem;
-  height: 1rem;
-  justify-content: center;
-  align-items: center;
+  margin-top: 0.5em;
+  font-family: 'Poppins', sans-serif;
   font-size: 0.9rem;
   color: white;
-  text-shadow: 0 0 .2rem rgba(0, 0, 0, 0.461), 0 0 .1rem rgba(0, 0, 0, 0.461), 0 0 .8rem rgba(0, 0, 0, 0.461);
-  transition: .8s;
+  text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.461);
+  transition: 0.3s;
 }
 
-.card .diets:hover{
-  text-shadow: 0 0 .2rem rgba(0, 0, 0, 0.461), 0 0 .1rem rgba(81, 255, 110, 0.461), 0 0 .8rem rgba(0, 0, 0, 0.461);
-  transform: scale(1.1);
-  cursor: pointer;
+.card:hover .diets {
+  color: rgba(81, 255, 110, 0.905);
+  text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.461), 0 0 0.2rem rgba(0, 0, 0, 0.461);
 }
-/* ----------------------------------------------------------- */
 
-  .link{
-    color: aliceblue;
-    text-decoration: none;
+.link {
+  color: aliceblue;
+  text-decoration: none;
 }
-/* ----------------------------------------------------------- */
-
-  .boton {
-    position: absolute;
-    background-color: transparent;
-    top: -1em;
-    right: 1px;
-    padding: 7px;
-    color: #fffdfd;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .card .boton:hover {
-    display: flex;
-    background-color: rgb(226, 43, 43);
-    border-radius: 50%;
-    color: white;
-  }
-/* ----------------------------------------------------------- */
-
-  .fav {
-    position: absolute;
-    background-color: transparent;
-    top: -1em;
-    left: 1px;
-    padding: 6px;
-    color: #fffdfd;
-    border: none;
-    cursor: pointer;
-  }
-
-  .card .fav:hover {
-    display: flex;
-    background-color: rgb(135, 135, 135);
-    color: white;
-    border-radius: 50%;
-  }
-
-  span .material-symbols-outlined{
-    color: red;
-  }
-/* ----------------------------------------------------------- */

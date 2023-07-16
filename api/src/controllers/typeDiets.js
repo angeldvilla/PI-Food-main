@@ -19,32 +19,27 @@ module.exports = async (req, res) => {
       `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`
     );
 
-    // AGREGARE LA PROPIEDAD VEGETARIAN MANUALMENTE
-    /* typeDiets.push("vegetarian"); */
-
     //? GUARDO LA RESPUESTA Y RECORRO EL ARRAY DE OBJETOS PARA TRAER LA INFO NECESARIA
-
+    
     data.results.forEach((recipe) => {
- 
-      recipe.typeDiets.forEach((diet) => {
-
+      
+      recipe.diets.forEach((diet) => {
+        
         if (!typeDiets.includes(diet)) {
           typeDiets.push(diet);
         }
         
       });
-
+       
       if(recipe.vegetarian && !typeDiets.includes("vegetarian")){
-         typeDiets.push("vegetarian");
-      }
-
+        typeDiets.push("vegetarian");
+      }      
     });
-  
+    
+    
     //? GUARDAR TODAS LAS DIETAS EN LA BASE DE DATOS
-      await Diet.bulkCreate( typeDiets.map(diet => ( {name : diet} ) ) );
-      /* typeDiets.forEach(async (diet) => {
-        await Diet.create({ name: diet });
-      }); */
+      await Diet.bulkCreate(typeDiets.map(diet => ( {name : diet} ) ) );
+
       
       //* RETORNO EL ARRAY CARGADO CON LAS DIETAS
       return typeDiets;
@@ -62,9 +57,19 @@ module.exports = async (req, res) => {
 
 
 
+/* 
+// AGREGARE LA PROPIEDAD VEGETARIAN MANUALMENTE
+typeDiets.push("vegetarian"); 
+      
+  
+  data.results[0].diets.map(diet => {
+    if(!diets.includes(diet)) diets.push(diet); 
+    })  
 
-/*  
-    data.results[0].diets.map(diet => {
-      if(!diets.includes(diet)) diets.push(diet); 
-      })  
+
+
+
+ typeDiets.forEach(async (diet) => {
+        await Diet.create({ name: diet });
+      });  
 */

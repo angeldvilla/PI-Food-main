@@ -105,7 +105,7 @@ export const newRecipe = (recipeCreate) => {
 export const editRecipe = (recipeUpdate) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.post(`${URL_API}/edit`, recipeUpdate)
+            const { data } = await axios.put(`${URL_API}/edit/${recipeUpdate.id}`)
             
             dispatch({
                 type: UPDATE_RECIPE,

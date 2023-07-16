@@ -23,6 +23,8 @@
 
       const { pageActual, recipesPerPage } = useSelector(state => state.pagination);
 
+      //! DEFINO LOS INDICES INICIALES Y FINALES PARA RENDERIZAR LAS RECETAS POR PAGINA ACTUAL
+
       const initialIndex = (pageActual - 1) * recipesPerPage;
 
       const finishIndex = initialIndex + recipesPerPage;
@@ -38,15 +40,14 @@
       }, [dispatch])
 /* ------------------------------------------------------------- */ 
 return ( 
-      <div>
-         <h1 className={styles.title}>RECIPES</h1>
+      <div className={styles.container}>
 
          <Filters />
-
-         <Cards recipesToShow={recipesToShow}/>
          
+         <Cards recipesToShow={recipesToShow}/>
+
          <Paginated />
-      
+
       </div>
    )
 };

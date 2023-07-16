@@ -1,0 +1,84 @@
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Añadido para colocar el título y los iconos en columna */
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    height: 15em;
+  }
+  
+  .icons {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    gap: 2rem; 
+    margin-top: 0.1rem; 
+  }
+  
+  .icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    outline: 2px solid #fff;
+    transition-property: outline-offset, outline-color, background-color;
+    transition-duration: 0.25s;
+  }
+  
+  .icon:hover {
+    outline-offset: 4px;
+    animation: shake 0.25s;
+    background-color: rgb(157, 157, 163);
+  }
+  
+  .icon i {
+    margin: auto;
+    animation: shake 0.25s;
+  }
+
+
+  .icon:hover i {
+    animation: shake 0.25s;
+  }
+
+  .footer h3 {
+    font-size: 1.5rem;
+    color: #8c8585;
+    margin-bottom: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+  .footer h3:hover {
+    color: rgb(255, 255, 255) ;
+    transition: 1s;
+    animation: shake 0.5s;
+}
+/* ----------------------------------------------------------- */
+
+
+
+/* ANIMATIONS */
+/* ----------------------------------------------------------- */
+
+@keyframes shake {
+    10%{
+        transform: rotate(15deg);
+    }
+    20%{
+        transform: rotate(-15deg);
+    }
+    30%{
+        transform: rotate(15deg);
+    }
+    40%{
+        transform: rotate(-15deg);
+    }
+}
+/* ----------------------------------------------------------- */

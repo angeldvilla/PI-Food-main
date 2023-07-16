@@ -1,5 +1,5 @@
 /* COMPONENTS */
-import style from './edit.module.css'
+import style from './update.module.css'
 import validations from '../../validations/validations';
 /* ------------ */
 

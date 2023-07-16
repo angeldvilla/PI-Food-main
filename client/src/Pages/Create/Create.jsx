@@ -101,10 +101,10 @@ const CreateRecipe = () => {
 
     return( 
         <div className={style.topContainer}>
-            <h1 className={style.title}>FORM PARA CREAR UNA RECETA</h1>
 
             <form onSubmit={handleSubmit} autoComplete='off' className={style.container}>
-                
+            
+            <div className="container-row">
                 <label htmlFor='title'>TITLE</label>
                     <input 
                     placeholder='write a title'
@@ -113,9 +113,9 @@ const CreateRecipe = () => {
                     value={recipeCreate.title}
                     onChange={handleInputChange}
                     />
-                 {errors.title && <p style={{color: 'red'}}>{errors.title}</p>}
+                 {/*  {errors.title && <p style={{color: 'red'}}>{errors.title}</p>} */}
             
-            
+                
                 <label htmlFor='summary'>SUMMARY</label>
                     <textarea 
                     placeholder='write a summary'
@@ -124,9 +124,12 @@ const CreateRecipe = () => {
                     value={recipeCreate.summary}
                     onChange={handleInputChange}
                     />
-                {errors.summary && <p style={{color: 'red'}}>{errors.summary}</p>}  
+                {/* {errors.summary && <p style={{color: 'red'}}>{errors.summary}</p>} */}
+                </div>
                 
                 
+            
+                <div className="container-row">
                 <label htmlFor='healthScore'>HEALTH SCORE</label>
                     <input 
                     placeholder='insert health score range'
@@ -135,8 +138,8 @@ const CreateRecipe = () => {
                     value={recipeCreate.healthScore}
                     onChange={handleInputChange}
                     />
-                {errors.healthScore && <p style={{color: 'red'}}>{errors.healthScore}</p>} 
-            
+                
+               {/*  {errors.healthScore && <p style={{color: 'red'}}>{errors.healthScore}</p>}  */}
 
                 <label htmlFor='stepByStep'>STEP BY STEP</label>
                     <textarea 
@@ -146,10 +149,14 @@ const CreateRecipe = () => {
                     value={recipeCreate.stepByStep}
                     onChange={handleInputChange}
                     />
-                {errors.stepByStep && <p style={{color: 'red'}}>{errors.stepByStep}</p>}
+               {/*  {errors.stepByStep && <p style={{color: 'red'}}>{errors.stepByStep}</p>} */}
+                </div>
+                
             
-            
+                <div className="container-row">
+                
                 <label htmlFor="diets">DIETS</label>
+                
                 <div className={style.checkboxContainer}>
                 {diets?.map((diet, index) => (
                     <div key={index} className={style.checkboxItem}>
@@ -164,6 +171,11 @@ const CreateRecipe = () => {
                     </div>
                 ))}
                 </div>
+                
+                </div>
+
+
+
                 {/* {errors.diets && <p style={{color: 'red'}}>{errors.diets}</p>} */}
 
                 <label htmlFor='image'>IMAGE</label>
@@ -175,17 +187,25 @@ const CreateRecipe = () => {
                     onChange={handleInputChange}
                     style={{display: 'flex', flexDirection: 'row'}}
                     />
-                {errors.image && <p style={{color: 'red'}}>{errors.image}</p>}
+                 {/* {errors.image && <p style={{color: 'red'}}>{errors.image}</p>} */}
                 
+
+
                 <button 
                 type='submit' 
                 disabled={Object.keys(errors).length > 0 }
-                className={style.createRecipe}
                 >CREATE RECIPE
                 </button>
 
             </form>
-
+            <div className="errors-container">
+            {errors.title && <p>{errors.title}</p>}
+            {errors.summary && <p>{errors.summary}</p>}
+            {errors.healthScore && <p>{errors.healthScore}</p>}
+            {errors.stepByStep && <p>{errors.stepByStep}</p>}
+            {errors.image && <p>{errors.image}</p>}
+            </div>
+  
         </div>
     );
 };

@@ -1,5 +1,14 @@
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800;900&display=swap');
+/* ----------------------------------------------------------- */
+
+
 .landingpage {
-    position: relative;
+  margin-top: -8em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 /* ----------------------------------------------------------- */
 
@@ -11,47 +20,85 @@
     height: 100%;
     object-fit: cover;
     z-index: -1;
-    filter: blur(8px) brightness(0.35);
+    filter: blur(9px) brightness(0.35);
 }
 /* ----------------------------------------------------------- */
 
-.titles{
-    position: relative;
-    align-items: center;
-    /*  top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    z-index: 1;
-     */
-}
-/* ----------------------------------------------------------- */
-
-.button {
-    margin-top: 2em;
-    padding: 0.8rem ;
-    font-size: 1.5rem;
-    justify-content: center;
-    text-align: center;
-    border-radius: 50rem;
-    border-style: none;
-    text-decoration: none;
+.title h1 {
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.15em;
+    animation: typing 6s steps(40, end), blink-caret 0.85s step-end infinite;
+    font-family: 'Poppins', sans-serif;
+    font-size: 5em;
+    font-weight: 760;
+    font-style: italic;
     color: white;
-    background-color: rgb(119, 108, 21);
-}
-
-.button:hover{
-    outline: none;
-    background-color: #9c2a00eb;
-    transition-delay: 0.2s ;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 3s;
 }
 /* ----------------------------------------------------------- */
 
-.titles h1 {
-    margin-top: 8em;
-    font-size: 2.5rem;
-    margin-bottom: 1em;
-    align-items: center;
-    justify-content: center;
-    color: rgb(255, 255, 255);
+.button svg {
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .button:hover svg {
+    transform: rotate(360deg);
+    fill: #e35522eb
 }
 /* ----------------------------------------------------------- */
+
+
+
+
+/* RESPONSIVE */
+/* ----------------------------------------------------------- */
+@media screen and (max-width: 768px) {
+    /* Estilos para pantallas de hasta 768px de ancho */
+    .title h1 {
+      font-size: 2em;
+    }
+    
+    .button svg {
+      width: 7em;
+      height: 6em;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    /* Estilos para pantallas de hasta 480px de ancho */
+    .title h1 {
+      font-size: 1.7em;
+    }
+    
+    .button svg {
+      width: 4.5em;
+      height: 4em;
+    }
+  }
+/* ----------------------------------------------------------- */
+
+/* ANIMATIONS */
+/* ----------------------------------------------------------- */
+@keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  @keyframes blink-caret {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: orange;
+    }
+  }
+/* ----------------------------------------------------------- */ 

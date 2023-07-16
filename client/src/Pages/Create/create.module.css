@@ -1,175 +1,164 @@
-@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
-/* -------------------------------------------------------------------------------- */
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800;900&display=swap');
+/* ----------------------------------------------------------- */
 
-.container{
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  top: 35.2em;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 35em;
-  height: 50em;
-  padding: 5px ;
-  border-radius: 50px;
-  background-image: url('https://www.pixelstalk.net/wp-content/uploads/images5/4K-Food-Wallpaper-HD-Free-download.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  box-shadow: 0px 0px 25px #ffd86ba7;
-  z-index: 2;
-}
-
-.container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50px;
-    backdrop-filter: blur(7px) brightness(0.2);
-    -webkit-backdrop-filter: blur(20px);
-}
-  
-  .container * {
-    position: relative;
-    z-index: 3;
-}
-/* -------------------------------------------------------------------------------- */
 
 .topContainer {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    max-width: 100%;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
-.topContainer input {
-    top: 0.2em;
-    padding: 5px 1px;
-    border-radius: 4px;
-    margin-bottom: 1.2em;
-    width: 57%;
-    text-align: center;
-    box-sizing: border-box;
-    font-family: 'Secular One', sans-serif;
-    font-size: 1em; 
-    border-bottom: 2px solid #ccc;
-    transition: border-color 0.3s ease-in-out;
+.topContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../images/fondoCreate.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(5px) brightness(0.35);
 }
-  
-.topContainer input:focus {
-    outline: none;
-    border-color: #edfe03ef;
-}
-
-.topContainer select {
-    top: 0.2em;
-    padding: 5px 1px;
-    border-radius: 4px;
-    margin-bottom: 1.2em;
-    width: 57%;
-    text-align: center;
-    box-sizing: border-box;
-    font-family: 'Secular One', sans-serif;
-    font-size: 1em; 
-    border-bottom: 2px solid #ccc;
-    transition: border-color 0.3s ease-in-out;
-    cursor: pointer;
+/* ----------------------------------------------------------- */
+.container {
+  margin-top: 10em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  position: relative; 
+  z-index: 1;
+  width: 55em;
+  height: 30em;
+  left: 2em;
+  border: 2px solid #e6b633c1;
+  padding: 2em; 
 }
 
-.topContainer textarea {
-    top: 0.2em;
-    padding: 20px ;
-    border-radius: 4px;
-    margin-top: 0.2em;
-    margin-bottom: 1.2em;
-    width: 55%;
-    text-align: center;
-    font-family: 'Secular One', sans-serif;
-    font-size: 1em; 
-    border-bottom: 2px solid #ccc;
-    box-sizing: border-box;
-    resize:none;
-    transition: border-color 0.3s ease-in-out;
-}
-/* -------------------------------------------------------------------------------- */
-
-.title{
-    margin-top: 2.8em;
-    margin-bottom: -1.5em;
+.container-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1em;
 }
 
-label{
-    padding: 1px 15px;
-    background-color: rgba(235, 255, 85, 0.44);
-    color: white;
+.container-row label {
+  width: calc(50% - 20px); 
 }
 
-select:focus{
-    outline: none;
-    border-color: #edfe03ef; 
+.container-row input {
+  width: calc(50% - 20px); 
 }
 
-textarea:focus{
-    outline: none;
-    border-color: #edfe03ef;
+.container-row textarea {
+  width: calc(50% - 20px);
 }
-/* -------------------------------------------------------------------------------- */
 
-.createRecipe{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-top: 1em;
-    margin-bottom: 0.6em;
-    padding: 8px;
-    width: 10em;
-    border: 2px solid #909090;
-    border-radius: 3em;
-    border-bottom: 2px solid #909090;
-    box-shadow: 0px 2px 9px black;
-    outline: black;
-    color: black;
-    font-family: 'Secular One', sans-serif;
-    font-size: 1em;
-  }
-  
-  .createRecipe:hover {
-    background-color: #ccb636ef;
-    color:  rgba(255, 255, 255, 0.883);
-    border: 2px solid #ffffffce;
-    border-bottom: 2px solid #ffffffce;
-    transform: scale(1.07);
-    transition: 0.6s;
-  }
+.container input {
+  width: 20em;
+  padding: 10px ;
+  border-radius: 4px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
 
-  .createRecipe:disabled{
-    cursor: no-drop;
-  }
+.container textarea {
+  overflow: hidden;
+  width: 20em;
+  padding: 5px ;
+  border-radius: 4px;
+  margin-top: 1.2em;
+  margin-bottom: 1.5em;
+  font-family: 'Poppins', sans-serif;
+  resize:none;
+  text-align: center;
+}
 
-/* -------------------------------------------------------------------------------- */
+.container checkbox {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+/* ----------------------------------------------------------- */
+input:focus {
+  outline: none;
+  border-color: #edfe03ef;
+}
 
+/* ----------------------------------------------------------- */
 .checkboxContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
-  
-  .checkboxItem {
-    flex-basis: calc(45% - 95px);
-    top: 1em;
-    margin-bottom: 1.5em;
-    display: flex;
-    align-items: center;
+
+.checkboxItem {
+  flex-basis: calc(40% - 95px);
+  top: 1em;
+  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
 }
-  
-  .checkboxItem input[type="checkbox"] {
-    margin-right: 0.2em;
+
+.checkboxItem input[type="checkbox"] {
+  margin-right: -9.5em;
 }
+/* ----------------------------------------------------------- */
+
+.container button{
+  width: 10em;
+  margin-top: 1em;
+  padding: 8px;
+  border: 2px solid #909090;
+  border-radius: 3em;
+  border-bottom: 2px solid #909090;
+  box-shadow: 0px 2px 9px black;
+  outline: black;
+  color: black;
+  font-size: 1em;
+  font-family: 'Poppins', sans-serif;
+}
+
+.container button:hover {
+  background-color: #ccb636ef;
+  color:  rgba(255, 255, 255, 0.883);
+  border: 2px solid #ffffffce;
+  border-bottom: 2px solid #ffffffce;
+  transition: 0.6s;
+}
+
+.container button:disabled{
+  cursor: no-drop;
+}
+
+.container button:active{
+  transform: translateY(4px);
+}
+/* ----------------------------------------------------------- */
+/* .errors {
+  margin-top: 1em;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+} */
+
+.errors-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 1em;
+}
+
+.errors-container p {
+  color: red;
+  margin-bottom: 0.5em;
+}
+/* ----------------------------------------------------------- */

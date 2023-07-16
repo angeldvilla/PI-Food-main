@@ -50,14 +50,17 @@ const Filters = () => {
 return(
     <div className={style.filters}>
              
-            <select onChange={handleFilterRecipes}>
-               <option value='' style={{color:'black'}}>Filter By Storage</option>
-                <option value="Api" style={{color:'black'}} >Api</option>
-                <option value="Database" style={{color:'black'}} >Database</option>
+             <p>FILTER BY STORAGE</p>
+            <select onChange={handleFilterRecipes} >
+               <option></option>
+                <option value="Api" >API</option>
+                <option value="Database" >DATABASE</option>
             </select> 
-             
+             <hr />
+            
+             <p>FILTER BY DIETS</p>
             <select onChange={handleFilterDiets}>
-                <option value='' style={{color:'black'}}>Filter By Diets</option>
+                <option></option>
                     {
                     diets?.map((diet, index) => (
                      <option key={index} value={diet.name}> {diet.name} </option>
@@ -65,18 +68,24 @@ return(
                         
                     }
             </select> 
+            <hr />
 
+            <p>FILTER BY HEALTH SCORE</p>
             <select onChange={handleFilterHealthScore}>
-                 <option value='' style={{color:'black'}}>Filter By HealthScore</option>
-                <option value="Asc" style={{color:'black'}} >Asc</option>
-                <option value="Desc" style={{color:'black'}} >Desc</option>
+                <option></option>
+                <option value="Asc" >ASC</option>
+                <option value="Desc" >DESC</option>
             </select> 
-             
+            <hr />
+
+            <p>FILTER BY NAME</p>
             <select onChange={handleOrder}>
-                 <option value='' style={{color:'black'}}>Order By</option>
-                <option value="A-Z" style={{color:'black'}} >A-Z</option>
-                <option value="Z-A" style={{color:'black'}} >Z-A</option>
+                <option></option>
+                <option value="A-Z" >A-Z</option>
+                <option value="Z-A" >Z-A</option>
             </select>
+            <hr />
+
            
             <button onClick={handleReset}>
                 Reset Filters
