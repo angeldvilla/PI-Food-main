@@ -34,7 +34,7 @@ const App = () =>  {
   return (
     <div className="App">
       
-      { location.pathname === '/' || location.pathname.includes('detail') ? null : <NavBar /> }
+      { location.pathname === '/' || location.pathname === '/createRecipe' || location.pathname.includes('detail') ? null : <NavBar /> }
 
         <Routes>
             <Route path='/' element={ <LandingPage/> } />

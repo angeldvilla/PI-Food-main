@@ -45,6 +45,11 @@
     color: #ffffff;
     font-style: italic;
 }
+
+.filters select:focus{
+    outline: none;
+    border-color: #edfe03ef; 
+}
 /* ----------------------------------------------------------- */ 
 .filters button {
     font-family: 'Poppins', sans-serif;

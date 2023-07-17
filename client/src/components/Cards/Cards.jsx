@@ -17,11 +17,11 @@ const Cards = ({ recipesToShow }) => {
                   
                   <img src={image} alt={title} />
                   
-                  <br/>
-                  
+
                   <h3 className={styles.name}> {title} </h3>
             
                   <h3>Dietas:
+                     </h3>
                   {
                   diets.length > 0 
                   ? (
@@ -34,7 +34,6 @@ const Cards = ({ recipesToShow }) => {
                      <p className={styles.diets}> Diets not found </p>
                     )
                   }
-                  </h3>
                   </NavLink>
 
                </div>

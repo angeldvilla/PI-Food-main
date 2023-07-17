@@ -40,13 +40,21 @@
       }, [dispatch])
 /* ------------------------------------------------------------- */ 
 return ( 
-      <div className={styles.container}>
-
+   
+   <div className={styles.container}>
+      
+         <div className={styles.filtersContainer}>
          <Filters />
+
+         </div>
+
+         <div className={styles.cardContainer}>
          
          <Cards recipesToShow={recipesToShow}/>
 
          <Paginated />
+         
+         </div>
 
       </div>
    )

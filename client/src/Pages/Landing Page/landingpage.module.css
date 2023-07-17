@@ -45,7 +45,7 @@
     transition: transform 0.5s ease-in-out;
   }
   
-  .button:hover svg {
+.button:hover svg {
     transform: rotate(360deg);
     fill: #e35522eb
 }

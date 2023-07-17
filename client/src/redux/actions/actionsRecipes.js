@@ -20,7 +20,7 @@ export const getAllRecipes = (title) => {
     return async (dispatch) => {
         try {
         
-        let response; 
+        let response;   
         
         if(title) {
             response = await axios.get(`${URL_API}?title=${title}`);
