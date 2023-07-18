@@ -8,7 +8,6 @@ import LandingPage from './Pages/Landing Page/LandingPage';
 import Home from './Pages/Home/Home';
 import Details from './Pages/Details/Detail';
 import Create from './Pages/Create/Create';
-import Update from './Pages/Update/Update';
 import Error from './Pages/Error/Error';
 /* ---------- */
 
@@ -24,9 +23,9 @@ const App = () =>  {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!['/', '/home', '/createRecipe', '/updateRecipe', '/detail/:id'].includes(location.pathname) 
-      && location.pathname !== '/error404') {
-      navigate('/error404');
+    if (!['/', '/home', '/createRecipe', '/detail/:id'].includes(location.pathname) 
+      && location.pathname === '/*') {
+      navigate('/*');
     }
   }, [location, navigate]);
 /* ------------------------------------------------------------- */ 
@@ -41,8 +40,7 @@ const App = () =>  {
             <Route path='/home' element={ <Home /> } /> 
             <Route path='/detail/:id' element={ <Details/> } />
             <Route path='/createRecipe' element={ <Create /> } />
-            <Route path='/updateRecipe' element={ <Update /> } /> 
-            <Route path='/error404' element={ <Error/> } /> 
+            <Route path='/*' element={ <Error/> } /> 
         </Routes> 
    
     </div>

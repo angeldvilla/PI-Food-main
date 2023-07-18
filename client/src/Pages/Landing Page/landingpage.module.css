@@ -46,6 +46,7 @@
   }
   
 .button:hover svg {
+    content: 'Home!';
     transform: rotate(360deg);
     fill: #e35522eb
 }

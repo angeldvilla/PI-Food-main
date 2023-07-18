@@ -7,14 +7,11 @@ const getInfo = (apiResponse, dbResponse) => {
           id: recipe.id,
           title: recipe.title,
           image: recipe.image,
-          summary: recipe.summary.replace(
-            /<a href="https:\/\/spoonacular\.com\/recipes\/.+?-\d+">(.+?)<\/a>/g,
-            '<strong>$1</strong>'
-          ),
+          summary: recipe.summary.replace(/<[^>]+>/g,''),
           healthScore: recipe.healthScore,
           stepByStep: recipe.analyzedInstructions[0]?.steps.map(step => `${step.number} : ${step.step}`),
-          ingredients: recipe.analyzedInstructions[0]?.steps.flatMap(step => step.ingredients.map(
-              ingredient => `${ingredient.name}` ) ),
+          /* ingredients: recipe.analyzedInstructions[0]?.steps.flatMap(step => step.ingredients.map(
+              ingredient => `${ingredient.name}` ) ), */
           diets: recipe.diets
        }});
        

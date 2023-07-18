@@ -39,7 +39,7 @@ const CreateRecipe = () => {
     image: ''
   });
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
     setRecipeCreate(prevState => ({
       ...prevState,
@@ -49,24 +49,25 @@ const CreateRecipe = () => {
       ...recipeCreate,
       [name]: value
     }));
-  };
+  }
 
-  const handleDiets = event => {
-    const { value, checked } = event.target;
-    if (checked) {
-      setRecipeCreate(prevState => ({
+  const handleDiets = (dietId) => {
+
+    if (recipeCreate.diets.includes(dietId)) {
+      setRecipeCreate((prevState) => ({
         ...prevState,
-        diets: [...prevState.diets, value]
+        diets: prevState.diets.filter((diet) => diet !== dietId),
       }));
-    } else {
-      setRecipeCreate(prevState => ({
+    } 
+    else {
+      setRecipeCreate((prevState) => ({
         ...prevState,
-        diets: prevState.diets.filter(dietId => dietId !== value)
+        diets: [...prevState.diets, dietId],
       }));
     }
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(newRecipe(recipeCreate));
     alert('Recipe created successfully!');
@@ -79,7 +80,7 @@ const CreateRecipe = () => {
       image: ''
     });
   };
-
+/* ------------------------------------------------------------- */ 
   return (
     <div className={style.topContainer}>
       <div className={style.formContainer}>
@@ -112,8 +113,8 @@ const CreateRecipe = () => {
                 </NavLink>
                 </button>
             </div>
-
-            <label htmlFor='title'>TITLE</label>
+{ /* ------------------------------------------------------------- */ }
+            <label>TITLE</label>
             <input
               placeholder='write a title'
               type='text'
@@ -124,7 +125,7 @@ const CreateRecipe = () => {
           </div>
 
           <div className={style.formRow}>
-            <label htmlFor='summary'>SUMMARY</label>
+            <label>SUMMARY</label>
             <textarea
               placeholder='write a summary'
               type='text'
@@ -135,7 +136,7 @@ const CreateRecipe = () => {
           </div>
 
           <div className={style.formRow}>
-            <label htmlFor='healthScore'>HEALTH SCORE</label>
+            <label>HEALTH SCORE</label>
             <input
               placeholder='insert health score range'
               type='number'
@@ -146,7 +147,7 @@ const CreateRecipe = () => {
           </div>
 
           <div className={style.formRow}>
-            <label htmlFor='stepByStep'>STEP BY STEP</label>
+            <label>STEP BY STEP</label>
             <textarea
               placeholder='write your Step By Step'
               type='text'
@@ -156,30 +157,50 @@ const CreateRecipe = () => {
             />
           </div>
 
-            
-          <div className={style.formRow}>
-          <div className={style.dietsContainer}>
-            <label htmlFor='diets'>DIETS</label>
-            <div className={style.checkboxContainer}>
-              {diets?.map((diet, index) => (
-                <div key={index} className={style.checkboxItem}>
-                  <input
-                    type='checkbox'
-                    name='diets'
-                    value={String(diet.id)}
-                    checked={recipeCreate.diets.includes(String(diet.id))}
-                    onChange={handleDiets}
-                  />
-                  <label htmlFor='dietNames'>{diet.name}</label>
-                  </div>
-                  ))}
-            </div>
-            </div>
-          </div>
-         
 
           <div className={style.formRow}>
-            <label htmlFor='image'>IMAGE</label>
+
+            <div className={style.dietsContainer}>
+
+            <label>DIETS</label>
+
+              <div className={style.checkboxContainer}>
+
+                {
+                  diets?.map((diet, index) => (
+                  <div key={index} className={style.checkboxItem}>
+                    <div
+                      className={style.checkboxCustom}
+                      onClick={() => handleDiets(diet.id)}
+                    >
+                      {
+                      recipeCreate.diets.includes(diet.id) && 
+                      (<span className={style.checkmark}>
+                      <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#27d624">
+
+                      <g id="SVGRepo_bgCarrier" strokeWidth="0"/>
+
+                      <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"/>
+
+                      <g id="SVGRepo_iconCarrier"> <path fillRule="evenodd" clipRule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM16.0303 8.96967C16.3232 9.26256 16.3232 9.73744 16.0303 10.0303L11.0303 15.0303C10.7374 15.3232 10.2626 15.3232 9.96967 15.0303L7.96967 13.0303C7.67678 12.7374 7.67678 12.2626 7.96967 11.9697C8.26256 11.6768 8.73744 11.6768 9.03033 11.9697L10.5 13.4393L12.7348 11.2045L14.9697 8.96967C15.2626 8.67678 15.7374 8.67678 16.0303 8.96967Z" fill="#27d624"/> </g>
+
+                      </svg>
+                      </span>)
+                      }
+                    </div>
+                    <span>{diet.name}</span>
+                  </div>
+                ))
+                }
+
+              </div>
+
+            </div>
+
+          </div>
+         
+          <div className={style.formRow}>
+            <label>IMAGE</label>
             <input
               placeholder='insert image link'
               type='text'
@@ -198,7 +219,7 @@ const CreateRecipe = () => {
          </div>
 
         </form>
-        
+{/* ------------------------------------------------------------- */}        
         <div className={style.errorsContainer}>
         
           {errors.title && 
@@ -235,11 +256,55 @@ const CreateRecipe = () => {
             ***{errors.image}
             </p>
           }
-        
         </div>
+
       </div>
+
     </div>
   );
 };
+/* ------------------------------------------------------------- */ 
 
 export default CreateRecipe;
+/* ------------------------------------------------------------- */ 
+
+
+
+
+
+
+/*   
+<div className={style.formRow}>
+          <div className={style.dietsContainer}>
+            <label htmlFor='diets'>DIETS</label>
+            <div className={style.checkboxContainer}>
+              {diets?.map((diet, index) => (
+                <div key={index} className={style.checkboxItem}>
+                  <input
+                    type='checkbox'
+                    name='diets'
+                    value={String(diet.id)}
+                    checked={recipeCreate.diets.includes(String(diet.id))}
+                    onChange={handleDiets}
+                  />
+                  <label htmlFor='dietNames'>{diet.name}</label>
+                  </div>
+                  ))}
+            </div>
+            </div>
+</div> 
+const handleDiets = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setRecipeCreate(prevState => ({
+        ...prevState,
+        diets: [...prevState.diets, value]
+      }));
+    } else {
+      setRecipeCreate(prevState => ({
+        ...prevState,
+        diets: prevState.diets.filter(dietId => dietId !== value)
+      }));
+    }
+  }; 
+*/

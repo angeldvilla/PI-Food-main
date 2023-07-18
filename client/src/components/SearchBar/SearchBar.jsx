@@ -5,7 +5,7 @@ import style from './searchStyle.module.css';
 /* HOOKS */
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { getAllRecipes } from '../../redux/actions/actionsRecipes';
+import { /* getAllRecipes, */ searchRecipesByName } from '../../redux/actions/actionsRecipes';
 /* -------- */
 
 const SearchBar = () => {
@@ -14,8 +14,9 @@ const SearchBar = () => {
 
     const [title, setTitle] = useState("");
 
-    const searchRecipes = () => {
-      dispatch(getAllRecipes(title));
+    const searchRecipes = (title) => {
+      dispatch(searchRecipesByName(title));
+      setTitle('');
     };
 
     const handleChange = (event) => {
@@ -25,7 +26,8 @@ const SearchBar = () => {
     // FUNCION PARA BUSCAR SOLO PRESIONANDO LA TECLA ENTER
     const handleKeyPress = (event) => {
       if (event.key === "Enter") {
-        dispatch(getAllRecipes(title));
+        dispatch(searchRecipesByName(title));
+        setTitle('');
       }
     };
 /* ------------------------------------------------------------- */ 
@@ -41,7 +43,7 @@ return(
              />
         </div>
 
-        <button className={style.search} onClick={searchRecipes} disabled={!title}>
+        <button className={style.search} onClick={() => searchRecipes(title)} disabled={!title}>
             <span className="material-symbols-outlined">
             search
             </span> 

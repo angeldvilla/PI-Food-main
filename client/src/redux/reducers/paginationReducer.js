@@ -4,7 +4,7 @@ import { PAGINATION } from "../actions/action-types";
 
 const initialState = {
     pageActual: 1,
-    recipesPerPage: 3,
+    recipesPerPage: 10,
 }
 /* ------------------------------------------------------------- */ 
 

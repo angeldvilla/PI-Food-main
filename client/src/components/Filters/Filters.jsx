@@ -12,7 +12,8 @@ import { getDiets,
         filterRecipes, 
         filterDiets, 
         orderRecipes, 
-        resetFilters  } from '../../redux/actions/actionsRecipes';
+        /* resetFilters, */
+        getAllRecipes  } from '../../redux/actions/actionsRecipes';
 /* ------------------------- */
 
 const Filters = () => {
@@ -43,7 +44,7 @@ const Filters = () => {
     };
 
     const handleReset = () => {
-        dispatch(resetFilters());
+        dispatch(getAllRecipes());
     };
 /* ------------------------------------------------------------- */ 
 

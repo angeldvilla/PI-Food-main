@@ -50,14 +50,11 @@ module.exports = async (idRecipe) => {
             id: apiRecipe.id,
             title: apiRecipe.title,
             image: apiRecipe.image,
-            summary: apiRecipe.summary.replace(
-              /<a href="https:\/\/spoonacular\.com\/recipes\/.+?-\d+">(.+?)<\/a>/g,
-              '<strong>$1</strong>'
-            ),
+            summary: apiRecipe.summary.replace(/<[^>]+>/g,''),
             healthScore: apiRecipe.healthScore,
             stepByStep: apiRecipe.analyzedInstructions[0]?.steps.map(step => `${step.number} : ${step.step}`),
-            ingredients: apiRecipe.analyzedInstructions[0]?.steps.flatMap(step => step.ingredients.map(
-                ingredient => `${ingredient.name}` ) ),
+            /* ingredients: apiRecipe.analyzedInstructions[0]?.steps.flatMap(step => step.ingredients.map(
+                ingredient => `${ingredient.name}` ) ), */
             diets: apiRecipe.diets
             }       
         };

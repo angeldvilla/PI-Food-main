@@ -39,7 +39,7 @@ const validations = (recipeCreate) => {
     /* -------------------------------- */
   
     if (!recipeCreate.image) {
-      errors.image = "Add at least one image .";
+      errors.image = "Add at least one image.";
     }
 
     if (recipeCreate.image && !httpsRegex.test(recipeCreate.image)) {

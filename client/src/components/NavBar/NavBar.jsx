@@ -22,7 +22,7 @@ const NavBar = () => {
 
         <div className={navStyle.links}>
           
-          <NavLink to='/home' className={({isActive}) => isActive ? navStyle.active : navStyle.home}>
+          <NavLink to='/home' className={navStyle.home}>
 
            <svg width="3.2em" height="1.2em" marginright='0.2em' marginleft='1.6em' viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clipPath="url(#clip0_14_1976)">
@@ -42,9 +42,8 @@ const NavBar = () => {
               HOME
             </NavLink>
             
-          <SearchBar />
 
-          <NavLink to='/createRecipe' className={({isActive}) => isActive ? navStyle.activeRecipe : navStyle.Createrecipes}>
+          <NavLink to='/createRecipe' className={navStyle.Createrecipes}>
 
             <svg fill="#000000" width="3.2em" height="1.2em" marginright='0.2em' marginleft='1.6em' viewBox="0 0 24 24" id="create-note-alt" xmlns="http://www.w3.org/2000/svg" className="icon multi-color">
             <path id="secondary-fill" d="M17.44,8.22A5.49,5.49,0,0,1,14,9.91c0-.47-.26-4,1.5-6.1L16,4l.19-.72L18,4l.47-1.82.5-.09C19,2.57,19.23,6.18,17.44,8.22" style={{ fill: 'rgb(44, 169, 188)', strokeWidth: 2 }}></path>
@@ -54,10 +53,13 @@ const NavBar = () => {
 
             CREATE RECIPE
           </NavLink>
-          
-           {/* <SearchBar searchRecipe={searchRecipe}/> */} 
-
         </div>
+          
+          <div className={navStyle.searchBar}>
+          <SearchBar />
+
+          </div>
+
 
     </nav>
    );

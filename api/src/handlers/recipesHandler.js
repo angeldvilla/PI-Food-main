@@ -52,7 +52,7 @@ const createRecipeHandler = async (req, res) => {
           if(!title || !image || !summary || !healthScore || !stepByStep ) {
             return res.status(400).send('Missing data');
           } 
-          const dietsId = diets.map((dietId) => parseInt(dietId))
+          /* const dietsId = diets.map((dietId) => parseInt(dietId)) */
           
           const newRecipe = await recipeCreate({
             title,
@@ -60,7 +60,8 @@ const createRecipeHandler = async (req, res) => {
             summary,
             healthScore,
             stepByStep,
-            diets: dietsId,
+            diets
+            /* diets: dietsId, */
           });
   
           return res.status(200).json(newRecipe);

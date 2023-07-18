@@ -4,22 +4,22 @@ import {ALL_RECIPES,
     RECIPE_DETAIL, 
     CREATE_RECIPE, 
     GET_DIETS,
-    UPDATE_RECIPE,
-    DELETE_RECIPE, 
+    SEARCH_RECIPE, 
     FILTER_RECIPES,
     FILTER_DIETS,
     ORDER_RECIPES,
-    RESET_FILTERS} from '../actions/action-types';
+    /* RESET_FILTERS */} from '../actions/action-types';
 /* ----------------- */
 
 const initialState = {
     allRecipes: [],
+    recipesByName: [],
     filterRecipesStorage: [],
     filterOrder: [],
     filterDiets: [],
     recipeDetail: {},
     diets:[],
-    reset:[],
+    /* reset:[], */
 }
 /* ------------------------------------------------------------- */ 
 
@@ -33,7 +33,7 @@ switch(action.type) {
         filterRecipesStorage: action.payload,
         filterOrder: action.payload,
         filterDiets: action.payload,
-        reset: action.payload,
+        /* reset: action.payload, */
     };
 /* ------------------------------------------------------------- */ 
 
@@ -58,6 +58,16 @@ switch(action.type) {
     };
 /* ------------------------------------------------------------- */ 
 
+    case SEARCH_RECIPE:
+    return{
+        ...state,
+        recipesByName: action.payload,
+        filterRecipesStorage: action.payload,
+        filterOrder: action.payload,
+        filterDiets: action.payload
+    };
+/* ------------------------------------------------------------- */ 
+
     case FILTER_RECIPES:
         
         let api = state.filterOrder.filter(id => typeof(id.id) !== 'string');
@@ -69,18 +79,20 @@ switch(action.type) {
             return {
                 ...state,
                 allRecipes: [...api],
+                recipesByName: [...api],
                 filterRecipesStorage: [...api],
                 filterDiets: [...api],
-                update: [...api],
+                
             }; 
         }
         else if(action.payload === 'Database') {
             return {
                 ...state,
                 allRecipes: [...db],
+                recipesByName: [...db],
                 filterRecipesStorage: [...db],
                 filterDiets: [...db],
-                update: [...db],
+        
             }; 
         }
         else {
@@ -137,49 +149,21 @@ switch(action.type) {
         return {
         ...state,
         allRecipes: [...dietsFilter],
-        filterRecipesStorage: [...dietsFilter]
+        recipesByName: [...dietsFilter],
+        filterRecipesStorage: [...dietsFilter],
         }
     
 /* ------------------------------------------------------------- */
 
-    case UPDATE_RECIPE: 
-
-    const updatedRecipes = state.allRecipes.map((recipe) => {
-        if (recipe.id === action.payload.id) {
-            return action.payload;
-        }
-        return recipe;
-        });
-
-    const updatedFilterRecipes = state.filterRecipesStorage.map((recipe) => {
-        if (recipe.id === action.payload.id) {
-            return action.payload;
-        }
-        return recipe;
-        });
-
-    return {
-        ...state,
-        allRecipes: updatedRecipes,
-        filterRecipesStorage: updatedFilterRecipes,
-        recipeDetail: action.payload
-    }
-/* ------------------------------------------------------------- */
-
-    case DELETE_RECIPE: 
-    return {
-        ...state,
-    }
-/* ------------------------------------------------------------- */
-
-    case RESET_FILTERS: 
+ /*    case RESET_FILTERS: 
     return {
         ...state,
         allRecipes: [...state.reset],
+        recipesByName:[...state.reset],
         filterRecipesStorage: [...state.reset],
         filterOrder: [...state.reset],
         filterDiets: [...state.reset]
-    };
+    }; */
 /* ------------------------------------------------------------- */
 
     default: 
@@ -191,6 +175,7 @@ switch(action.type) {
 
 export default recipesReducer;
 /* --------------------------------------------- */
+
 
 
 
@@ -237,3 +222,40 @@ dietsFilter.push(recipe);
                 allRecipes: [...filteredDiets],
                 filterRecipesStorage: [...filteredDiets]
 }; */
+
+
+/*   const filteredRecipes = state.allRecipes.filter(ele =>
+        ele.title.toLowerCase().includes(action.payload)
+    ); 
+*/
+/* ------------------------------------------------------------- */
+
+/*     case UPDATE_RECIPE: 
+
+    const updatedRecipes = state.allRecipes.map((recipe) => {
+        if (recipe.id === action.payload.id) {
+            return action.payload;
+        }
+        return recipe;
+        });
+
+    const updatedFilterRecipes = state.filterRecipesStorage.map((recipe) => {
+        if (recipe.id === action.payload.id) {
+            return action.payload;
+        }
+        return recipe;
+        });
+
+    return {
+        ...state,
+        allRecipes: updatedRecipes,
+        filterRecipesStorage: updatedFilterRecipes,
+        recipeDetail: action.payload
+    }
+/* ------------------------------------------------------------- */
+
+/* case DELETE_RECIPE: 
+return {
+    ...state,
+} */
+/* ------------------------------------------------------------- */ 

@@ -4,46 +4,43 @@ import axios from 'axios';
 import {ALL_RECIPES,  
         CREATE_RECIPE,  
         GET_DIETS,
-        UPDATE_RECIPE,
-        DELETE_RECIPE,  
+        SEARCH_RECIPE,  
         RECIPE_DETAIL,       
         FILTER_RECIPES,
         FILTER_DIETS,  
         ORDER_RECIPES, 
-        RESET_FILTERS} from './action-types';
+        /* RESET_FILTERS */} from './action-types';
 /* ----------------- */
 
 const URL_API = `http://localhost:3001/recipes`;
 /* --------------------------------------------- */
 
-export const getAllRecipes = (title) => {
+export const getAllRecipes = () => {
+    return async (dispatch) => {
+        const { data } = await axios.get(`${URL_API}`);
+        dispatch({
+            type: ALL_RECIPES,
+            payload: data
+        })
+    }
+}
+/* --------------------------------------------- */
+
+export const searchRecipesByName = (title) => {
+    
     return async (dispatch) => {
         try {
-        
-        let response;   
-        
-        if(title) {
-            response = await axios.get(`${URL_API}?title=${title}`);
-        }
-
-        else 
-        {
-            response = await axios.get(`${URL_API}`);
-        }
-    
-        const { data } = response;
-
-        return (
+            const { data } = await axios.get(`${URL_API}?title=${title}`);
+            console.log(data);
             dispatch({
-                type: ALL_RECIPES,
+                type: SEARCH_RECIPE,
                 payload: data,
             })
-            )
-
+            
         } catch (error) {
             console.log(error);
         }
-    };
+    }
 };
 /* --------------------------------------------- */
 
@@ -102,40 +99,6 @@ export const newRecipe = (recipeCreate) => {
 };
 /* --------------------------------------------- */
 
-export const editRecipe = (recipeUpdate) => {
-    return async (dispatch) => {
-        try {
-            const { data } = await axios.put(`${URL_API}/edit/${recipeUpdate.id}`)
-            
-            dispatch({
-                type: UPDATE_RECIPE,
-                payload: data,
-            });
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
-};
-/* --------------------------------------------- */
-
-export const deleteRecipe = (recipeDelete) => {
-    return async (dispatch) => {
-        try {
-            const { data } = await axios.post(`${URL_API}/delete`, recipeDelete)
-            
-            dispatch({
-                type: DELETE_RECIPE,
-                payload: data,
-            });
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
-};
-/* --------------------------------------------- */
-
 export const filterRecipes = (filterType) => {
     return{
         type: FILTER_RECIPES,
@@ -160,27 +123,85 @@ export const filterDiets = (dietType) => {
 }
 /* --------------------------------------------- */
 
-export const resetFilters = () => {
+/* export const resetFilters = () => {
     return {
         type: RESET_FILTERS
     }
-};
+}; */
 /* --------------------------------------------- */
 
-/* --------------------------------------------- */
-/* export const searchRecipesByName = (title) => {
-    
-        return async (dispatch) => {
-            try {
-                await axios.get(`${URL_API}?title=${title}`);
-                dispatch({
-                    type: SEARCH_RECIPE,
-                    payload: title,
-                })
-                
-            } catch (error) {
-                console.log(error);
-            }
+
+
+
+
+
+
+
+
+/* export const editRecipe = (recipeUpdate) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.put(`${URL_API}/edit/${recipeUpdate.id}`)
+            
+            dispatch({
+                type: UPDATE_RECIPE,
+                payload: data,
+            });
+
+        } catch (error) {
+            console.log(error);
         }
-    }; */
+    }
+}; */
+/* --------------------------------------------- */
+
+/* export const deleteRecipe = (recipeDelete) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.post(`${URL_API}/delete`, recipeDelete)
+            
+            dispatch({
+                type: DELETE_RECIPE,
+                payload: data,
+            });
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}; */
+
+/* --------------------------------------------- */
+
+/* export const getAllRecipes = (title) => {
+    return async (dispatch) => {
+        try {
+        
+        let response;   
+        
+        if(title) {
+            response = await axios.get(`${URL_API}?title=${title}`);
+        }
+
+        else 
+        {
+            response = await axios.get(`${URL_API}`);
+        }
+    
+        const { data } = response;
+
+        return (
+            dispatch({
+                type: ALL_RECIPES,
+                payload: data,
+            })
+            )
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+}; 
+*/
+
 /* --------------------------------------------- */

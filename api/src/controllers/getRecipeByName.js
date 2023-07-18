@@ -18,7 +18,7 @@ module.exports = async (title) => {
     
         const [apiResponse, dbResponse] =  await Promise.all([
         //* INFO API
-        axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=2&titleMatch=${name}&addRecipeInformation=true`),
+        axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&titleMatch=${name}&addRecipeInformation=true`),
         
         //* INFO DB
         Recipe.findAll({

@@ -22,7 +22,7 @@
   z-index: -1;
 }
 /* ----------------------------------------------------------- */
-
+/* Estilos del formulario */
 .formContainer {
   display: flex;
   justify-content: center;
@@ -60,35 +60,35 @@
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 500;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  border-radius: 10px;
+  border: 1px solid #6c6c6c;
   resize: none;
 }
 
-.formRow input:focus{
-  outline: none;
-  transition: 0.5s;
-  border-color: #edfe03ef;
-}
+.formRow input:focus,
 .formRow textarea:focus{
   outline: none;
-  transition: 0.5s;
-  border-color: #edfe03ef;
+  transition: 0.4s ease-in-out;
+  background-color: #ffffff82;
+  box-shadow: 0px 2px 9px black;
+  border: 1px solid #e7b75feb;
+  border-bottom: 1px solid #e7b75feb;
 }
 /* ----------------------------------------------------------- */
-
+/* Estilos de los checkboxes */
 .dietsContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 1em 1;
+  margin: 0.5em ;
 }
 
 .checkboxContainer {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  margin-left: 30%;
+  align-items: flex-start;
+  margin-left: 3.5rem;
+  margin-right: -5.5rem;
   margin-top: 1em;
 }
 
@@ -96,58 +96,34 @@
   display: flex;
   flex-wrap: wrap;
   flex-basis: calc(30% - 5px);
-  margin-bottom: 0.2em;
+  margin-bottom: 1em;
   align-items: center;
 }
 
-/* .checkboxItem input[type='checkbox'] {
-  margin-right: 2.5em;
-  margin-left: -5em;
-} */
-
-.checkboxItem input[type='checkbox'] {
-  position: relative;
-  opacity: 0;
-  width: 0;
-  height: 0;
-  margin-right: 2.5em;
-  margin-left: -5em;
-}
-
-.checkboxItem label {
-  position: relative;
-  padding-left: 30px;
+.checkboxCustom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
+  margin-left: -0.5em;
+  margin-right: 0.2em;
 }
 
-.checkboxItem label::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 20px; /* Ajusta el tamaño del checkbox */
-  height: 20px; /* Ajusta el tamaño del checkbox */
-  border: 2px solid #ccc; /* Ajusta el color del borde del checkbox */
-  border-radius: 5px; /* Ajusta el radio del borde del checkbox */
+.checkboxCustom.selected {
+  border-color: #77d870;
 }
 
-.checkboxItem input[type='checkbox']:checked + label::before {
-  background-color: #70C9D8; /* Ajusta el color de fondo cuando está seleccionado */
+.checkmark {
+  color: #fff;
+  font-size: 16px;
+  margin-top: 0.1em;
 }
-
-.checkboxItem input[type='checkbox']:checked + label::after {
-  content: '';
-  position: absolute;
-  top: 4px; /* Ajusta la posición vertical del marcador de verificación */
-  left: 4px; /* Ajusta la posición horizontal del marcador de verificación */
-  width: 12px; /* Ajusta el tamaño del marcador de verificación */
-  height: 12px; /* Ajusta el tamaño del marcador de verificación */
-  background-color: #fff; /* Ajusta el color del marcador de verificación */
-  border-radius: 50%; /* Ajusta el radio del marcador de verificación */
-}
-
 /* ----------------------------------------------------------- */
-
+/* Estilos del botón de regreso */
 .buttonContainer {
   position: absolute;
   display: flex;
@@ -158,7 +134,6 @@
 
 .buttonContainer button {
   position: relative;
-  padding: 8px;
   border: none;
   background-color: transparent;
   color: #000;
@@ -183,8 +158,8 @@
 }
 
 .buttonContainer button svg{
-  width: 5em;
-  height: 3.5em;
+  width: 6em;
+  height: 4.5em;
   fill: #e7b75feb;
   transition: transform 0.4s ease-in-out;
 }
@@ -194,7 +169,7 @@
   fill: #e7b75faa;
 }
 /* ----------------------------------------------------------- */
-
+/* Estilos del botón de crear */
 .create button {
   margin-top: 2em;
   margin-bottom: -2.5em;
@@ -218,9 +193,8 @@
 .create button:active {
   transform: translateY(4px); 
 }
-
 /* ----------------------------------------------------------- */
-
+/* Estilos de los errores */
 .errorsContainer {
   display: flex;
   flex-direction: column;
@@ -241,3 +215,44 @@
   margin-bottom: 0.5em;
 }
 /* ----------------------------------------------------------- */
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 1024px) {
+  .form {
+    width: 80%;
+    max-width: 40em;
+  }
+  
+  .checkboxItem {
+    flex-basis: calc(50% - 5px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .checkboxItem {
+    flex-basis: calc(50% - 5px);
+  }
+
+  .checkboxCustom {
+    margin-left: -0.2em;
+    margin-right: 0.2em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .form {
+    width: 100%;
+    max-width: unset;
+  }
+
+  .checkboxItem {
+    flex-basis: 100%;
+    margin-bottom: 0.5em;
+  }
+
+  .checkboxCustom {
+    margin-left: 0;
+    margin-right: 0.2em;
+  }
+}

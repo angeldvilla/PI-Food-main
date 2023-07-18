@@ -19,7 +19,7 @@
       
       const dispatch = useDispatch();
       
-      const { allRecipes, filterRecipesStorage } = useSelector(state => state.recipes);
+      const { allRecipes, filterRecipesStorage} = useSelector(state => state.recipes);
 
       const { pageActual, recipesPerPage } = useSelector(state => state.pagination);
 
@@ -29,10 +29,10 @@
 
       const finishIndex = initialIndex + recipesPerPage;
 
-      const recipesToShow = allRecipes.slice(initialIndex, finishIndex);
+      const recipesToShow = filterRecipesStorage.slice(initialIndex, finishIndex);
       
-
       useEffect(() => {
+      
       !filterRecipesStorage.length && dispatch(getAllRecipes())
 
       filterRecipesStorage.length !== allRecipes.length && dispatch(filterRecipes())
@@ -52,9 +52,9 @@ return (
          
          <Cards recipesToShow={recipesToShow}/>
 
-         <Paginated />
          
          </div>
+         <Paginated />
 
       </div>
    )

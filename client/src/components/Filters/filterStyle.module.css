@@ -48,6 +48,7 @@
 
 .filters select:focus{
     outline: none;
+    transition: 0.4s ease-in-out;
     border-color: #edfe03ef; 
 }
 /* ----------------------------------------------------------- */ 
