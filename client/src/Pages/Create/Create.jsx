@@ -6,7 +6,7 @@ import validations from '../../validations/validations';
 
 /* HOOKS */
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 /* ------------ */
 
@@ -16,6 +16,9 @@ import { newRecipe, getDiets } from '../../redux/actions/actionsRecipes';
 
 const CreateRecipe = () => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const { diets, loading } = useSelector(state => state.recipes);
 
   useEffect(() => {
@@ -80,6 +83,7 @@ const CreateRecipe = () => {
       diets: [],
       image: ''
     });
+    navigate('/home');
   };
 /* ------------------------------------------------------------- */ 
   return (

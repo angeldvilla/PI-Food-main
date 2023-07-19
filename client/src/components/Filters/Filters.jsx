@@ -52,7 +52,7 @@ return(
              
              <p>FILTER BY STORAGE</p>
             <select onChange={handleFilterRecipes} >
-               <option></option>
+                <option>ALL</option>
                 <option value="Api" >API</option>
                 <option value="Database" >DATABASE</option>
             </select> 
@@ -60,7 +60,7 @@ return(
             
              <p>FILTER BY DIETS</p>
             <select onChange={handleFilterDiets}>
-                <option></option>
+                <option>ALL</option>
                     {
                     diets?.map((diet, index) => (
                      <option key={index} value={diet.name}> {diet.name} </option>
@@ -70,17 +70,17 @@ return(
             </select> 
             <hr />
 
-            <p>FILTER BY HEALTH SCORE</p>
+            <p>ORDER BY HEALTH SCORE</p>
             <select onChange={handleFilterHealthScore}>
-                <option></option>
+                <option>ALL</option>
                 <option value="Asc" >ASC</option>
                 <option value="Desc" >DESC</option>
             </select> 
             <hr />
 
-            <p>FILTER BY NAME</p>
+            <p>ALPHABETICAL ORDER</p>
             <select onChange={handleOrder}>
-                <option></option>
+                <option>ALL</option>
                 <option value="A-Z" >A-Z</option>
                 <option value="Z-A" >Z-A</option>
             </select>

@@ -27,7 +27,7 @@
 /* ----------------------------------------------------------- */
 .filters  select {
     width: 12em;
-    height: 1.2em;
+    height: 2.5em;
     padding: 5px;
     border-radius: 5em;
     align-items: center;
@@ -49,12 +49,12 @@
 .filters select:focus{
     outline: none;
     transition: 0.4s ease-in-out;
-    border-color: #edfe03ef; 
+    border-color: #edfe03ef;
 }
 /* ----------------------------------------------------------- */ 
 .filters button {
     font-family: 'Poppins', sans-serif;
-    margin-top: 5em;
+    margin-top: 2em;
     margin-bottom: 2em;
     padding: 8px;
     width: 10em;
