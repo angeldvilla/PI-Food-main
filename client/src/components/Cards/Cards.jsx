@@ -9,7 +9,7 @@ const Cards = ({ recipesToShow }) => {
    return (
       <div className={styles.container}>
          {
-         recipesToShow.map(({id, image, title, diets}) => {
+         recipesToShow.map(({id, image, title, diets, healthScore}) => {
             return (
                <div className={styles.card} key={id}>
                   
@@ -18,6 +18,8 @@ const Cards = ({ recipesToShow }) => {
                   <img src={image} alt={title} />
                   
                   <h3 className={styles.name}> {title} </h3>
+
+                  <h3>Health Score : {healthScore}</h3>
             
                   <h3>Dietas:</h3>
                   {
