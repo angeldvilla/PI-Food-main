@@ -8,20 +8,39 @@ import {ALL_RECIPES,
         RECIPE_DETAIL,       
         FILTER_RECIPES,
         FILTER_DIETS,  
-        ORDER_RECIPES, 
-        /* RESET_FILTERS */} from './action-types';
+        ORDER_RECIPES,
+        LOADING } from './action-types';
 /* ----------------- */
 
 const URL_API = `http://localhost:3001/recipes`;
 /* --------------------------------------------- */
 
+export const loading = (isLoading) => {
+    return{
+        type: LOADING,
+        payload: isLoading
+    }
+}
+/* --------------------------------------------- */
+
 export const getAllRecipes = () => {
     return async (dispatch) => {
-        const { data } = await axios.get(`${URL_API}`);
-        dispatch({
-            type: ALL_RECIPES,
-            payload: data
-        })
+     try {
+         dispatch(loading(true));
+         
+         const { data } = await axios.get(`${URL_API}`);
+         
+         dispatch({
+             type: ALL_RECIPES,
+             payload: data
+         })
+         
+         dispatch(loading(false));
+         
+     } catch (error) {
+        console.log(error);
+      dispatch(loading(false));
+     }  
     }
 }
 /* --------------------------------------------- */
@@ -30,15 +49,19 @@ export const searchRecipesByName = (title) => {
     
     return async (dispatch) => {
         try {
+            dispatch(loading(true));
+
             const { data } = await axios.get(`${URL_API}?title=${title}`);
-            console.log(data);
+
             dispatch({
                 type: SEARCH_RECIPE,
                 payload: data,
             })
-            
+            dispatch(loading(false));
+
         } catch (error) {
             console.log(error);
+            dispatch(loading(false));
         }
     }
 };
@@ -47,14 +70,22 @@ export const searchRecipesByName = (title) => {
 export const getDiets = () => {
     return async (dispatch) => {
         try {   
+            
+            dispatch(loading(true));
+
            const { data } = await axios.get('http://localhost:3001/diets');
-                dispatch({
-                    type:GET_DIETS,
-                    payload : data,
-                });
+
+           
+           dispatch({
+               type:GET_DIETS,
+               payload : data,
+            });
+            
+            dispatch(loading(false));
 
         } catch (error) {
           console.log(error);
+          dispatch(loading(false));
         }
 
     };
@@ -64,18 +95,22 @@ export const getDiets = () => {
 export const getDetailRecipe = (id) => {
     return async (dispatch) => {
         try {
+        dispatch(loading(true));
+
         const { data } = await axios.get(`${URL_API}/${id}`) 
+
         if(data.title){
             dispatch({
               type: RECIPE_DETAIL,
               payload: data,
             });
-        } else {
-            alert('recipe fail detail')
         }
-            
+         
+        dispatch(loading(true));
+
         } catch (error) {
             console.log(error);
+            dispatch(loading(false));
         }
 
     };
@@ -85,6 +120,7 @@ export const getDetailRecipe = (id) => {
 export const newRecipe = (recipeCreate) => {
     return async (dispatch) => {
         try {
+            dispatch(loading(true));
             const { data } = await axios.post(`${URL_API}/create`, recipeCreate)
             
             dispatch({
@@ -92,8 +128,11 @@ export const newRecipe = (recipeCreate) => {
                 payload: data,
             });
 
+            dispatch(loading(false));
+
         } catch (error) {
             console.log(error);
+            dispatch(loading(false));
         }
     }
 };
@@ -123,12 +162,13 @@ export const filterDiets = (dietType) => {
 }
 /* --------------------------------------------- */
 
+
+
 /* export const resetFilters = () => {
     return {
         type: RESET_FILTERS
     }
 }; */
-/* --------------------------------------------- */
 
 
 

@@ -21,7 +21,6 @@ const validations = (recipeCreate) => {
      }
     /* -------------------------------- */
   
-    /* -------------------------------- */
     if(!recipeCreate.summary){
       errors.summary = 'Enter at least a short description.';
     }
@@ -50,13 +49,7 @@ const validations = (recipeCreate) => {
       errors.image = "Invalid image URL. Only JPG, JPEG, and PNG formats are allowed.";
     }
   /* -------------------------------- */
-    
-  
-  /*  const selectedDietCount = recipeCreate.diets.filter((diet) => diet.checked).length;
-      if (!selectedDietCount) {
-        errors.diets = 'Select at least one diet.';
-      } */
-  
     return errors;
-  }
-  export default validations;
+}
+
+export default validations;

@@ -8,7 +8,7 @@ import {ALL_RECIPES,
     FILTER_RECIPES,
     FILTER_DIETS,
     ORDER_RECIPES,
-    /* RESET_FILTERS */} from '../actions/action-types';
+    LOADING } from '../actions/action-types';
 /* ----------------- */
 
 const initialState = {
@@ -19,6 +19,7 @@ const initialState = {
     filterDiets: [],
     recipeDetail: {},
     diets:[],
+    loading: true
     /* reset:[], */
 }
 /* ------------------------------------------------------------- */ 
@@ -33,6 +34,7 @@ switch(action.type) {
         filterRecipesStorage: action.payload,
         filterOrder: action.payload,
         filterDiets: action.payload,
+        loading: true,
         /* reset: action.payload, */
     };
 /* ------------------------------------------------------------- */ 
@@ -67,6 +69,13 @@ switch(action.type) {
         filterDiets: action.payload
     };
 /* ------------------------------------------------------------- */ 
+
+    case LOADING: 
+    return {
+        ...state,
+        loading: action.payload,
+    }
+/* ------------------------------------------------------------- */
 
     case FILTER_RECIPES:
         
@@ -153,17 +162,6 @@ switch(action.type) {
         filterRecipesStorage: [...dietsFilter],
         }
     
-/* ------------------------------------------------------------- */
-
- /*    case RESET_FILTERS: 
-    return {
-        ...state,
-        allRecipes: [...state.reset],
-        recipesByName:[...state.reset],
-        filterRecipesStorage: [...state.reset],
-        filterOrder: [...state.reset],
-        filterDiets: [...state.reset]
-    }; */
 /* ------------------------------------------------------------- */
 
     default: 
@@ -259,3 +257,14 @@ return {
     ...state,
 } */
 /* ------------------------------------------------------------- */ 
+
+ /*    case RESET_FILTERS: 
+    return {
+        ...state,
+        allRecipes: [...state.reset],
+        recipesByName:[...state.reset],
+        filterRecipesStorage: [...state.reset],
+        filterOrder: [...state.reset],
+        filterDiets: [...state.reset]
+    }; */
+/* ------------------------------------------------------------- */

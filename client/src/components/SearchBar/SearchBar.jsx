@@ -43,7 +43,7 @@ return(
              />
         </div>
 
-        <button className={style.search} onClick={() => searchRecipes(title)} disabled={!title}>
+        <button className={style.search} onClick={() => searchRecipes(title)} disabled={!title || !isNaN(title)}>
             <span className="material-symbols-outlined">
             search
             </span> 

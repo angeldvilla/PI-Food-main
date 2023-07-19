@@ -3,6 +3,7 @@
    import Cards from "../../components/Cards/Cards";
    import Paginated from "../../components/Paginated/Paginated";
    import Filters from '../../components/Filters/Filters';
+   import Loader from '../../components/Loader/loader';
    /* ---------- */
 
    /* HOOKS */
@@ -19,7 +20,7 @@
       
       const dispatch = useDispatch();
       
-      const { allRecipes, filterRecipesStorage} = useSelector(state => state.recipes);
+      const { allRecipes, filterRecipesStorage, loading} = useSelector(state => state.recipes);
 
       const { pageActual, recipesPerPage } = useSelector(state => state.pagination);
 
@@ -42,7 +43,8 @@
 return ( 
    
    <div className={styles.container}>
-      
+
+      {loading && <Loader />}
          <div className={styles.filtersContainer}>
          <Filters />
 
@@ -50,10 +52,10 @@ return (
 
          <div className={styles.cardContainer}>
          
-         <Cards recipesToShow={recipesToShow}/>
-
+          <Cards recipesToShow={recipesToShow}/>
          
          </div>
+
          <Paginated />
 
       </div>

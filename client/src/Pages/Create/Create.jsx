@@ -1,5 +1,6 @@
 /* COMPONENTS */
 import style from './create.module.css'
+import Loader from '../../components/Loader/loader';
 import validations from '../../validations/validations';
 /* ------------ */
 
@@ -15,11 +16,13 @@ import { newRecipe, getDiets } from '../../redux/actions/actionsRecipes';
 
 const CreateRecipe = () => {
   const dispatch = useDispatch();
-  const { diets } = useSelector(state => state.recipes);
+  const { diets, loading } = useSelector(state => state.recipes);
 
   useEffect(() => {
     dispatch(getDiets());
   }, [dispatch]);
+
+  const [checkboxError, setCheckboxError] = useState('');
 
   const [recipeCreate, setRecipeCreate] = useState({
     title: '',
@@ -52,19 +55,17 @@ const CreateRecipe = () => {
   }
 
   const handleDiets = (dietId) => {
-
-    if (recipeCreate.diets.includes(dietId)) {
-      setRecipeCreate((prevState) => ({
-        ...prevState,
-        diets: prevState.diets.filter((diet) => diet !== dietId),
-      }));
-    } 
-    else {
-      setRecipeCreate((prevState) => ({
-        ...prevState,
-        diets: [...prevState.diets, dietId],
-      }));
-    }
+    const updatedDiets = recipeCreate.diets.includes(dietId)
+      ? recipeCreate.diets.filter((diet) => diet !== dietId)
+      : [...recipeCreate.diets, dietId];
+  
+    setRecipeCreate((prevState) => ({
+      ...prevState,
+      diets: updatedDiets,
+    }));
+  
+    
+    setCheckboxError(updatedDiets.length === 0 ? 'Select at least one diet.' : '');
   };
 
   const handleSubmit = (event) => {
@@ -83,6 +84,7 @@ const CreateRecipe = () => {
 /* ------------------------------------------------------------- */ 
   return (
     <div className={style.topContainer}>
+      {loading && <Loader/>}
       <div className={style.formContainer}>
         <form onSubmit={handleSubmit} autoComplete='off' className={style.form}>
           <div className={style.formRow}>
@@ -212,7 +214,7 @@ const CreateRecipe = () => {
           </div>
 
          <div className={style.create}>
-          <button type='submit' disabled={Object.keys(errors).length > 0}>
+          <button type='submit' disabled={Object.keys(errors).length > 0 || checkboxError}>
             CREATE RECIPE
           </button>
 
@@ -249,6 +251,13 @@ const CreateRecipe = () => {
             ***{errors.stepByStep}
             </p>
            }
+
+          {checkboxError && 
+            <p>
+              <h2>Error Diets</h2>
+              ***{checkboxError}
+            </p>
+          }
           
           {errors.image && 
           <p>
@@ -308,3 +317,22 @@ const handleDiets = (event) => {
     }
   }; 
 */
+
+/*   const handleDiets = (dietId) => {
+
+    if (recipeCreate.diets.includes(dietId)) {
+      setRecipeCreate((prevState) => ({
+        ...prevState,
+        diets: prevState.diets.filter((diet) => diet !== dietId),
+      }));
+    } 
+    else {
+      setRecipeCreate((prevState) => ({
+        ...prevState,
+        diets: [...prevState.diets, dietId],
+      }));
+    }
+
+    setCheckboxError(!recipeCreate.diets.length > 0 ? 'Select at least one diet.' : '');
+  
+  }; */

@@ -89,7 +89,7 @@ return(
 
            
             <button onClick={handleReset}>
-                Reset Filters
+                RESET
             </button> 
             
     </div>

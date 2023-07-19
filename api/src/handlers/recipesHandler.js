@@ -61,7 +61,7 @@ const createRecipeHandler = async (req, res) => {
             healthScore,
             stepByStep,
             diets
-            /* diets: dietsId, */
+           /*  diets: dietsId, */
           });
   
           return res.status(200).json(newRecipe);

@@ -32,10 +32,6 @@
   width: 100;
   height: 5em;
 }
-
-.landingImage img:hover {
-  transform: scaleY(-4px)
-}
 /* ----------------------------------------------------------- */
 
 .links {
@@ -56,8 +52,7 @@
   width: 10rem; 
   height: 2.3rem; 
   align-items: center; 
-  background: linear-gradient(rgb(251, 232, 127), rgba(0, 0, 0, 0));
- /*  background: linear-gradient(rgba(195, 88, 17, 0.856), rgba(0, 0, 0, 0)); */
+  background-color: rgba(244, 220, 85, 0.694);;
   box-shadow: 0px 2px 9px black; 
   /* color: #9e9e9ecb;  */
   color: #ffffff; 
@@ -85,7 +80,7 @@
     width: 12.6rem; 
     height: 2.4rem; 
     color: #ffffff; 
-    background: linear-gradient(rgb(251, 232, 127), rgba(0, 0, 0, 0));
+    background-color: rgba(244, 220, 85, 0.694);
     box-shadow: 0px 2px 9px black; 
     border: transparent; 
     font-family: 'Poppins', sans-serif; 
@@ -98,7 +93,7 @@
 .home:hover,
 .Createrecipes:hover
 {
-  background: linear-gradient(rgba(195, 88, 17, 0.856), rgba(0, 0, 0, 0));
+  background-color: rgba(255, 126, 40, 0.712);
   color: #ffffff;
   box-shadow: 0px 2px 9px black; 
   text-shadow: 0 0 .1rem rgba(0, 0, 0, 0.461), 0 0 .1rem rgba(0, 0, 0, 0.461), 0 0 .8rem rgba(0, 0, 0, 0.461);
