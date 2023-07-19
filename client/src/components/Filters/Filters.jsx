@@ -12,7 +12,6 @@ import { getDiets,
         filterRecipes, 
         filterDiets, 
         orderRecipes, 
-        /* resetFilters, */
         getAllRecipes  } from '../../redux/actions/actionsRecipes';
 /* ------------------------- */
 

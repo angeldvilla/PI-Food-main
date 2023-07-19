@@ -8,7 +8,7 @@ const { Diet } = require("../db");
 
 //! EXPORTO DIRECTAMENTE LA FUNCION 
 /* ------------------------------------------------------------- */ 
-module.exports = async (req, res) => {
+module.exports = async () => {
   try {
     
     //*DECLARO EL ARRAY DONDE SE ALMACENARAN LAS DIETAS 
@@ -29,15 +29,14 @@ module.exports = async (req, res) => {
           typeDiets.push(diet);
         }
         
-      });
-       
-      if(recipe.vegetarian && !typeDiets.includes("vegetarian")){
+      });      
+      /* if(recipe.vegetarian && !typeDiets.includes("vegetarian")){
         typeDiets.push("vegetarian");
-      }      
+      }  */     
     });
     
     
-    //? GUARDAR TODAS LAS DIETAS EN LA BASE DE DATOS
+      //? GUARDAR TODAS LAS DIETAS EN LA BASE DE DATOS
       await Diet.bulkCreate(typeDiets.map(diet => ( {name : diet} ) ) );
 
       
@@ -65,9 +64,6 @@ typeDiets.push("vegetarian");
   data.results[0].diets.map(diet => {
     if(!diets.includes(diet)) diets.push(diet); 
     })  
-
-
-
 
  typeDiets.forEach(async (diet) => {
         await Diet.create({ name: diet });

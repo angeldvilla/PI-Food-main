@@ -13,13 +13,14 @@
 
    /* ACTIONS */
    import { getAllRecipes, 
-            filterRecipes } from '../../redux/actions/actionsRecipes';
+            filterRecipes,
+            viewLoader } from '../../redux/actions/actionsRecipes';
    /* ---------- */
 
    const Home = () => {
       
       const dispatch = useDispatch();
-      
+
       const { allRecipes, filterRecipesStorage, loading} = useSelector(state => state.recipes);
 
       const { pageActual, recipesPerPage } = useSelector(state => state.pagination);
@@ -33,18 +34,25 @@
       const recipesToShow = filterRecipesStorage.slice(initialIndex, finishIndex);
       
       useEffect(() => {
-      
-      !filterRecipesStorage.length && dispatch(getAllRecipes())
+         !loading &&
 
-      filterRecipesStorage.length !== allRecipes.length && dispatch(filterRecipes())
+         dispatch(viewLoader())
+   
+         !filterRecipesStorage.length && dispatch(getAllRecipes())
+   
+         filterRecipesStorage.length !== allRecipes.length && dispatch(filterRecipes())
 
-      }, [dispatch])
+      }, [dispatch, loading])
 /* ------------------------------------------------------------- */ 
 return ( 
    
    <div className={styles.container}>
 
+      {/* Muestra el loader mientras las dietas 
+      y las recetas se están cargando */}
+      
       {loading && <Loader />}
+
          <div className={styles.filtersContainer}>
          <Filters />
 
@@ -52,7 +60,7 @@ return (
 
          <div className={styles.cardContainer}>
          
-          <Cards recipesToShow={recipesToShow}/>
+         {!loading && <Cards recipesToShow={recipesToShow}/> } 
          
          </div>
 

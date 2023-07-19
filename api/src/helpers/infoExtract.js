@@ -9,9 +9,7 @@ const getInfo = (apiResponse, dbResponse) => {
           image: recipe.image,
           summary: recipe.summary.replace(/<[^>]+>/g,''),
           healthScore: recipe.healthScore,
-          stepByStep: recipe.analyzedInstructions[0]?.steps.map(step => `${step.number} : ${step.step}`),
-          /* ingredients: recipe.analyzedInstructions[0]?.steps.flatMap(step => step.ingredients.map(
-              ingredient => `${ingredient.name}` ) ), */
+          stepByStep: recipe.analyzedInstructions[0]?.steps.map(step => ` Step: ${step.number} : ${step.step}`),
           diets: recipe.diets
        }});
        
@@ -35,3 +33,15 @@ const getInfo = (apiResponse, dbResponse) => {
 /* ------------------------------------------------------------- */ 
 module.exports = getInfo;
 /* ------------------------------------------------------------- */ 
+
+
+
+
+
+
+
+
+/*  
+ingredients: recipe.analyzedInstructions[0]?.steps.flatMap(step => step.ingredients.map(
+              ingredient => `${ingredient.name}` ) ), 
+*/

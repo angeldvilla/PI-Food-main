@@ -20,13 +20,13 @@ const initialState = {
     recipeDetail: {},
     diets:[],
     loading: true
-    /* reset:[], */
 }
 /* ------------------------------------------------------------- */ 
 
 const recipesReducer = (state = initialState, action) => {
 switch(action.type) {
 
+    // Caso para actualizar todas las recetas en el estado y los filtros relacionados
     case ALL_RECIPES: 
     return {
         ...state,
@@ -34,32 +34,31 @@ switch(action.type) {
         filterRecipesStorage: action.payload,
         filterOrder: action.payload,
         filterDiets: action.payload,
-        loading: true,
-        /* reset: action.payload, */
+        loading: false
     };
 /* ------------------------------------------------------------- */ 
-
+    // Caso para actualizar el detalle de una receta en el estado
     case RECIPE_DETAIL: 
     return {
         ...state,
         recipeDetail: action.payload
     };
 /* ------------------------------------------------------------- */ 
-
+    // Caso para obtener la lista de dietas 
     case GET_DIETS: 
     return {
         ...state,
         diets: action.payload
     };
 /* ------------------------------------------------------------- */ 
-
+    // Caso para agregar una nueva receta al estado
     case CREATE_RECIPE: 
     return {
         ...state,
         allRecipes: [...state.allRecipes, action.payload]
     };
 /* ------------------------------------------------------------- */ 
-
+     // Caso para buscar recetas por nombre y actualizar los filtros relacionados
     case SEARCH_RECIPE:
     return{
         ...state,
@@ -69,7 +68,7 @@ switch(action.type) {
         filterDiets: action.payload
     };
 /* ------------------------------------------------------------- */ 
-
+    // Caso para actualizar el estado de carga (loading)
     case LOADING: 
     return {
         ...state,
@@ -77,30 +76,31 @@ switch(action.type) {
     }
 /* ------------------------------------------------------------- */
 
+    // Caso para filtrar recetas por fuente (API o base de datos)
     case FILTER_RECIPES:
         
-        let api = state.filterOrder.filter(id => typeof(id.id) !== 'string');
+        const api = state.filterOrder.filter(id => typeof(id.id) !== 'string');
 
-        let db = state.filterOrder.filter(id => typeof(id.id) === 'string');
+        const db = state.filterOrder.filter(id => typeof(id.id) === 'string');
 
 
         if(action.payload === 'Api'){
             return {
                 ...state,
-                allRecipes: [...api],
-                recipesByName: [...api],
-                filterRecipesStorage: [...api],
-                filterDiets: [...api],
+                allRecipes: api,
+                recipesByName: api,
+                filterRecipesStorage: api,
+                filterDiets: api,
                 
             }; 
         }
         else if(action.payload === 'Database') {
             return {
                 ...state,
-                allRecipes: [...db],
-                recipesByName: [...db],
-                filterRecipesStorage: [...db],
-                filterDiets: [...db],
+                allRecipes: db,
+                recipesByName: db,
+                filterRecipesStorage: db,
+                filterDiets: db,
         
             }; 
         }
@@ -108,11 +108,12 @@ switch(action.type) {
             return state;
         }
 /* ------------------------------------------------------------- */ 
-
+    
+    // Caso para ordenar las recetas según el criterio seleccionado
     case ORDER_RECIPES:
         if(action.payload === 'A-Z'){
             
-            let ascending =  state.filterRecipesStorage.sort((a,b) => a.title.localeCompare(b.title) ) 
+            const ascending =  state.filterRecipesStorage.sort((a,b) => a.title.localeCompare(b.title) ) 
             
             return {
                 ...state,
@@ -122,7 +123,7 @@ switch(action.type) {
         }
         
         else if(action.payload === 'Z-A'){
-            let descending =  state.filterRecipesStorage.sort((a,b) => b.title.localeCompare(a.title) ) 
+            const descending =  state.filterRecipesStorage.sort((a,b) => b.title.localeCompare(a.title) ) 
             return {
                 ...state,
                 allRecipes: [...descending],
@@ -131,7 +132,7 @@ switch(action.type) {
         }
        
          else if(action.payload === 'Asc'){
-            let asc =  state.filterRecipesStorage.sort((a,b) => a.healthScore - b.healthScore )
+            const asc =  state.filterRecipesStorage.sort((a,b) => a.healthScore - b.healthScore )
              return {
                 ...state,
                 allRecipes: [...asc],
@@ -140,7 +141,7 @@ switch(action.type) {
          }
 
          else if(action.payload === 'Desc'){
-            let desc =  state.filterRecipesStorage.sort((a,b) => b.healthScore - a.healthScore )
+            const desc =  state.filterRecipesStorage.sort((a,b) => b.healthScore - a.healthScore )
             return {
                ...state,
                allRecipes: [...desc],
@@ -150,16 +151,16 @@ switch(action.type) {
 
     return state;
 /* ------------------------------------------------------------- */ 
-
+     // Caso para filtrar recetas por dieta y actualizar los filtros relacionados
     case FILTER_DIETS: 
     
-    let dietsFilter = state.filterDiets.filter(recipe => recipe.diets.includes(action.payload));
+    const dietsFilter = state.filterDiets.filter(recipe => recipe.diets.includes(action.payload));
 
         return {
         ...state,
-        allRecipes: [...dietsFilter],
-        recipesByName: [...dietsFilter],
-        filterRecipesStorage: [...dietsFilter],
+        allRecipes: dietsFilter,
+        recipesByName: dietsFilter,
+        filterRecipesStorage: dietsFilter,
         }
     
 /* ------------------------------------------------------------- */

@@ -15,7 +15,7 @@ import {ALL_RECIPES,
 const URL_API = `http://localhost:3001/recipes`;
 /* --------------------------------------------- */
 
-export const loading = (isLoading) => {
+export const viewLoader = (isLoading) => {
     return{
         type: LOADING,
         payload: isLoading
@@ -26,7 +26,7 @@ export const loading = (isLoading) => {
 export const getAllRecipes = () => {
     return async (dispatch) => {
      try {
-         dispatch(loading(true));
+         dispatch(viewLoader(true));
          
          const { data } = await axios.get(`${URL_API}`);
          
@@ -35,11 +35,11 @@ export const getAllRecipes = () => {
              payload: data
          })
          
-         dispatch(loading(false));
+         dispatch(viewLoader(false));
          
      } catch (error) {
         console.log(error);
-      dispatch(loading(false));
+      dispatch(viewLoader(false));
      }  
     }
 }
@@ -49,7 +49,7 @@ export const searchRecipesByName = (title) => {
     
     return async (dispatch) => {
         try {
-            dispatch(loading(true));
+            dispatch(viewLoader(true));
 
             const { data } = await axios.get(`${URL_API}?title=${title}`);
 
@@ -57,11 +57,11 @@ export const searchRecipesByName = (title) => {
                 type: SEARCH_RECIPE,
                 payload: data,
             })
-            dispatch(loading(false));
+            dispatch(viewLoader(false));
 
         } catch (error) {
             console.log(error);
-            dispatch(loading(false));
+            dispatch(viewLoader(false));
         }
     }
 };
@@ -71,7 +71,7 @@ export const getDiets = () => {
     return async (dispatch) => {
         try {   
             
-            dispatch(loading(true));
+            dispatch(viewLoader(true));
 
            const { data } = await axios.get('http://localhost:3001/diets');
 
@@ -81,11 +81,11 @@ export const getDiets = () => {
                payload : data,
             });
             
-            dispatch(loading(false));
+            dispatch(viewLoader(false));
 
         } catch (error) {
           console.log(error);
-          dispatch(loading(false));
+          dispatch(viewLoader(false));
         }
 
     };
@@ -95,7 +95,7 @@ export const getDiets = () => {
 export const getDetailRecipe = (id) => {
     return async (dispatch) => {
         try {
-        dispatch(loading(true));
+        dispatch(viewLoader(true));
 
         const { data } = await axios.get(`${URL_API}/${id}`) 
 
@@ -106,11 +106,11 @@ export const getDetailRecipe = (id) => {
             });
         }
          
-        dispatch(loading(true));
+        dispatch(viewLoader(false));
 
         } catch (error) {
             console.log(error);
-            dispatch(loading(false));
+            dispatch(viewLoader(false));
         }
 
     };
@@ -120,7 +120,7 @@ export const getDetailRecipe = (id) => {
 export const newRecipe = (recipeCreate) => {
     return async (dispatch) => {
         try {
-            dispatch(loading(true));
+            dispatch(viewLoader(true));
             const { data } = await axios.post(`${URL_API}/create`, recipeCreate)
             
             dispatch({
@@ -128,11 +128,11 @@ export const newRecipe = (recipeCreate) => {
                 payload: data,
             });
 
-            dispatch(loading(false));
+            dispatch(viewLoader(false));
 
         } catch (error) {
             console.log(error);
-            dispatch(loading(false));
+            dispatch(viewLoader(false));
         }
     }
 };
@@ -164,19 +164,22 @@ export const filterDiets = (dietType) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 /* export const resetFilters = () => {
     return {
         type: RESET_FILTERS
     }
 }; */
-
-
-
-
-
-
-
-
 
 /* export const editRecipe = (recipeUpdate) => {
     return async (dispatch) => {

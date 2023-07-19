@@ -17,7 +17,6 @@ module.exports = async (idRecipe) => {
           include: 
           {
           model: Diet,
-          /* as: "diets", */
           attributes: ["name"],
           through: { attributes: [] },
           },
@@ -52,9 +51,7 @@ module.exports = async (idRecipe) => {
             image: apiRecipe.image,
             summary: apiRecipe.summary.replace(/<[^>]+>/g,''),
             healthScore: apiRecipe.healthScore,
-            stepByStep: apiRecipe.analyzedInstructions[0]?.steps.map(step => `${step.number} : ${step.step}`),
-            /* ingredients: apiRecipe.analyzedInstructions[0]?.steps.flatMap(step => step.ingredients.map(
-                ingredient => `${ingredient.name}` ) ), */
+            stepByStep: apiRecipe.analyzedInstructions[0]?.steps.map(step => `Step: ${step.number} : ${step.step}`),
             diets: apiRecipe.diets
             }       
         };
@@ -82,4 +79,8 @@ module.exports = async (idRecipe) => {
       (ingredient) => `Ingredient : ${ingredient.name}`);
       return [steps, ...ingredients];
       }),
+*/
+
+/*  ingredients: apiRecipe.analyzedInstructions[0]?.steps.flatMap(step => step.ingredients.map(
+                ingredient => `${ingredient.name}` ) ), 
 */
