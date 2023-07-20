@@ -41,21 +41,24 @@ switch(action.type) {
     case RECIPE_DETAIL: 
     return {
         ...state,
-        recipeDetail: action.payload
+        recipeDetail: action.payload,
+        loading: false
+       
     };
 /* ------------------------------------------------------------- */ 
     // Caso para obtener la lista de dietas 
     case GET_DIETS: 
     return {
         ...state,
-        diets: action.payload
+        diets: action.payload,
     };
 /* ------------------------------------------------------------- */ 
     // Caso para agregar una nueva receta al estado
     case CREATE_RECIPE: 
     return {
         ...state,
-        allRecipes: [...state.allRecipes, action.payload]
+        allRecipes: [...state.allRecipes, action.payload],
+        loading: false   
     };
 /* ------------------------------------------------------------- */ 
      // Caso para buscar recetas por nombre y actualizar los filtros relacionados
@@ -65,7 +68,8 @@ switch(action.type) {
         recipesByName: action.payload,
         filterRecipesStorage: action.payload,
         filterOrder: action.payload,
-        filterDiets: action.payload
+        filterDiets: action.payload,
+        loading: false,
     };
 /* ------------------------------------------------------------- */ 
     // Caso para actualizar el estado de carga (loading)
@@ -83,15 +87,13 @@ switch(action.type) {
 
         const db = state.filterOrder.filter(id => typeof(id.id) === 'string');
 
-
         if(action.payload === 'Api'){
             return {
                 ...state,
                 allRecipes: api,
                 recipesByName: api,
                 filterRecipesStorage: api,
-                filterDiets: api,
-                
+                filterDiets: api,    
             }; 
         }
         else if(action.payload === 'Database') {
@@ -101,7 +103,6 @@ switch(action.type) {
                 recipesByName: db,
                 filterRecipesStorage: db,
                 filterDiets: db,
-        
             }; 
         }
         else {
@@ -160,7 +161,7 @@ switch(action.type) {
         ...state,
         allRecipes: dietsFilter,
         recipesByName: dietsFilter,
-        filterRecipesStorage: dietsFilter,
+        filterRecipesStorage: dietsFilter, 
         }
     
 /* ------------------------------------------------------------- */

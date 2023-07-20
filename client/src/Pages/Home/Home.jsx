@@ -13,8 +13,7 @@
 
    /* ACTIONS */
    import { getAllRecipes, 
-            filterRecipes,
-            viewLoader } from '../../redux/actions/actionsRecipes';
+            filterRecipes } from '../../redux/actions/actionsRecipes';
    /* ---------- */
 
    const Home = () => {
@@ -34,15 +33,11 @@
       const recipesToShow = filterRecipesStorage.slice(initialIndex, finishIndex);
       
       useEffect(() => {
-         !loading &&
-
-         dispatch(viewLoader())
-   
          !filterRecipesStorage.length && dispatch(getAllRecipes())
    
          filterRecipesStorage.length !== allRecipes.length && dispatch(filterRecipes())
 
-      }, [dispatch, loading])
+      }, [dispatch])
 /* ------------------------------------------------------------- */ 
 return ( 
    

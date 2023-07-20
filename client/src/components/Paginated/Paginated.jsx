@@ -14,7 +14,7 @@ const Paginated = () => {
     
    const dispatch = useDispatch(); 
 
-   const [selectedPage, setSelectedPage] = useState(1);
+   const [selectedPage, setSelectedPage] = useState(2);
    
    const { pageActual, recipesPerPage } = useSelector(state => state.pagination);
    
