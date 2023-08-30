@@ -12,7 +12,7 @@
     border-color: 2px solid #dec107eb;
     border: 2px solid #dec107eb;
     border-bottom: 2px solid #dec107eb;
-    transition-delay: 0.2s ;
+    transition: 400ms ;
 }
   
 .container .border {
@@ -35,7 +35,7 @@
     align-items: center;
     text-align: center;
     font-family: 'Poppins', sans-serif;
-    font-size: 1.2em;
+    font-size: 1em;
     border: 2px solid #909090;
     border-bottom: 2px solid #909090;
     border-radius: 15px;
@@ -47,11 +47,11 @@
 .search{
     position: relative;
     background-color: transparent;
-    top: -2.75em;
+    top: -2.4em;
     margin-top: -1.3em;
     margin-bottom: 1.5em;
     margin-left: -16.5em;
-    margin-right: 0.2em;
+    margin-right: -2.5em;
     border: none;
     border-radius: 5em;
 }

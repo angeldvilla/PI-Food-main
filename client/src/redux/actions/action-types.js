@@ -11,4 +11,6 @@ export const FILTER_DIETS = 'FILTER_DIETS';
 export const ORDER_RECIPES = 'ORDER_RECIPES';
 export const PAGINATION = 'PAGINATION';
 export const LOADING = 'LOADING';
+export const SHOW_MODAL = 'SHOW_MODAL';
+export const HIDE_MODAL = 'HIDE_MODAL';
 /* ------------------------------------------------------------- */ 

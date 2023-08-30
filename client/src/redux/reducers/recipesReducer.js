@@ -26,6 +26,14 @@ const initialState = {
 const recipesReducer = (state = initialState, action) => {
 switch(action.type) {
 
+    // Caso para actualizar el estado de carga (loading)
+        case LOADING: 
+        return {
+            ...state,
+            loading: action.payload,
+        }
+/* ------------------------------------------------------------- */
+
     // Caso para actualizar todas las recetas en el estado y los filtros relacionados
     case ALL_RECIPES: 
     return {
@@ -72,13 +80,6 @@ switch(action.type) {
         loading: false,
     };
 /* ------------------------------------------------------------- */ 
-    // Caso para actualizar el estado de carga (loading)
-    case LOADING: 
-    return {
-        ...state,
-        loading: action.payload,
-    }
-/* ------------------------------------------------------------- */
 
     // Caso para filtrar recetas por fuente (API o base de datos)
     case FILTER_RECIPES:

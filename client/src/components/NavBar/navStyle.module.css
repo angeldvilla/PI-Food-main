@@ -1,31 +1,37 @@
 /* FONTS */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800;900&display=swap");
 /* ----------------------------------------------------------- */
 
 .nav {
-    position: fixed;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5em;
-    background-color: rgba(225, 199, 154, 0.099);
-    padding: 0 1rem;
-    transition: 500ms;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5em;
+  background-color: rgba(225, 199, 154, 0.099);
+  padding: 0 1rem;
+  transition: 500ms;
 }
 
-.nav:hover{
+.nav:hover {
   background-color: rgba(24, 24, 24, 0.19);
-  transition: 400ms; 
+  transition: 400ms;
+}
+
+.nav.scrolled {
+  background-color: rgba(225, 199, 154, 0.287);
+  backdrop-filter: blur(7px);
+  transition: 300ms;
 }
 /* ----------------------------------------------------------- */
 
 .landingImage {
-    display: flex;
-    align-items: center;
-    justify-content:flex-start
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .landingImage img {
@@ -43,120 +49,119 @@
 /* ----------------------------------------------------------- */
 
 .home {
-  overflow: hidden; 
+  overflow: hidden;
   display: flex;
-  margin: 0 auto; 
+  margin: 0 auto;
   margin-bottom: 0;
-  margin-right: -5.9em; 
-  margin-left: 1.9em; 
-  width: 10rem; 
-  height: 2.3rem; 
-  align-items: center; 
-  background-color: rgba(244, 220, 85, 0.694);;
-  box-shadow: 0px 2px 9px black; 
+  margin-right: -5.9em;
+  margin-left: 1.9em;
+  width: 10rem;
+  height: 2.3rem;
+  align-items: center;
+  background-color: rgba(244, 220, 85, 0.694);
+  box-shadow: 0px 2px 9px black;
   /* color: #9e9e9ecb;  */
-  color: #ffffff; 
-  border: transparent; 
+  color: #ffffff;
+  border: transparent;
   border-radius: 1.5px;
   font-size: 1.2em;
-  font-family: 'Poppins', sans-serif; 
-  font-weight: bold; 
-  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.757); 
-  text-decoration: none; 
-  transition: 300ms; 
-}
-/* ----------------------------------------------------------- */ 
-
-.Createrecipes{
-    overflow: hidden; 
-    display: flex;
-    align-items: center; 
-    margin: 0 auto; 
-    margin-right: -5.9em; 
-    margin-left: 1.9em; 
-    font-weight: bold; 
-    border-radius: 1.5px; 
-    margin-bottom: 0;
-    width: 12.6rem; 
-    height: 2.4rem; 
-    color: #ffffff; 
-    background-color: rgba(244, 220, 85, 0.694);
-    box-shadow: 0px 2px 9px black; 
-    border: transparent; 
-    font-family: 'Poppins', sans-serif; 
-    font-size: 1.03em; 
-    transition: 300ms; 
-    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.757); 
-    text-decoration: none; 
-}
-
-.home:hover,
-.Createrecipes:hover
-{
-  background-color: rgba(255, 126, 40, 0.712);
-  color: #ffffff;
-  box-shadow: 0px 2px 9px black; 
-  text-shadow: 0 0 .1rem rgba(0, 0, 0, 0.461), 0 0 .1rem rgba(0, 0, 0, 0.461), 0 0 .8rem rgba(0, 0, 0, 0.461);
-  text-decoration: none; 
-  transform: scale(1.05);
-
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.757);
+  text-decoration: none;
+  transition: 300ms;
 }
 /* ----------------------------------------------------------- */
 
-.searchBar{
+.Createrecipes {
+  overflow: hidden;
   display: flex;
   align-items: center;
-  margin-right: 1rem; 
+  margin: 0 auto;
+  margin-right: -5.9em;
+  margin-left: 1.9em;
+  font-weight: bold;
+  border-radius: 1.5px;
+  margin-bottom: 0;
+  width: 12.6rem;
+  height: 2.4rem;
+  color: #ffffff;
+  background-color: rgba(244, 220, 85, 0.694);
+  box-shadow: 0px 2px 9px black;
+  border: transparent;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.03em;
+  transition: 300ms;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.757);
+  text-decoration: none;
+}
+
+.home:hover,
+.Createrecipes:hover {
+  background-color: rgba(255, 126, 40, 0.712);
+  color: #ffffff;
+  box-shadow: 0px 2px 9px black;
+  text-shadow: 0 0 0.1rem rgba(0, 0, 0, 0.461), 0 0 0.1rem rgba(0, 0, 0, 0.461),
+    0 0 0.8rem rgba(0, 0, 0, 0.461);
+  text-decoration: none;
+  transform: scale(1.05);
+}
+/* ----------------------------------------------------------- */
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
 }
 /* ----------------------------------------------------------- */
 
 /* RESPONSIVE */
 @media (max-width: 576px) {
   .links {
-    gap: 0.5rem; 
+    gap: 0.5rem;
   }
-  
+
   .home,
   .Createrecipes {
     font-size: 1em;
-    margin: 0; 
-    padding: 0.5rem 1rem; 
+    margin: 0;
+    padding: 0.5rem 1rem;
   }
 
   .searchBar {
-    margin-right: 0.5rem; 
+    margin-right: 0.5rem;
   }
 }
 
 @media (min-width: 577px) and (max-width: 992px) {
   .links {
-    gap: 1rem; 
+    gap: 1rem;
   }
   .home,
   .Createrecipes {
-    font-size: 1em; 
-    margin: 0; 
-    padding: 0.5rem 1rem; 
+    font-size: 1em;
+    margin: 0;
+    padding: 0.5rem 1rem;
   }
 
   .searchBar {
-    margin-right: 1rem; 
+    margin-right: 1rem;
   }
 }
 
 @media (min-width: 778px) and (max-width: 1080px) {
   .links {
-    gap: 0.5rem; 
+    gap: 0.5rem;
   }
-  
+
   .home,
   .Createrecipes {
-    font-size: 1em; 
-    margin: 0; 
-    padding: 0.5rem 1rem; 
+    font-size: 1em;
+    margin: 0;
+    padding: 0.5rem 1rem;
   }
 
   .searchBar {
-    margin-left: -1.5rem; 
+    margin-left: -1.5rem;
   }
 }

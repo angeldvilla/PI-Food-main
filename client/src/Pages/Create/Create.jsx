@@ -25,6 +25,8 @@ const CreateRecipe = () => {
     dispatch(getDiets());
   }, [dispatch]);
 
+  const [showModal, setShowModal] = useState(false);
+
   const [checkboxError, setCheckboxError] = useState('');
 
   const [recipeCreate, setRecipeCreate] = useState({
@@ -44,6 +46,16 @@ const CreateRecipe = () => {
     diets: [],
     image: ''
   });
+
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  }
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  }
+  
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -74,7 +86,7 @@ const CreateRecipe = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(newRecipe(recipeCreate));
-    alert('Recipe created successfully!');
+    alert('Recipe created successfully!'); 
     setRecipeCreate({
       title: '',
       summary: '',
