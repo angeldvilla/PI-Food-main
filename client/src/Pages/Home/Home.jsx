@@ -77,7 +77,7 @@ return (
       {loading && <Loader />}
 
       {isModalOpen && (
-        <Modal handleOk={handleCloseModal} handleCancel={handleCloseModal} h1="No se encontraron resultados" />
+        <Modal handleOk={handleCloseModal} handleCancel={handleCloseModal} message="No se encontraron resultados" />
       )}
 
          <div className={styles.filtersContainer}>
