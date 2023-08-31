@@ -106,6 +106,16 @@ switch(action.type) {
                 filterDiets: db,
             }; 
         }
+        else if(action.payload === 'All'){
+            return {
+                ...state,
+                allRecipes: state.filterOrder,
+                recipesByName: state.filterOrder,
+                filterRecipesStorage: state.filterOrder,
+                filterDiets: state.filterOrder,
+            };
+        }
+
         else {
             return state;
         }
@@ -113,6 +123,15 @@ switch(action.type) {
     
     // Caso para ordenar las recetas según el criterio seleccionado
     case ORDER_RECIPES:
+
+        if (action.payload === 'Order'){
+            return {
+                ...state,
+                allRecipes: state.recipesByName,
+                filterRecipesStorage: state.recipesByName,
+            };
+        }
+
         if(action.payload === 'A-Z'){
             
             const ascending =  state.filterRecipesStorage.sort((a,b) => a.title.localeCompare(b.title) ) 
@@ -157,7 +176,15 @@ switch(action.type) {
     case FILTER_DIETS: 
     
     const dietsFilter = state.filterDiets.filter(recipe => recipe.diets.includes(action.payload));
-
+    
+    if (action.payload === 'All') {
+        return {
+            ...state,
+            allRecipes: state.filterOrder,
+            recipesByName: state.filterOrder,
+            filterRecipesStorage: state.filterOrder,
+        };
+    }
         return {
         ...state,
         allRecipes: dietsFilter,

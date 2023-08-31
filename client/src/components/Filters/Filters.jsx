@@ -13,6 +13,8 @@ import { getDiets,
         filterDiets, 
         orderRecipes, 
         getAllRecipes  } from '../../redux/actions/actionsRecipes';
+
+import { pagination } from '../../redux/actions/actionsPagination';
 /* ------------------------- */
 
 const Filters = () => {
@@ -28,22 +30,27 @@ const Filters = () => {
 
     const handleFilterRecipes = async (event) => {
         dispatch(filterRecipes(event.target.value));
+        dispatch(pagination(1));
     };
 
     const handleFilterDiets = async (event) => {
-        dispatch(filterDiets(event.target.value))
+        dispatch(filterDiets(event.target.value));
+        dispatch(pagination(1));
     };
 
     const handleFilterHealthScore = async (event) => {
         dispatch(orderRecipes(event.target.value));
+        dispatch(pagination(1));
     };
 
     const handleOrder = async (event) => {
         dispatch(orderRecipes(event.target.value));
+        dispatch(pagination(1));
     };
 
     const handleReset = () => {
         dispatch(getAllRecipes());
+        dispatch(pagination(1));
     };
 /* ------------------------------------------------------------- */ 
 
@@ -52,7 +59,7 @@ return(
              
              <p>FILTER BY STORAGE</p>
             <select onChange={handleFilterRecipes} >
-                <option></option>
+                <option value="All">ALL</option>
                 <option value="Api" >API</option>
                 <option value="Database" >DATABASE</option>
             </select> 
@@ -60,7 +67,7 @@ return(
             
              <p>FILTER BY DIETS</p>
             <select onChange={handleFilterDiets}>
-                <option></option>
+                <option value="All">ALL</option>
                     {
                     diets?.map((diet, index) => (
                      <option key={index} value={diet.name}> {diet.name} </option>
@@ -72,7 +79,7 @@ return(
 
             <p>ORDER BY HEALTH SCORE</p>
             <select onChange={handleFilterHealthScore}>
-                <option></option>
+                <option value="Order">ORDER</option>
                 <option value="Asc" >ASC</option>
                 <option value="Desc" >DESC</option>
             </select> 
@@ -80,7 +87,7 @@ return(
 
             <p>ALPHABETICAL ORDER</p>
             <select onChange={handleOrder}>
-                <option></option>
+                <option value="Order">ORDER</option>
                 <option value="A-Z" >A-Z</option>
                 <option value="Z-A" >Z-A</option>
             </select>
