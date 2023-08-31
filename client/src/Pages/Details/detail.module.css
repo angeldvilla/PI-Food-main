@@ -72,7 +72,6 @@
 }
 
 .imgContainer img:hover{
-  width: 465px; 
   border: 4px solid rgb(255, 60, 0);
   border-bottom: 3px solid rgb(255, 60, 0);
   transition: 0.9s border;
@@ -83,19 +82,22 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 2rem;
   gap: 2rem; 
 }
 
 .dietsContainer {
-  width: auto;
-  margin-top: 0.5em;
-  padding: 2em;
+  width: 50em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 1rem;
+  gap: 2rem; 
   background-color: #0a0a0a69;
   border: 4px solid orange;
   border-bottom: 3px solid orange;
   border-radius: 8px;
-  overflow: hidden;
 }
 
 .dietsContainer:hover{
@@ -150,7 +152,6 @@
 }
 
 .summary:hover {
-  width: 95%;
   padding: 20px;
   background-color: #00000082;
   border: 2px solid rgb(255, 60, 0);
@@ -161,7 +162,6 @@
 /* ----------------------------------------------------------- */
 
 .stepByStep:hover {
-  width: 95%;
   padding: 20px;
   background-color: #00000082;
   border: 2px solid rgb(255, 60, 0);

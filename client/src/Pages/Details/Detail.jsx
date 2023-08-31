@@ -38,6 +38,26 @@ const Detail = () => {
 
 return (
   <div className={style.topContainer}>
+    
+    <style>
+      { /* Estilos de scroll */ }
+        {`
+          ::-webkit-scrollbar {
+            width: 12px;
+          }
+          ::-webkit-scrollbar-track {
+            background: #f1f1f1ac;
+          }
+          ::-webkit-scrollbar-thumb {
+            background: #ecd39c;
+            border-radius: 4px;
+          }
+          ::-webkit-scrollbar-thumb:hover {
+            background: #edc672;
+          }
+        `}
+   </style>
+
        {loading && <Loader />}
 
             <div className={style.buttonContainer}>
@@ -88,7 +108,7 @@ return (
    
                <div className={style.dietsContainer} style={{ maxHeight: !dietsToggle ? "0" : "100%" }}>
                  
-                 <label htmlFor="diets" className={style.dietsTitle} onClick={toggleDiets}>
+                 <label htmlFor="diets" onClick={toggleDiets}>
                    Diets
                  </label>
    
@@ -103,13 +123,13 @@ return (
              </div>
    
            </div>
-           
+            
                <div className={style.rightColumn}>
                 
-                 <label htmlFor="summary">Summary:</label>
+                 <label htmlFor="summary">Summary</label>
                  <p className={style.summary}>{recipeDetail.summary}</p>
                  
-                 <label htmlFor="stepByStep">Step By Step:</label>
+                 <label htmlFor="stepByStep">Step By Step</label>
                  <p className={style.stepByStep}>{recipeDetail.stepByStep}</p>
                </div>
    

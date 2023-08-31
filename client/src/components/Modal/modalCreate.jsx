@@ -1,20 +1,20 @@
 import React from "react";
-import Style from "./modal.module.css";
+import Style from "./modalCreate.module.css";
 
-const Modal = ({ handleOk, message }) => {
+const ModalCreate = ({ handleOk, message }) => {
   return (
     <div className={Style.modalOverlay}>
       <div className={Style.modalContent}>
-        <img src="https://www.freeiconspng.com/thumbs/error-icon/error-icon-4.png" alt="iconError">
+        <img src="https://icons.veryicon.com/png/o/miscellaneous/8atour/success-35.png" alt="iconSuccess">
         </img>
-        <h2 className={Style.modalTitle}>Error</h2>
+        <h2 className={Style.modalTitle}>Success</h2>
         <p className={Style.modalMessage}>{message}</p>
         <button className={Style.modalButton} onClick={() => handleOk()}>
-          Close
+          Done
         </button>
       </div>
     </div>
   );
 };
 
-export default Modal;
+export default ModalCreate;

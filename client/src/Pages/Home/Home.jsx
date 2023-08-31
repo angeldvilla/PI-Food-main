@@ -71,14 +71,13 @@ return (
         `}
    </style>
 
-      {/* Muestra el loader mientras las dietas 
-      y las recetas se están cargando */}
       
-
       {isModalOpen && (
-        <Modal handleOk={handleCloseModal} message="No se encontraron recetas con ese nombre" />
+        <Modal handleOk={handleCloseModal} message="No recipes found with that name" />
         )}
 
+        {/* Muestra el loader mientras las dietas 
+        y las recetas se están cargando */}
       {loading && <Loader />}
          <div className={styles.filtersContainer}>
          <Filters />

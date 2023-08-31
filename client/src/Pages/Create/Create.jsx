@@ -2,6 +2,7 @@
 import style from './create.module.css'
 import Loader from '../../components/Loader/loader';
 import validations from '../../validations/validations';
+import ModalCreate from '../../components/Modal/modalCreate';
 /* ------------ */
 
 /* HOOKS */
@@ -12,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 /* ACTIONS */
 import { newRecipe, getDiets } from '../../redux/actions/actionsRecipes';
+import { showModal, hideModal } from '../../redux/actions/actionsModal';
 /* ---------- */
 
 const CreateRecipe = () => {
@@ -21,11 +23,11 @@ const CreateRecipe = () => {
 
   const { diets, loading } = useSelector(state => state.recipes);
 
+  const { isModalOpen } = useSelector(state => state.modal);
+
   useEffect(() => {
     dispatch(getDiets());
   }, [dispatch]);
-
-  const [showModal, setShowModal] = useState(false);
 
   const [checkboxError, setCheckboxError] = useState('');
 
@@ -47,15 +49,10 @@ const CreateRecipe = () => {
     image: ''
   });
 
-
-  const handleOpenModal = () => {
-    setShowModal(true);
-  }
-
   const handleCloseModal = () => {
-    setShowModal(false);
-  }
-  
+    dispatch(hideModal());
+    navigate('/home');
+  };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -85,8 +82,8 @@ const CreateRecipe = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    dispatch(showModal());
     dispatch(newRecipe(recipeCreate));
-    alert('Recipe created successfully!'); 
     setRecipeCreate({
       title: '',
       summary: '',
@@ -95,11 +92,13 @@ const CreateRecipe = () => {
       diets: [],
       image: ''
     });
-    navigate('/home');
   };
 /* ------------------------------------------------------------- */ 
   return (
     <div className={style.topContainer}>
+      {isModalOpen && (
+        <ModalCreate handleOk={handleCloseModal} message="Recipe created successfully!" />
+        )}
       {loading && <Loader/>}
       <div className={style.formContainer}>
         <form onSubmit={handleSubmit} autoComplete='off' className={style.form}>

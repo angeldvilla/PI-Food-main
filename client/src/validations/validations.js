@@ -12,6 +12,10 @@ const validations = (recipeCreate) => {
     if(!recipeCreate.title){
       errors.title = 'Enter a title please.';
     }
+    if(recipeCreate.title.length === 1){
+      errors.title = "The title is too short.";
+    }
+
     if(recipeCreate.title.length > 100){
         errors.title = 'The title is too long.';
     }
