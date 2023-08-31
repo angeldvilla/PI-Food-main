@@ -10,6 +10,7 @@ import {ALL_RECIPES,
         FILTER_DIETS,  
         ORDER_RECIPES,
         LOADING } from './action-types';
+import { showModal } from './actionsModal';
 /* ----------------- */
 
 const URL_API = `http://localhost:3001/recipes`;
@@ -51,7 +52,8 @@ export const searchRecipesByName = (title) => {
 
         } catch (error) {
             console.log(error);
-           
+            dispatch(viewLoader(false));
+            dispatch(showModal());
         }
     }
 };
